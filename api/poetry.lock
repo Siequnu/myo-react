@@ -94,21 +94,6 @@ optional = false
 python-versions = "*"
 
 [[package]]
-name = "bootstrap-flask"
-version = "1.5.2"
-description = "Bootstrap helper for Flask/Jinja2."
-category = "main"
-optional = false
-python-versions = "*"
-
-[package.dependencies]
-Flask = "*"
-
-[package.extras]
-dev = ["coverage", "tox", "sphinx", "pallets-sphinx-themes", "sphinxcontrib-log-cabinet"]
-docs = ["sphinx", "pallets-sphinx-themes", "sphinxcontrib-log-cabinet"]
-
-[[package]]
 name = "brotli"
 version = "1.0.7"
 description = "Python bindings for the Brotli compression library"
@@ -332,36 +317,6 @@ docs = ["Sphinx (>=1.5.1)"]
 tests = ["check-manifest (>=0.25)", "coverage (>=4.0)", "isort (>=4.3.11)", "mock (>=1.0.0)", "pydocstyle (>=1.0.0)", "pytest-cache (>=1.0)", "pytest-cov (>=1.8.0)", "pytest-pep8 (>=1.0.6)", "pytest (>=3.8.0)"]
 
 [[package]]
-name = "Flask-Compress"
-version = "1.5.0"
-description = ""
-category = "main"
-optional = false
-python-versions = "*"
-develop = true
-
-[package.dependencies]
-brotli = "*"
-flask = "*"
-
-[package.source]
-type = "git"
-url = "https://github.com/colour-science/flask-compress.git"
-reference = "7cfbd5af9dac6aca9df833dd3a73ed9fc8adade3"
-resolved_reference = "7cfbd5af9dac6aca9df833dd3a73ed9fc8adade3"
-
-[[package]]
-name = "flask-dropzone"
-version = "1.5.4"
-description = "Upload file in Flask with Dropzone.js."
-category = "main"
-optional = false
-python-versions = "*"
-
-[package.dependencies]
-Flask = "*"
-
-[[package]]
 name = "flask-executor"
 version = "0.9.4"
 description = "An easy to use Flask wrapper for concurrent.futures"
@@ -382,19 +337,6 @@ python-versions = "*"
 
 [package.dependencies]
 Flask = "*"
-
-[[package]]
-name = "flask-limiter"
-version = "1.0.1"
-description = "Rate limiting for flask applications"
-category = "main"
-optional = false
-python-versions = "*"
-
-[package.dependencies]
-Flask = ">=0.8"
-limits = "*"
-six = ">=1.4.1"
 
 [[package]]
 name = "flask-login"
@@ -536,29 +478,6 @@ python-versions = ">= 2.7, != 3.0.*, != 3.1.*, != 3.2.*, != 3.3.*"
 [package.dependencies]
 Flask = ">=0.10"
 SQLAlchemy = ">=0.8.0"
-
-[[package]]
-name = "flask-talisman"
-version = "0.7.0"
-description = "HTTP security headers for Flask."
-category = "main"
-optional = false
-python-versions = "*"
-
-[package.dependencies]
-six = ">=1.9.0"
-
-[[package]]
-name = "flask-toastr"
-version = "0.5.2"
-description = "Showing non-blocking notifications in Flask templates using toastr."
-category = "main"
-optional = false
-python-versions = "*"
-
-[package.dependencies]
-Flask = "*"
-Jinja2 = "*"
 
 [[package]]
 name = "flask-weasyprint"
@@ -896,18 +815,6 @@ virtualenv-clone = ">=0.2.5"
 [package.extras]
 dev = ["towncrier", "bs4", "twine", "sphinx (<2)", "flake8 (>=3.3.0,<4.0)", "parver", "invoke", "black"]
 tests = ["pytest (<5.0)", "pytest-timeout", "pytest-xdist", "flaky", "mock"]
-
-[[package]]
-name = "pipenv-to-requirements"
-version = "0.9.0"
-description = "Generate requirements[-dev].txt from Pipfile using pipenv"
-category = "main"
-optional = false
-python-versions = "*"
-
-[package.dependencies]
-pbr = ">=3.0"
-pipenv = "*"
 
 [[package]]
 name = "pluggy"
@@ -1599,18 +1506,10 @@ python-versions = ">=3.6"
 docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
-[[package]]
-name = "zipstream"
-version = "1.1.4"
-description = "Zipfile generator"
-category = "main"
-optional = false
-python-versions = "*"
-
 [metadata]
 lock-version = "1.1"
 python-versions = "3.7.3"
-content-hash = "dc2ca3bc2a9f03a4f7b18689aad31f5bf4ddfacb93c5518aeaa20f4e04481dbd"
+content-hash = "e572a5d4c66edb9f6a822a75918045b36143e9b292ecf8613bb30d014d43c0cb"
 
 [metadata.files]
 alembic = [
@@ -1646,10 +1545,6 @@ autopep8 = [
 ]
 blinker = [
     {file = "blinker-1.4.tar.gz", hash = "sha256:471aee25f3992bd325afa3772f1063dbdbbca947a041b8b89466dc00d606f8b6"},
-]
-bootstrap-flask = [
-    {file = "Bootstrap-Flask-1.5.2.tar.gz", hash = "sha256:2b07d3635eac8c8b5f337845c658527b313ff298c4238dd9054649b3419025bd"},
-    {file = "Bootstrap_Flask-1.5.2-py2.py3-none-any.whl", hash = "sha256:e3291290320a1f6596325ad4006522a656d9e3cb688090af83d42a7d25bdc1e4"},
 ]
 brotli = [
     {file = "Brotli-1.0.7-cp27-cp27m-macosx_10_6_intel.macosx_10_9_intel.macosx_10_9_x86_64.macosx_10_10_intel.macosx_10_10_x86_64.whl", hash = "sha256:50dd9ad2a2bb12da4e9002a438672d182f98e546e99952de80280a1e1729664f"},
@@ -1802,11 +1697,6 @@ flask-breadcrumbs = [
     {file = "Flask-Breadcrumbs-0.5.1.tar.gz", hash = "sha256:f95872a3baf46473febd0f5c0adea192e7c2576af60a84a2144068eca1559b45"},
     {file = "Flask_Breadcrumbs-0.5.1-py2.py3-none-any.whl", hash = "sha256:cb6fc89d7f76ff429fa4bb1fbc0bfe186f3f7ff8b4f5325c0a7b75946e2de98f"},
 ]
-Flask-Compress = []
-flask-dropzone = [
-    {file = "Flask-Dropzone-1.5.4.tar.gz", hash = "sha256:fddeb963aef31da81e7bc39cad740e8778a8c59d96ef76c7d5ed362fc626a73a"},
-    {file = "Flask_Dropzone-1.5.4-py2.py3-none-any.whl", hash = "sha256:e5e3d4740d407807aa99d7b6438aad812a1ce01e1b07b0f409462ff078386709"},
-]
 flask-executor = [
     {file = "Flask-Executor-0.9.4.tar.gz", hash = "sha256:31b4a1141515214abc67b5f35507e5625ca33894f897afd422d5bfe223804242"},
     {file = "Flask_Executor-0.9.4-py3-none-any.whl", hash = "sha256:11fab654cb0acfc8eefbff74f6b916622f18fa1eb9466daeac1d105c159fd728"},
@@ -1814,10 +1704,6 @@ flask-executor = [
 flask-httpauth = [
     {file = "Flask-HTTPAuth-3.2.4.tar.gz", hash = "sha256:f71b7611f385fbdf350e8c430eed17b41c3b2200dc35eae19c1734264b68e31d"},
     {file = "Flask_HTTPAuth-3.2.4-py2.py3-none-any.whl", hash = "sha256:c08b69b302f1aa7ecd0db327809132ef6ca9486a36a9174776da146d1a4adc18"},
-]
-flask-limiter = [
-    {file = "Flask-Limiter-1.0.1.tar.gz", hash = "sha256:8cce98dcf25bf2ddbb824c2b503b4fc8e1a139154240fd2c60d9306bad8a0db8"},
-    {file = "Flask_Limiter-1.0.1-py2.7.egg", hash = "sha256:473aa5bc97310406aa8c12ab3dc080697bcfa8cd21a6d0aba30916911bbc673c"},
 ]
 flask-login = [
     {file = "Flask-Login-0.5.0.tar.gz", hash = "sha256:6d33aef15b5bcead780acc339464aae8a6e28f13c90d8b1cf9de8b549d1c0b4b"},
@@ -1855,14 +1741,6 @@ flask-seasurf = [
 flask-sqlalchemy = [
     {file = "Flask-SQLAlchemy-2.4.4.tar.gz", hash = "sha256:bfc7150eaf809b1c283879302f04c42791136060c6eeb12c0c6674fb1291fae5"},
     {file = "Flask_SQLAlchemy-2.4.4-py2.py3-none-any.whl", hash = "sha256:05b31d2034dd3f2a685cbbae4cfc4ed906b2a733cff7964ada450fd5e462b84e"},
-]
-flask-talisman = [
-    {file = "flask-talisman-0.7.0.tar.gz", hash = "sha256:468131464a249274ed226efc21b372518f442487e58918ccab8357eaa638fd1f"},
-    {file = "flask_talisman-0.7.0-py2.py3-none-any.whl", hash = "sha256:eaa754f4b771dfbe473843391d69643b79e3a38c865790011ac5e4179c68e3ec"},
-]
-flask-toastr = [
-    {file = "Flask-Toastr-0.5.2.tar.gz", hash = "sha256:52a4faa2679e8583e180d47fa979a01e111aacaa7014bf941f0f9608dcfa5f3c"},
-    {file = "Flask_Toastr-0.5.2-py3-none-any.whl", hash = "sha256:ed9a48e7b4add2c95c2b15668cd0dc1c23c0bc3142279d2da879cfc8d4cd2d93"},
 ]
 flask-weasyprint = [
     {file = "Flask-WeasyPrint-0.6.tar.gz", hash = "sha256:ceb48d15dca49d6f32be60a19fb6d6a43f0668978ac8af4240292b85630652b1"},
@@ -2068,10 +1946,6 @@ pillow = [
 pipenv = [
     {file = "pipenv-2020.6.2-py2.py3-none-any.whl", hash = "sha256:cc289dc78feaa14def4e1723b0b4d85ff628c8e5f740eeeb68197b90dafa8dff"},
     {file = "pipenv-2020.6.2.tar.gz", hash = "sha256:7dd49a7345fa5da7843907bab42a996dece474e45dd309dbd7619739dc60478b"},
-]
-pipenv-to-requirements = [
-    {file = "pipenv-to-requirements-0.9.0.tar.gz", hash = "sha256:cb70471a17a7d4658caffe989539413313d51df1b3a54838bcd7e7d3ab3fcc18"},
-    {file = "pipenv_to_requirements-0.9.0-py2.py3-none-any.whl", hash = "sha256:1c18682a4ec70eb07261d2b558df3ee22ea00192663a1b98fd1e45e22946c163"},
 ]
 pluggy = [
     {file = "pluggy-0.9.0-py2.py3-none-any.whl", hash = "sha256:84d306a647cc805219916e62aab89caa97a33a1dd8c342e87a37f91073cd4746"},
@@ -2380,7 +2254,4 @@ xvfbwrapper = [
 zipp = [
     {file = "zipp-3.1.0-py3-none-any.whl", hash = "sha256:aa36550ff0c0b7ef7fa639055d797116ee891440eac1a56f378e2d3179e0320b"},
     {file = "zipp-3.1.0.tar.gz", hash = "sha256:c599e4d75c98f6798c509911d08a22e6c021d074469042177c8c86fb92eefd96"},
-]
-zipstream = [
-    {file = "zipstream-1.1.4.tar.gz", hash = "sha256:2ef24b9150c93429b172750c4890b5ab28c1317892e11727afeff986ad2a3506"},
 ]
