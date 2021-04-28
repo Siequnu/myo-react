@@ -8,7 +8,11 @@ import { Link } from '@material-ui/core';
 
 function ActivityBubble(props) {
 
-    const fullThumbnailPath = '/static/activities/' + (props.activityId + 1) + '/' + props.thumbnail;
+    const getActivityId = () => {
+        return props.activityId + 1;
+    }
+
+    const fullThumbnailPath = '/static/activities/' + getActivityId() + '/' + props.thumbnail;
     const thumbnailUrl = "url('" + fullThumbnailPath + "')";
 
     const [backgroundColour, setBackgroundColour] = useState('#eee')
@@ -26,8 +30,7 @@ function ActivityBubble(props) {
     return (
         <Link component={RouterLink}
             to={{
-                pathname: "/",
-                state: { activityId: props.activityId }
+                pathname: "/activity/" + getActivityId(),
             }}
             className="ActivityBubble"
             style={{ backgroundColor: backgroundColour, textDecoration: 'none' }}>

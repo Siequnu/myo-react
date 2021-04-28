@@ -24,7 +24,7 @@ class App extends React.Component {
   componentDidMount() {
     setTimeout(() => {
       this.setState({ splashScreen: false })
-    }, 200);
+    }, 1500);
   }
 
   render() {
