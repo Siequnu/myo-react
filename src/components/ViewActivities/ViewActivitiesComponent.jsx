@@ -13,7 +13,7 @@ function ViewActivitiesComponent() {
 
     const override = css`display: block; margin: 0 auto;`;
 
-    const { data } = useSWR('/activities/api/get')
+    const { data } = useSWR('/activities/api/list')
 
     if (!data) return <BounceLoader color={"#F19820"} loading={true} css={override} size={100} />
 

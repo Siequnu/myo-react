@@ -17,7 +17,7 @@ from datetime import datetime
 Api routes
 """
 
-@bp.route("/api/get")
+@bp.route("/api/list")
 def get_all_activities():
 	"""
 	Get all the activities
@@ -25,6 +25,20 @@ def get_all_activities():
 	activities_file = open('../public/activities/activities.json')
 	activities = json.load(activities_file)
 	return jsonify({ 'activities': activities})
+
+@bp.route("/api/get/<int:activity_id>")
+def get_single_activity(activity_id):
+	"""
+	Get single activity
+	"""
+	activities_file = open('../public/activities/activities.json')
+	activities = json.load(activities_file)
+	try:
+		activity = activities[activity_id]
+	except Exception as e:
+		return jsonify({'error', 'An error occured.'})
+	return jsonify({ 'activity': activity})
+
 
 # Route to save the activity feedback data
 @bp.route("/api/feedback/<int:activity_id>", methods=['POST'])

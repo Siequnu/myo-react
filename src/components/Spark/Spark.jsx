@@ -30,7 +30,7 @@ function Spark() {
         gravitation: 5
     }
 
-    const { data } = useSWR('/activities/api/get')
+    const { data } = useSWR('/activities/api/list')
 
     if (!data) return <BounceLoader color={"#F19820"} loading={true} css={override} size={100} />
 
