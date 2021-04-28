@@ -132,10 +132,6 @@ def create_app(config_class):
     if not os.path.exists(os.path.join(myo_app.config['UPLOAD_FOLDER'])):
         os.mkdir(myo_app.config['UPLOAD_FOLDER'])
 
-    # Create a thumbnails folder if non-existant
-    if not os.path.exists(os.path.join(myo_app.config['THUMBNAIL_FOLDER'])):
-        os.mkdir(myo_app.config['THUMBNAIL_FOLDER'])
-
     # Log errors to local log
     if not myo_app.debug and not myo_app.testing:
         logsPath = os.path.join(myo_app.config['APP_ROOT'], 'logs')

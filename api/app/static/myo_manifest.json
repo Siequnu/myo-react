@@ -1,9 +1,0 @@
-{
-  "name": "myo",
-  "short_name": "myo",
-  "theme_color": "#2f3e4e",
-  "background_color": "#000000",
-  "display": "fullscreen",
-  "scope": "/",
-  "start_url": "/"
-}
