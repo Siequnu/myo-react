@@ -19,9 +19,11 @@
     "react-is": ">= 16.8.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "react-spinners": "^0.10.6",
     "react-user-onboarding": "git+https://github.com/Siequnu/react-user-onboarding.git",
     "styled-components": "^5.2.3",
     "swiper": "^6.5.8",
+    "swr": "^0.5.5",
     "typescript": ">=2.8.0 || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.6.0-beta || >= 3.7.0-dev || >= 3.7.0-beta",
     "web-vitals": "^1.0.1"
   },
