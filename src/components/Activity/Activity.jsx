@@ -69,7 +69,7 @@ function Activity(props) {
                     {activity.pages.map((page, i) => {
                         return (
                             <SwiperSlide key={i}>
-                                <img src={'/activities/' + (activityId) + '/' + page.thumbnail} alt="Header decoration" />
+                                <img src={encodeURI('/activities/' + (activityId) + '/' + page.thumbnail)} alt="Header decoration" />
                                 <h1>{page.title}</h1>
                                 <p dangerouslySetInnerHTML={{ __html: page.description }}></p>
                             </SwiperSlide>
