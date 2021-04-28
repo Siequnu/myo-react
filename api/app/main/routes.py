@@ -23,45 +23,6 @@ def close_request_session(response):
 	db.session.remove()
 	return response
 
-
-@current_app.context_processor
-def inject_background():
-	backgrounds = []
-	for background in os.listdir(os.path.join(current_app.static_folder, 'backgrounds')):
-		backgrounds.append(
-			url_for('static', filename=os.path.join('backgrounds', background)))
-
-	return dict(backgrounds=backgrounds)
-
-
-# Public facing page
-@bp.route('/')
-@bp.route('/index')
-def index():
-	return render_template('public_index.html')
-
-# Main entrance to the app
-
-
-@bp.route('/app')
-@login_required
-def myo_app():
-	if current_user.is_authenticated:
-		# All models get the greeting
-		greeting = app.main.models.get_greeting()
-		return render_template('app_create.html')
-
-
-# Admin page
-@bp.route('/superintendant')
-@login_required
-def superintendant():
-	if current_user.is_authenticated and current_user.is_admin == True:
-		return render_template('superintendant.html')
-	else:
-		abort (403)
-
-
 # Onboarding questions
 @bp.route('/onboarding')
 @login_required
