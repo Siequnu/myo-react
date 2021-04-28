@@ -19,7 +19,7 @@ function CardComponent(props) {
                 <div className="card" key={i}>
                     
                     <div className="card-image">
-                        <img src={'/static/activities/' + getActivityId(i) + '/' + card.thumbnail} alt="Header decoration" />
+                        <img src={'/activities/' + getActivityId(i) + '/' + card.thumbnail} alt="Header decoration" />
                     </div>
                     
                     <div className="content">

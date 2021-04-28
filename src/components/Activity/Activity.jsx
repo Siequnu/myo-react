@@ -47,7 +47,7 @@ function Activity(props) {
         return (
             <div className="Activity">
                 <div className="ActivityIntroduction">
-                    <img src={'/static/activities/' + (activityId) + '/' + activity.thumbnail} alt="Header decoration" />
+                    <img src={'/activities/' + (activityId) + '/' + activity.thumbnail} alt="Header decoration" />
                     <h1>{activity.title}</h1>
                     <p dangerouslySetInnerHTML={{ __html: activity.description }}></p>
                     <Button variant="contained" color="primary" onClick={startActivity}>
@@ -69,7 +69,7 @@ function Activity(props) {
                     {activity.pages.map((page, i) => {
                         return (
                             <SwiperSlide key={i}>
-                                <img src={'/static/activities/' + (activityId) + '/' + page.thumbnail} alt="Header decoration" />
+                                <img src={'/activities/' + (activityId) + '/' + page.thumbnail} alt="Header decoration" />
                                 <h1>{page.title}</h1>
                                 <p dangerouslySetInnerHTML={{ __html: page.description }}></p>
                             </SwiperSlide>

@@ -12,7 +12,7 @@ function ActivityBubble(props) {
         return props.activityId + 1;
     }
 
-    const fullThumbnailPath = '/static/activities/' + getActivityId() + '/' + props.thumbnail;
+    const fullThumbnailPath = '/activities/' + getActivityId() + '/' + props.thumbnail;
     const thumbnailUrl = "url('" + fullThumbnailPath + "')";
 
     const [backgroundColour, setBackgroundColour] = useState('#eee')
