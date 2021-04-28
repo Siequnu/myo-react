@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { Link as RouterLink } from 'react-router-dom';
+import { Link } from '@material-ui/core';
 import { useParams } from "react-router-dom";
 import './Activity.css'
 
@@ -6,8 +8,6 @@ import Button from '@material-ui/core/Button';
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
-
-// import Swiper core and required modules
 import SwiperCore, { Navigation, Pagination, A11y } from 'swiper';
 
 import 'swiper/swiper.scss';
@@ -42,7 +42,7 @@ function Activity(props) {
     if (activity === null) {
         return null;
     }
-    
+
     if (showActivityIntroduction) {
         return (
             <div className="Activity">
@@ -78,11 +78,17 @@ function Activity(props) {
 
                 </Swiper>
                 { activityCompleted ? (
-                    <Button variant="contained" color="primary" onClick={() => props.exitCallback()}>
-                        Done
+                    <Link component={RouterLink}
+                        to={{pathname: "/",}}
+                        style={{ textDecoration: 'none' }}>
+                        <Button variant="contained" color="primary">
+                            Done
                     </Button>
-                ) : null}
-            </div>
+                    </Link>
+
+                ) : null
+                }
+            </div >
         )
     }
 }
