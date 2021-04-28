@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import './Activity.css'
 
 import Button from '@material-ui/core/Button';
@@ -17,63 +18,70 @@ import 'swiper/components/pagination/pagination.scss';
 // install Swiper modules
 SwiperCore.use([Navigation, Pagination, A11y]);
 
-class Activity extends React.Component {
-    constructor() {
-        super()
-        this.state = {
-            activityCompleted: false,
-            showActivityIntroduction: true
-        };
+function Activity(props) {
+    let { activityId } = useParams();
+
+    const [activity, setActivity] = useState(null)
+    const [activityCompleted, setActivityCompleted] = useState(false)
+    const [showActivityIntroduction, setShowActivityIntroduction] = useState(true)
+
+    useEffect(() => {
+        fetch('/activities/api/get').then(res => res.json()).then(data => {
+            setActivity(data.activities[activityId - 1]);
+        });
+    }, [activityId])
+
+    const startActivity = () => {
+        setShowActivityIntroduction(false);
     }
 
-
-    startActivity = () => {
-        this.setState({ showActivityIntroduction: false })
+    const finishedActivity = () => {
+        setActivityCompleted(true);
     }
 
-    finishedActivity = () => {
-        this.setState({ activityCompleted: true })
+    if (activity === null) {
+        return null;
     }
-
-    render() {
+    
+    if (showActivityIntroduction) {
         return (
             <div className="Activity">
-                { this.state.showActivityIntroduction ? (
-                    <div className="ActivityIntroduction">
-                        <img src={'/static/activities/' + (this.props.activityId + 1) + '/' + this.props.activityObject.thumbnail} alt="Header decoration" />
-                        <h1>{this.props.activityObject.title}</h1>
-                        <p>{this.props.activityObject.description}</p>
-                        <Button variant="contained" color="primary" onClick={this.startActivity}>
-                            Start now
+                <div className="ActivityIntroduction">
+                    <img src={'/static/activities/' + (activityId) + '/' + activity.thumbnail} alt="Header decoration" />
+                    <h1>{activity.title}</h1>
+                    <p dangerouslySetInnerHTML={{ __html: activity.description }}></p>
+                    <Button variant="contained" color="primary" onClick={startActivity}>
+                        Start now
                          </Button>
-                    </div>
-                ) : (
-                    <div className="ActivityCarousel">
-                        <Swiper
-                            spaceBetween={50}
-                            slidesPerView={1}
-                            navigation
-                            pagination={{ clickable: true, type: 'progressbar', }}
-                            onReachEnd={this.finishedActivity}
-                        >
-                            {this.props.activityObject.pages.map(page => {
-                                return (
-                                    <SwiperSlide>
-                                        <img src={'/static/activities/' + (this.props.activityId + 1) + '/' + page.thumbnail} alt="Header decoration" />
-                                        <h1>{page.title}</h1>
-                                        <p>{page.description}</p>
-                                    </SwiperSlide>
-                                )
-                            })}
+                </div>
+            </div>
+        )
+    } else {
+        return (
+            <div className="ActivityCarousel">
+                <Swiper
+                    spaceBetween={50}
+                    slidesPerView={1}
+                    navigation
+                    pagination={{ clickable: true, type: 'progressbar', }}
+                    onReachEnd={finishedActivity}
+                >
+                    {activity.pages.map((page, i) => {
+                        return (
+                            <SwiperSlide key={i}>
+                                <img src={'/static/activities/' + (activityId) + '/' + page.thumbnail} alt="Header decoration" />
+                                <h1>{page.title}</h1>
+                                <p dangerouslySetInnerHTML={{ __html: page.description }}></p>
+                            </SwiperSlide>
+                        )
+                    })}
 
-                        </Swiper>
-                        { this.state.activityCompleted ? (
-                            <Button variant="contained" color="primary" onClick={() => this.props.exitCallback()}>
-                                Done
-                            </Button>
-                        ) : null}
-                    </div>
-                )}
+                </Swiper>
+                { activityCompleted ? (
+                    <Button variant="contained" color="primary" onClick={() => props.exitCallback()}>
+                        Done
+                    </Button>
+                ) : null}
             </div>
         )
     }

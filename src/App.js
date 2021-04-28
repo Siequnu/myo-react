@@ -9,6 +9,7 @@ import TopBar from './components/TopBar/TopBar';
 import SplashScreen from './components/SplashScreen/SplashScreen';
 import UserMenu from './components/UserMenu/UserMenu.jsx';
 import ViewActivitiesComponent from './components/ViewActivities/ViewActivitiesComponent';
+import Activity from './components/Activity/Activity';
 import Spark from './components/Spark/Spark';
 
 class App extends React.Component {
@@ -23,7 +24,7 @@ class App extends React.Component {
   componentDidMount() {
     setTimeout(() => {
       this.setState({ splashScreen: false })
-    }, 2000);
+    }, 200);
   }
 
   render() {
@@ -43,6 +44,10 @@ class App extends React.Component {
                   
                   <Route exact path="/">
                     <ViewActivitiesComponent />
+                  </Route>
+
+                  <Route exact path="/activity/:activityId">
+                    <Activity />
                   </Route>
 
                   <Route exact path="/spark">
