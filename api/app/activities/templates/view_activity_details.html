@@ -1,0 +1,368 @@
+ {% extends "header_superintendant.html" %} {% block app_content %}
+ <link rel="stylesheet" href="/static/css/timeline.css">
+
+
+ <style>
+   .selected-types-bucket, .selected-materials-bucket {
+     width: 100%;
+     border: 1px solid rgba(128, 128, 128, 0.603);
+     border-radius: 7.5px;
+     min-height: 100px;
+     padding: 10px;
+   }
+
+   .activity-types, .material-types {
+     padding: 10px;
+   }
+
+   .badge {margin: 5px;}
+ </style>
+
+ <div class="container">
+
+   <div class="container">
+     <div class="row">
+       <div class="col-12 col-md-2">
+         <a href="{{url_for('activities.view_activities')}}"><button class="btn btn-lg btn-outline-primary"><i
+               class="fa fa-chevron-left"></i> Back</button></a>
+       </div>
+       <div class="col-12 col-lg-8">
+         <h1>Activity details</h1>
+       </div>
+     </div>
+   </div>
+ </div>
+ <hr>
+
+ <div class="container">
+   <div class="row">
+     <div class="col-xs-12 col-md-4">
+
+       <div class="library_card">
+         <div class="img-library_card">
+           <img src="/static/thumbnails/file-blank.png" />
+         </div>
+         <div class="library_card-content">
+           <h4 class="library_card-title">
+             {{activity.name}}</h4>
+           <p>{{activity.description}}</p>
+         </div>
+
+         <div class="activity-types">
+
+         </div>
+
+         <div class="material-types">
+
+        </div>
+
+         <div class="library_card-read-more">
+           <a href="#" class="btn btn-outline-primary btn-sm openAddTypesModal" role="button" data-toggle="modal"
+             data-target="#addTypesModal" data-activityid="{{activity.id}}"><i class="fa fa-puzzle-piece"></i> Edit
+             types</a>
+             <a href="#" class="btn btn-outline-secondary btn-sm openAddMaterialsModal" role="button" data-toggle="modal"
+             data-target="#addMaterialsModal" data-activityid="{{activity.id}}"><i class="fa fa-paint-brush"></i> Edit
+             materials</a>
+         </div>
+       </div>
+
+     </div>
+
+     <div class="col-xs-12 col-md-8">
+
+       <div class="container">
+         <div class="card bg-light mb-3 text-center">
+           <div class="card-body">
+             <h5 class="card-title">Activity statistics</h5>
+             <p class="card-text">Engagement, completion, analytics</p>
+             <a href="#">
+               <button class="btn btn-outline-primary"><i class="fa fa-cloud-download-alt"></i> Download report
+               </button></a>
+           </div>
+         </div>
+       </div>
+     </div>
+
+   </div>
+ </div>
+
+
+ <!-- Add types modal -->
+ <div class="modal fade" id="addTypesModal" tabindex="-1" role="dialog">
+   <div class="modal-dialog modal-lg" role="document">
+     <div class="modal-content">
+       <div class="modal-body">
+         <h1 class="display-5"><i class="fa fa-puzzle-piece"></i> Add types</h1>
+         <hr class="my-4">
+
+         <link rel="stylesheet" href="/static/css/form-control-borderless.css">
+         <div class="row justify-content-left">
+           <div class="col-12 col-md-10 col-lg-8">
+             <form class="card">
+               <div class="card-body row no-gutters align-items-center">
+                 <div class="col-auto">
+                   <i class="fas fa-search h4 text-body">
+                   </i>
+                 </div>
+                 <!--end of col-->
+                 <div class="col">
+                   <input id="myInput" class="form-control form-control-lg form-control-borderless" type="search"
+                     placeholder="Search for types">
+                 </div>
+                 <!--end of col-->
+               </div>
+             </form>
+           </div>
+           <!--end of col-->
+         </div>
+
+         <br>
+         <div class="table-responsive">
+           <table id="dtBasicExample" summary="User table"
+             class="table table-striped table-bordered table-sm table-hover text-small" cellspacing="0"
+             style="width: auto;">
+             <thead>
+               <tr>
+                 <th><i class="fa fa-fingerprint"></i></th>
+                 <th><i class="fa fa-plus-circle"></i></th>
+               </tr>
+             </thead>
+             <tbody id="searchableTable">
+               {% for type in types %}
+               <tr>
+                 <td>{{type.activity_type}}</td>
+                 <td>
+                   <button class="btn btn-sm btn-outline-success add-single-type" data-activitytypeid="{{type.id}}"><i
+                       class="fa fa-plus-circle"></i>
+                     Add</button>
+                 </td>
+               </tr>
+               {% endfor %}
+             </tbody>
+             <tfoot>
+               <tr>
+               </tr>
+             </tfoot>
+           </table>
+         </div>
+       </div>
+
+       <div class="modal-body">
+         <hr>
+         <h3 class="display-5"><i class="fa fa-puzzle-piece"></i> Current types</h3>
+         <div class="selected-types-bucket">
+
+         </div>
+       </div>
+
+       <div class="modal-footer">
+         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+       </div>
+     </div>
+   </div>
+ </div>
+
+
+ <!-- Add materials modal -->
+ <div class="modal fade" id="addMaterialsModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h1 class="display-5"><i class="fa fa-paint-brush"></i> Add materials</h1>
+        <hr class="my-4">
+
+        <link rel="stylesheet" href="/static/css/form-control-borderless.css">
+        <div class="row justify-content-left">
+          <div class="col-12 col-md-10 col-lg-8">
+            <form class="card">
+              <div class="card-body row no-gutters align-items-center">
+                <div class="col-auto">
+                  <i class="fas fa-search h4 text-body">
+                  </i>
+                </div>
+                <!--end of col-->
+                <div class="col">
+                  <input id="myInput" class="form-control form-control-lg form-control-borderless" type="search"
+                    placeholder="Search for materials">
+                </div>
+                <!--end of col-->
+              </div>
+            </form>
+          </div>
+          <!--end of col-->
+        </div>
+
+        <br>
+        <div class="table-responsive">
+          <table id="dtBasicExample" summary="User table"
+            class="table table-striped table-bordered table-sm table-hover text-small" cellspacing="0"
+            style="width: auto;">
+            <thead>
+              <tr>
+                <th><i class="fa fa-paint-brush"></i></th>
+                <th><i class="fa fa-plus-circle"></i></th>
+              </tr>
+            </thead>
+            <tbody id="searchableTable">
+              {% for material in materials %}
+              <tr>
+                <td>{{material.material}}</td>
+                <td>
+                  <button class="btn btn-sm btn-outline-success add-single-material" data-materialid="{{material.id}}"><i
+                      class="fa fa-plus-circle"></i>
+                    Add</button>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+            <tfoot>
+              <tr>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+
+      <div class="modal-body">
+        <hr>
+        <h3 class="display-5"><i class="fa fa-puzzle-piece"></i> Current materials</h3>
+        <div class="selected-materials-bucket">
+
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+ {% endblock %}
+
+
+ {% block templateScripts %}
+ <script type="text/javascript">
+   $(function () {
+
+     // Store the current activity_id as a variable
+     var currentActivityId = {{activity.id}};
+
+     // Add activities handler
+     $('.openAddTypesModal').click(function () {
+       // Populate the activities
+       populateTypes();
+     });
+
+     // Add materials handler
+     $('.openAddMaterialsModal').click(function () {
+       // Populate the activities
+       populateMaterials();
+     });
+
+     // Fill the type box 
+     var populateTypes = function () {
+       // Populate the modal
+       $.ajax({
+         url: '/activities/api/get/types/activity/' + currentActivityId,
+         success: function (data) {
+           // Fill the modal bucket
+           $('.selected-types-bucket').empty();
+           $.each(data, function (indexInArray, typeRelationship) {
+             var html = '<button class="btn btn-outline-success type-button" data-typeid="' +
+               typeRelationship.activity_type_id + '">';
+             html += typeRelationship.activity_type_name;
+             html += '<i class="fa fa-times-circle ml-2"></i>'
+             html += '</button>';
+             $('.selected-types-bucket').append(html);
+           });
+
+           // Fill the card in the main window
+           $('.activity-types').empty();
+           $.each(data, function (indexInArray, typeRelationship) {
+             var html = '<span class="badge badge-success">' + typeRelationship.activity_type_name +
+               ' </span>';
+             $('.activity-types').append(html);
+           });
+         },
+       });
+     };
+
+     // Fill the materials box 
+     var populateMaterials = function () {
+       // Populate the modal
+       $.ajax({
+         url: '/activities/api/get/materials/activity/' + currentActivityId,
+         success: function (data) {
+           // Fill the modal bucket
+           $('.selected-materials-bucket').empty();
+           $.each(data, function (indexInArray, materialRelationship) {
+             var html = '<button class="btn btn-outline-success material-button" data-materialid="' +
+               materialRelationship.material_id + '">';
+             html += materialRelationship.material_name;
+             html += '<i class="fa fa-times-circle ml-2"></i>'
+             html += '</button>';
+             $('.selected-materials-bucket').append(html);
+           });
+
+           // Fill the card in the main window
+           $('.material-types').empty();
+           $.each(data, function (indexInArray, materialRelationship) {
+             var html = '<span class="badge badge-warning">' + materialRelationship.material_name +
+               ' </span>';
+             $('.material-types').append(html);
+           });
+         },
+       });
+     };
+
+     // Handler to add an activity when clicking Add button
+     $('.add-single-type').click(function () {
+       var typeId = $(this).data('activitytypeid');
+       $.ajax({
+         url: '/activities/api/add/type/' + currentActivityId + '/' + typeId,
+         success: function (data) {
+           populateTypes();
+         },
+       });
+     });
+
+     // Handler to add an activity when clicking Add button
+     $('.add-single-material').click(function () {
+       var materialId = $(this).data('materialid');
+       $.ajax({
+         url: '/activities/api/add/material/' + currentActivityId + '/' + materialId,
+         success: function (data) {
+           populateMaterials();
+         },
+       });
+     });
+
+     // Handler to remove an activity
+     $(document).on('click', '.type-button', function () {
+       var typeId = $(this).data('typeid');
+       $.ajax({
+         url: '/activities/api/remove/type/' + currentActivityId + '/' + typeId,
+         success: function (data) {
+           populateTypes();
+         },
+       });
+     });
+
+     // Handler to remove a material
+     $(document).on('click', '.material-button', function () {
+      var materialId = $(this).data('materialid');
+       $.ajax({
+         url: '/activities/api/remove/material/' + currentActivityId + '/' + materialId,
+         success: function (data) {
+           populateActivities();
+         },
+       });
+     });
+
+     // On startup, populate the types
+     populateTypes();
+     populateMaterials();
+   });
+ </script>
+ {% endblock %}

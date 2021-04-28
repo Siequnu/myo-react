@@ -1,0 +1,100 @@
+{% extends "header.html" %}
+{% from 'bootstrap/form.html' import render_field %}
+{% block app_content %}
+
+<link rel="stylesheet" href="/static/css/myo.css">
+
+{% set selected_background = '/static/backgrounds/create.jpg' %}
+<style>
+    body {
+        height: 100vh;
+        background-image: url({{selected_background}});
+    }
+
+    .logo.corner {
+        top: 20px !important;
+    }
+</style>
+
+<style>
+    .lowerNavBar {
+        z-index: 5;
+    }
+</style>
+
+
+<div class="popup notification">
+    <i class="fa fa-smile-wink"></i>
+    <h2>Coming soon!</h2>
+    <p>We are working hard on this part of the app.</p>
+</div>
+
+
+<div class="menu-tab">
+    <h2>Create</h2>
+</div>
+
+
+<style>
+    .create-bubble {
+        display: block;
+        border-radius: 2em;
+        border: solid 1px white;
+        background: rgba(255, 255, 255, 70%);
+        margin: 25px auto;
+        width: 60%;
+        height: 60px;
+        text-align: center;
+        box-shadow: 1px 1px 6px #b8b9be, -3px -3px 6px #ffffff;
+        font-size: 18px;
+        transition: transform .7s;
+    }
+
+    .create-bubble span {
+        line-height: 62px;
+        background-color: transparent;
+        background: transparent;
+    }
+
+    .create-bubble:hover {
+        transform: scale(1.05);
+        background: rgba(255, 255, 255, 80%);
+    }
+
+    .create-bubble:active {
+        background: rgba(255, 255, 255, 90%);
+    }
+</style>
+
+<div class="justify-content-center">
+    <a class="create-bubble"><span class="text-span">Write</span></a>
+    <a class="create-bubble"><span class="text-span">Search</span></a>
+    <a class="create-bubble"><span class="text-span">Poetry</span></a>
+    <a class="create-bubble"><span class="text-span">Sketch</span></a>
+    <a class="create-bubble"><span class="text-span">Draw</span></a>
+    <a class="create-bubble"><span class="text-span">Paint</span></a>
+</div>
+
+
+{% include 'lower_nav.html' %}
+
+
+{% block templateScripts %}
+<script>
+    $(function () {
+        $('.lowerNavBar a').removeClass('active');
+        $('.lowerNavBar a.create').addClass('active');
+    });
+</script>
+
+<script>
+    $('.create-bubble').on('click', function (event) {
+        event.preventDefault();
+        $('.popup.notification').slideDown('slow');
+        $('.popup.notification').delay(2500).slideUp('slow');
+    });
+</script>>
+
+{% endblock %}
+
+{% endblock %}

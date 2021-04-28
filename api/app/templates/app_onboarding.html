@@ -1,0 +1,264 @@
+{% extends "header.html" %}
+{% block app_content %}
+
+<!-- Welcome to Myo -->
+<style>
+    body {
+        font-family: 'F37 Ginger';
+        background-color: #cae8ff !important;
+    }
+    img.mb-3 {max-width: 70%;}
+    p.lead {color: #fc6a34; font-size: 1.2rem}
+    section.section {background-color: #cae8ff !important; height: 100vh}
+
+</style>
+
+
+<!-- Hero -->
+    <section class="section splash-screen bg-soft pb-5 overflow-hidden z-2">
+        <div class="container z-2">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-8 col-xl-8">
+                    <img class="mb-3 bigger-logo animate__animated animate__zoomInDown" src="/static/myo-text-icon.png" />
+                    <p class="lead px-md-6 mb-5 animate__animated animate__fadeInDown animate__delay-1s">Welcome to Myo!</p>
+                    <div class="d-flex flex-column flex-wrap flex-md-row justify-content-md-center mb-5">
+                        <a href="#" class="btn btn-pill btn-primary go-to-app mb-3 mb-lg-0 ml-3 animate__animated animate__fadeIn animate__delay-2s">
+                            Next<i class="fas fa-chevron-right ml-2"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        $(function () {
+            $('.go-to-app').click (function () {
+                $('.splash-screen').hide('slide', {direction: 'left'}, 1000);
+            });
+        });
+    </script>
+
+
+<link rel="stylesheet" href="/static/css/myo.css">
+
+{% set selected_background = backgrounds|random %}
+
+<style>
+    body {
+        height: 100vh;
+        background-image: url({{selected_background}});
+        overflow-y: hidden;
+    }
+
+    .lowerNavBar {
+        z-index: 5;
+    }
+
+    img.logo.corner {
+        display: none;
+    }
+</style>
+
+
+<!-- Timer bar-->
+<style>
+    @keyframes pulse-waiting {
+
+        0%,
+        100% {
+            background-color: rgba(255, 140, 0, 0.8);
+        }
+
+        50% {
+            background-color: rgba(255, 140, 0, 1.0);
+        }
+    }
+
+    .timer-bar-container {
+        height: 20px;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        background-color: rgba(255, 255, 255, 70%);
+    }
+
+    .timer-bar {
+        height: 20px;
+        width: 0%;
+        position: fixed;
+        transition: 1s;
+    }
+
+    .timer-bar.waiting {
+        animation: pulse-waiting 5s infinite;
+    }
+</style>
+<div class="timer-bar-container">
+    <div class="timer-bar waiting">
+
+    </div>
+</div>
+
+
+<style>
+    .menu-tab {
+        background: rgba(255, 255, 255, 70%);
+        margin-top: 20px;
+    }
+
+    .menu-tab h2 {
+        font-size: 20px;
+    }
+</style>
+<div class="menu-tab spark">
+    <h2>Onboarding</h2>
+</div>
+
+
+<style>
+    .create-bubble {
+        display: block;
+        border-radius: 2em;
+        border: solid 1px white;
+        background: rgba(255, 255, 255, 70%);
+        margin: 15px auto;
+        width: 80%;
+        max-width: 300px;
+        height: 45px;
+        text-align: center;
+        box-shadow: 1px 1px 6px #b8b9be, -3px -3px 6px #ffffff;
+        font-size: 14x;
+    }
+
+    .create-bubble span {
+        display: block;
+        line-height: 45px;
+        background-color: transparent;
+        background: transparent;
+    }
+    .create-bubble:hover {transform: scale(1.05); background:rgba(255,255,255,80%);}
+    .create-bubble:active {background:rgba(255,255,255,90%); }
+</style>
+<style>
+    .questions {margin-top: 15%}
+</style>
+<div class="justify-content-center questions">
+
+</div>
+
+{% block templateScripts %}
+<script>
+    $(function () {
+        $('.lowerNavBar a').removeClass('active');
+        $('.lowerNavBar a.create').addClass('active');
+    });
+</script>
+
+<script>
+    $('.create-bubble').on('mouseover', function (event) {
+        if (event.target.firstChild.classList.contains('text-span')) {
+            var color = '#' + Math.floor(Math.random() * 16777215).toString(16);
+            var colorString = '0px 0px 10px 0px ' + color;
+            $(event.target).css('box-shadow', colorString);
+            $(event.target).css('-webkit-box-shadow', colorString);
+            $(event.target).css('-mox-box-shadow', colorString);
+        }
+    });
+</script>
+
+<script>
+    var questions = {{onboarding_questions | safe}}
+    var current_question = 0
+    var total_questions = questions.questions.length
+    var questions_completed = Math.round(current_question / total_questions * 100)
+    var submitted_answers_array = []
+
+    $(function () {
+        pop_question();
+    });
+
+    var update_questions_completed = function () {
+        questions_completed = Math.round(current_question * 100 / total_questions);
+    }
+
+    var pop_question = function () {
+        if (current_question < total_questions) {
+            var question = questions.questions.shift();
+            populate_questions(question);
+            current_question += 1
+
+            // Visual
+            update_questions_completed();
+            $('.timer-bar').width(questions_completed + '%');
+
+            // Scroll to top
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        } else {
+            // Submit the data
+            submitQuestions();
+        }
+    }
+
+    var populate_questions = function (question_object) {
+        $('.menu-tab h2').text(question_object.title);
+        html = '';
+        $.each(question_object.answers, function (indexInArray, question_text) {
+            html += '<a class="create-bubble" data-answerid="' + indexInArray +
+                '"><span class="text-span" data-answerid="' + indexInArray + '">' + question_text +
+                '</span></a>';
+        });
+        $('.questions').empty();
+        $('.questions').html(html);
+    }
+
+    $(document).on('click', '.create-bubble', function () {
+        // Save the answer
+        var answerId = $(this).data('answerid');
+
+        submitted_answers_array.push({
+            'question': current_question,
+            'answer': answerId
+        });
+
+        $(this).css('background-color', 'white')
+        setTimeout(function () {
+            pop_question();
+        }, 1000);
+    });
+
+    
+    var submitQuestions = function () {
+
+        const csrftoken = Cookies.get('_csrf_token');
+
+        // Send the AJAX call
+        var apiUrl = '/user/api/onboarding/';
+
+        fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8',
+                'X-CSRFToken': csrftoken
+            },
+            body: JSON.stringify({
+                answers: submitted_answers_array
+            })
+        }).then(res => res.json()).then(data => {
+            if (!data.hasOwnProperty('error')) {
+                // Do nothing on successful data entry
+                console.log(data);
+                // Redirect to the new page
+                window.location.replace('/activities/spark');
+            } else {
+                // There was an error...
+                console.log(data);
+            }
+        });
+    }
+</script>
+{% endblock %}
+
+{% endblock %}

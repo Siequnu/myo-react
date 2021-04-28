@@ -1,0 +1,5 @@
+.sparkBubbleUi {
+	width: 100%;
+	max-width: 1000px;
+	height: calc(100vh - 150px);
+}

@@ -1,0 +1,54 @@
+.TopBar {
+    height: 75px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.94);
+    display: flex;
+    position: fixed;
+    top: 0;
+    z-index: 99;
+}
+
+.TopBar img.MyoLogo {
+    height: 30px;
+    align-self: center;
+    padding: 0 20px;
+}
+
+.TopBar img.MyoText {
+    height: 50px;
+    align-self: center;
+    margin: 0 auto;
+}
+
+.TopBar .AccountLink {
+    width: 50px;
+    align-self: center;
+    padding: 0 20px;
+    transition: .3s;
+    color: #333;
+}
+
+.TopBar .AccountLink:hover {
+    transform: scale(1.2);
+    color: #F19820;
+}
+
+
+@media screen and (max-height: 568px) {
+    .TopBar {
+        height: 50px;
+    }
+
+    .TopBar img.MyoLogo {
+        height: 20px;
+    }
+    
+    .TopBar img.MyoText {
+        height: 30px;
+    }
+    
+    .TopBar .AccountLink {
+        width: 20px;
+        padding: 0 30px;
+    }
+}

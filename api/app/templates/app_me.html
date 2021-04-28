@@ -1,0 +1,70 @@
+{% extends "header.html" %}
+{% from 'bootstrap/form.html' import render_field %}
+{% block app_content %}
+
+<link rel="stylesheet" href="/static/css/myo.css">
+
+<style>
+    .lowerNavBar {
+        z-index: 5;
+    }
+
+</style>
+
+<div class="menu-tab spark">
+    <h2>Me</h2>
+</div>
+
+
+<style>
+    .card {margin: 0 5px;}
+</style>
+<div class="row justify-content-center">
+    <div class="col-12 col-lg-10">
+        <div class="profile-card mb-5">
+            <div class="card bg-primary shadow-inset border-light text-center">
+                <div class="card-header">
+                    <div
+                        class="profile-image bg-primary shadow-inset border border-light rounded-circle mx-auto p-3 mt-n6">
+                        <img src="https://www.iconexperience.com/_img/o_collection_png/green_dark_grey/512x512/plain/user.png" class="card-img-top rounded-circle"
+                            alt="User portrait"></div>
+                </div>
+                <div class="card-body pb-5">
+                    <h3 class="h5 mb-2">{{user_info.username}}</h3>
+                    <span class="h6 font-weight-normal text-gray mb-3">Super user</span>
+                    <br>
+                    <span class="h6 font-weight-normal text-gray mb-3">Joined 5 months ago</span>
+                    <ul class="list-unstyled d-flex justify-content-center mt-3 mb-4">
+                        <li><a href="#" target="_blank" aria-label="facebook social link"
+                                class="icon icon-xs icon-facebook mr-3"><span
+                                    class="fab fa-facebook-f"></span></a></li>
+                        <li><a href="#" target="_blank" aria-label="twitter social link"
+                                class="icon icon-xs icon-twitter mr-3"><span
+                                    class="fab fa-twitter"></span></a></li>
+                        <li><a href="#" target="_blank" aria-label="slack social link"
+                                class="icon icon-xs icon-slack mr-3"><span
+                                    class="fab fa-slack-hash"></span></a></li>
+                        <li><a href="#" target="_blank" aria-label="dribbble social link"
+                                class="icon icon-xs icon-dribbble mr-3"><span
+                                    class="fab fa-dribbble"></span></a></li>
+                    </ul><a class="btn btn-pill btn-sm btn-primary" href="{{ url_for ('user.logout')}} ">Sign out</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% include 'lower_nav.html' %}
+
+
+{% block templateScripts %}
+<script>
+$(function () {
+    $('.lowerNavBar a').removeClass ('active');
+    $('.lowerNavBar a.me').addClass ('active');
+});
+</script>
+{% endblock %}
+
+{% endblock %}

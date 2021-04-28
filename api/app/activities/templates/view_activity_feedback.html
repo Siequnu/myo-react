@@ -1,0 +1,91 @@
+ {% extends "header_superintendant.html" %} {% block app_content %}
+ <link rel="stylesheet" href="/static/css/timeline.css">
+
+
+ <style>
+   .selected-types-bucket, .selected-materials-bucket {
+     width: 100%;
+     border: 1px solid rgba(128, 128, 128, 0.603);
+     border-radius: 7.5px;
+     min-height: 100px;
+     padding: 10px;
+   }
+
+   .activity-types, .material-types {
+     padding: 10px;
+   }
+
+   .badge {margin: 5px;}
+ </style>
+
+ <div class="container">
+
+   <div class="container">
+     <div class="row">
+       <div class="col-12 col-md-2">
+         <a href="{{url_for('activities.view_activities')}}"><button class="btn btn-lg btn-outline-primary"><i
+               class="fa fa-chevron-left"></i> Back</button></a>
+       </div>
+       <div class="col-12 col-lg-8">
+         <h1>Activity feedback</h1>
+       </div>
+     </div>
+   </div>
+ </div>
+ <hr>
+
+ <script>
+   $(function () {
+    $('.viewFeedbackButton').click (function (event) {
+      $(event.target.parentElement.nextElementSibling).slideToggle('fast');
+    });
+   });
+ </script>
+ <style>
+   .card-footer {display: none;}
+ </style>
+ <div class="container">
+   <div class="row">
+     {% for activity, answers in feedback.items() %}
+     <div class="col-xs-12 col-md-4">
+       <div class="card library_card border-light shadow-soft">
+        <img src="/static/activities/{{activity}}/{{activities[activity-1].thumbnail}}"
+            class="card-img-top img-library_card rounded-top" alt="" style="object-fit: cover;">
+        <div class="card-body library_card-content">
+            <h3 class="h5 card-title mt-3">{{activities[activity-1].title}}</h3>
+            
+            <p class="card-text">{{answers.data}}</p>
+            <button type="button" class="btn btn-light viewFeedbackButton">
+              View feedback <span class="badge badge-primary">{{answers|length}}</span>
+            </button>
+        </div>
+        <div class="card-footer library_card-read-more">
+          {% for answer in answers %}
+          {{ answer.feedback.textFeedback }}
+          {% for star in range(answer.feedback.starFeedback | int) %}
+          <i class="fa fa-star"></i>
+          {% endfor %}
+          <hr>
+          {% endfor %}
+        </div>
+      </div>
+       <br>
+      </div>
+       {% endfor %}
+
+
+     <div class="col-xs-12 col-md-8">
+
+     </div>
+
+   </div>
+ </div>
+
+
+
+ {% endblock %}
+
+
+ {% block templateScripts %}
+
+ {% endblock %}

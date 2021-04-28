@@ -1,0 +1,53 @@
+{% extends "header.html" %}
+
+{% block app_content %}
+<div class="container mt-5 text-center">
+  <h1>Welcome to Myo</h1>
+</div>
+
+<div class="container mt-5 text-center">
+  <h5>What is the tastiest pastry in the world?</h5>
+</div>
+
+{% set selected_background = backgrounds|random %}
+<style>
+  .onboarding-question-container {
+    margin-top: 40px;
+    display: block;
+  }
+
+  .onboarding-question-container a {
+    display: block;
+    text-align: center;
+    border-radius: 2em;
+    width: 75%;
+    font-size: 15px;
+    height: 70px;
+    margin: 15px auto;
+    border: 1px orange solid;
+    transition: 1s;
+    background-image: url({{selected_background}});
+    background-position: bottom;
+  }
+
+  .onboarding-question-container a:hover {
+    background: orange;
+    color: white;
+  }
+
+  .onboarding-question-container span {
+    display: block;
+    height: 50px;
+    font-size: 17px;
+    margin: 20px auto;
+  }
+</style>
+
+<div class="onboarding-question-container">
+  <a href="#"><span>Croissant</span></a>
+  <a href="#"><span>Pastel de natal</span></a>
+  <a href="#"><span>What is pastry?</span></a>
+  <a href="#"><span>Croissant</span></a>
+</div>
+{% include 'lower_nav.html' %}
+{% endblock %}

@@ -1,0 +1,229 @@
+{% extends "header.html" %}
+{% from 'bootstrap/form.html' import render_field %}
+{% block app_content %}
+
+<link rel="stylesheet" href="/static/css/myo.css">
+<style>
+    body {overflow-x: hidden;}
+
+    .carousel-item img {
+        object-fit: cover;
+    }
+
+    .b-0 {
+        bottom: 0;
+    }
+
+    .bg-shadow {
+        background: rgba(76, 76, 76, 0);
+        background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(179, 171, 171, 0)), color-stop(49%, rgba(48, 48, 48, 0.37)), color-stop(100%, rgba(19, 19, 19, 0.8)));
+        background: linear-gradient(to bottom, rgba(179, 171, 171, 0) 0%, rgba(48, 48, 48, 0.71) 49%, rgba(19, 19, 19, 0.8) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4c4c4c', endColorstr='#131313', GradientType=0);
+    }
+
+    .top-indicator {
+        right: 0;
+        top: 1rem;
+        bottom: inherit;
+        left: inherit;
+        margin-right: 1rem;
+    }
+
+    .overflow {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .zoom img {
+        transition: all 0.2s linear;
+    }
+
+    .zoom:hover img {
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
+    }
+
+</style>
+
+<!--Container-->
+<style>
+    .logo.corner {z-index: 20 !important; top: 22px !important;}
+    .navbar-row {position: fixed; z-index: 5; height: 79px; display: block; width: 104%; background: rgba(255, 255, 255, 0.8); box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 8px 0 rgba(0, 0, 0, 0.19);}
+    .user-profile-link {position: absolute; right: 5px; top: 15px; padding: 5px 15px; font-size: 25px; transition: 0.3s; border: 1px solid transparent; border-radius: 25px}
+    .user-profile-link:hover {border: 1px solid orange; color: orange; }
+    .myo-text {height: 35px;}
+    .top-bar {padding: 23.5px 0 5px !important;}
+</style>
+
+<div class="navbar-row row mb-2">
+    <div class="col-12 text-center pt-3 top-bar">
+        <img class="myo-text" src="/static/myo-text.png" />
+    </div>
+
+    <a class="user-profile-link" href="{{url_for('activities.me')}}"><i class="fa fa-user"></i></a>
+</div>
+
+<!-- Caroussel-->>
+<style>
+    .carousel-control-prev-icon, .carousel-control-next-icon {padding: 0 25px !important;}
+</style>
+<div class="row pt-5">
+    <div class="col-12 pb-5" style="padding-right: 0; flex: 0 0 97%">
+        <!--SECTION START-->
+        <section class="row">
+            <!--Start slider news-->
+            <div class="col-12 col-md-6 pb-0 pb-md-3 pt-2 pr-md-1">
+                <div id="featured" class="carousel slide carousel" data-ride="carousel">
+                    <!--dots navigate-->
+                    <ol class="carousel-indicators top-indicator">
+                        <li data-target="#featured" data-slide-to="0" class="active"></li>
+                        <li data-target="#featured" data-slide-to="1"></li>
+                        <li data-target="#featured" data-slide-to="2"></li>
+                    </ol>
+
+                    <!--carousel inner-->
+                    <div class="carousel-inner">
+                        
+                        <!-- Create 4 caroussel items-->
+                        {% for n in range(1,4) %}
+                        <style>
+                            .carousel-item img {height: 250px;}
+                        </style>
+                        <!--Item slider-->
+                        <div class="carousel-item {% if n == 1 %} active {% endif %}">
+                            <div class="card border-0 rounded-0 text-light overflow zoom rounded">
+                                <div class="position-relative">
+                                    <!--thumbnail img-->
+                                    <div class="ratio_left-cover-1 image-wrapper">
+                                        <a href="{{ url_for('activities.view_activity', activity_id = n)}}">
+                                            <img class="img-fluid w-100 rounded"
+                                                src="/static/activities/{{n}}/{{activities[n-1].thumbnail}}">
+                                        </a>
+                                    </div>
+                                    <div class="position-absolute p-2 p-lg-3 b-0 w-100 bg-shadow">
+                                        <!--title-->
+                                        <a href="{{ url_for('activities.view_activity', activity_id = n)}}">
+                                            <h2 class="h3 post-title text-white my-1">{{activities[n-1].title}}</h2>
+                                        </a>
+                                        <!-- meta title -->
+                                        <div class="news-meta">
+                                            <a class="badge badge-info text-uppercase" href="#">Skill</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                       
+                        <!--end item slider-->
+                    </div>
+                    <!--end carousel inner-->
+                </div>
+
+                <!--navigation-->
+                <a class="carousel-control-prev" href="#featured" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#featured" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+            <!--End slider news-->
+
+            <style>
+                .grid-image {height: 150px; object-fit: cover; width: 100%;}
+                .news-box {margin-left: 0; margin-right: 0;}
+                .news-box-item {padding: 0;}
+            </style>
+            <!--Start box news-->
+            <div class="col-12 col-md-6 pt-2 mb-3 mb-lg-4">
+                <div class="row news-box">
+                    {% for n in range(5, 9) %}
+                    
+                    <!--news box-->
+                    <div class="col-6 pb-1 pt-0 news-box-item">
+                        <div class="card border-0 rounded-0 text-white overflow zoom">
+                            <div class="position-relative">
+                                <!--thumbnail img-->
+                                <div class="ratio_right-cover-2 image-wrapper">
+                                    <a href="{{ url_for('activities.view_activity', activity_id = n)}}">
+                                        <img class="grid-image img-fluid"
+                                        src="/static/activities/{{n}}/{{activities[n-1].thumbnail}}">
+                                    </a>
+                                </div>
+                                <div class="position-absolute p-2 p-lg-3 b-0 w-100 bg-shadow">
+                                    <!-- category -->
+                                    <a class="badge badge-info text-uppercase" href="#">Skill</a>
+
+                                    <!--title-->
+                                    <a href="{{ url_for('activities.view_activity', activity_id = n)}}">
+                                        <h2 class="h5 text-white my-1">{{activities[n-1].title}}
+                                        </h2>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% endfor %}
+                </div>
+            </div>
+            <!--End box news-->
+        </section>
+        <!--END SECTION-->
+    </div>
+</div>
+<!--end code-->
+
+<!-- Cards-->
+<style>
+    .card-section .card.bg-primary {margin: 0 8px;}
+    .card-section .btn-try-now {display: block; width: 50%; max-width: 200px; margin: auto;}
+    .card-section .btn-try-now:active {background-color: orange !important; border-color: white !important}
+</style>
+<div class="card-section section section-lg pt-0">
+    <div class="row justify-content-center">
+        <div class=" bg-primary pt-0">
+            <div class="container">
+                <div class="row mb-5">
+                    
+                    {% for n in range(9, 13) %}
+                    <div class="col-12 col-md-6 col-lg-4 mb-5">
+                        <div class="card bg-primary border-light shadow-soft">
+                            <img src="/static/activities/{{n}}/{{activities[n-1].thumbnail}}"
+                                class="card-img-top rounded-top" alt="">
+                            <div class="card-body">
+                                <a class="badge badge-info text-uppercase" href="#">Imagination</a>
+                                <h3 class="h5 card-title mt-3">{{activities[n-1].title}}</h3>
+                                <p class="card-text">{{activities[n-1].description}}</p>
+                                <a href="{{ url_for('activities.view_activity', activity_id = n)}}" class="btn btn-try-now btn-pill btn-secondary btn-sm">Try now <i class="fa fa-chevron-right ml-2"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+{% include 'lower_nav.html' %}
+
+{% block templateScripts %}
+<script>
+    $(function () {
+        $('.lowerNavBar a').removeClass('active');
+        $('.lowerNavBar a.home').addClass('active');
+    });
+</script>
+{% endblock %}
+
+{% endblock %}
