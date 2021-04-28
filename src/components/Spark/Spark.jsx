@@ -30,9 +30,7 @@ function Spark() {
         gravitation: 5
     }
 
-    const fetcher = (...args) => fetch(...args).then((res) => res.json())
-
-    const { data } = useSWR('/activities/api/get', fetcher)
+    const { data } = useSWR('/activities/api/get')
 
     if (!data) return <BounceLoader color={"#F19820"} loading={true} css={override} size={100} />
 
