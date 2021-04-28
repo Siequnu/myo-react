@@ -40,7 +40,6 @@ def create_app(config_class):
     login.init_app(myo_app)
     mail.init_app(myo_app)
     executor.init_app(myo_app)
-    compress.init_app(myo_app)
     qrcode = QRcode(myo_app)
     ma.init_app(myo_app)
     csrf.init_app(myo_app)
