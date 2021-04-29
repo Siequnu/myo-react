@@ -24,7 +24,7 @@ function Spark() {
         fringeWidth: 120,
         yRadius: 200,
         xRadius: 100,
-        cornerRadius: 50,
+        cornerRadius: 20,
         showGuides: false,
         compact: true,
         gravitation: 5
@@ -35,13 +35,15 @@ function Spark() {
     if (!data) return <BounceLoader color={"#F19820"} loading={true} css={override} size={100} />
 
     return (
-        <BubbleUI options={options} className="sparkBubbleUi">
-            { data.activities.map((activity, i) => {
-                return (
-                    <ActivityBubble key={i} activityId={i} title={activity.title} thumbnail={activity.thumbnail} backgroundColour={activity.background_colour} />
-                )
-            })}
-        </BubbleUI>
+        <div class="Spark">
+            <BubbleUI options={options} className="sparkBubbleUi">
+                { data.activities.map((activity, i) => {
+                    return (
+                        <ActivityBubble key={i} activityId={i} title={activity.title} thumbnail={activity.thumbnail} backgroundColour={activity.background_colour} />
+                    )
+                })}
+            </BubbleUI>
+        </div>
     )
 
 }

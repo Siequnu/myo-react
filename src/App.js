@@ -30,7 +30,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <link rel="shortcut icon" href="./favicon.ico" /> 
+        <link rel="shortcut icon" href="./favicon.ico" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 
         <header className="App-header">
@@ -41,7 +41,7 @@ class App extends React.Component {
               <TopBar />
               <div className="AppWrapper">
                 <Switch>
-                  
+
                   <Route exact path="/">
                     <ViewActivitiesComponent />
                   </Route>
