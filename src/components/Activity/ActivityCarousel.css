@@ -1,0 +1,60 @@
+/* Main activity content, i.e. carousel */
+
+.ActivityCarousel img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+
+.ActivityCarousel h1 {
+    font-size: 22px;
+    margin: 10px 20px 5px;
+}
+
+.ActivityCarousel p {
+    font-size: 14px;
+    margin: 10px 50px;
+    font-weight: 200;
+    text-align: justify;
+}
+
+@media screen and (max-height: 568px) {
+    .ActivityCarousel img {
+        height: 150px;
+    }
+
+    .ActivityCarousel h1 {
+        font-size: 19px;
+    }
+
+    .ActivityCarousel p {
+        font-size: 13px;
+        margin: 10px 40px;
+    }
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+    color: #F19820 !important;
+    top: 70% !important;
+}
+
+.swiper-button-prev {
+    left: 5px !important;
+}
+
+.swiper-button-next {
+    right: 5px !important;
+}
+
+.swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
+    background: #F19820 !important;
+}
+
+@media screen and (max-height: 568px) {
+    .swiper-button-prev,
+    .swiper-button-next {
+        transform: scale(0.7);
+    }
+}

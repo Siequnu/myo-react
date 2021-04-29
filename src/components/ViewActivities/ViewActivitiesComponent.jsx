@@ -9,13 +9,13 @@ import CardComponent from '../Card/CardComponent';
 import Onboarding from '../Onboarding/Onboarding'
 
 
-function ViewActivitiesComponent() {
+export default function ViewActivitiesComponent() {
 
-    const override = css`display: block; margin: 0 auto;`;
+    const bounceLoaderCss = css`display: block; margin: 0 auto;`;
 
     const { data } = useSWR('/activities/api/list')
 
-    if (!data) return <BounceLoader color={"#F19820"} loading={true} css={override} size={100} />
+    if (!data) return <BounceLoader color={"#F19820"} loading={true} css={bounceLoaderCss} size={100} />
 
     return (
         <div className="ViewActivitiesComponent">
@@ -24,5 +24,3 @@ function ViewActivitiesComponent() {
         </div>
     )
 }
-
-export default ViewActivitiesComponent;
