@@ -38,7 +38,7 @@ function Spark() {
         <BubbleUI options={options} className="sparkBubbleUi">
             { data.activities.map((activity, i) => {
                 return (
-                    <ActivityBubble key={i} activityId={i} title={activity.title} thumbnail={activity.thumbnail} />
+                    <ActivityBubble key={i} activityId={i} title={activity.title} thumbnail={activity.thumbnail} backgroundColour={activity.background_colour} />
                 )
             })}
         </BubbleUI>

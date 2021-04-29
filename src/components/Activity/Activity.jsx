@@ -20,12 +20,12 @@ import BounceLoader from "react-spinners/BounceLoader";
 
 SwiperCore.use([Navigation, Pagination, A11y]);
 
-function Activity() {
+export default function Activity() {
 
     let { activityId } = useParams();
 
-    const [activityCompleted, setActivityCompleted] = useState(false)
     const [showActivityIntroduction, setShowActivityIntroduction] = useState(true)
+    const [activityCompleted, setActivityCompleted] = useState(false)
 
     const startActivity = () => setShowActivityIntroduction(false)
     const finishedActivity = () => setActivityCompleted(true)
@@ -87,5 +87,3 @@ function Activity() {
         </div>
     )
 }
-
-export default Activity;

@@ -114,6 +114,7 @@ pylint-flask = "*"
 flask-seasurf = "*"
 flask-breadcrumbs = "*"
 pylint-flask-sqlalchemy = "*"
+colorthief = "^0.2.1"
 
 [tool.poetry.dev-dependencies]
 autopep8 = "*"
