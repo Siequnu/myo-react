@@ -1,11 +1,13 @@
-/* Main activity content, i.e. carousel */
-
 .ActivityCarousel img {
     width: 100%;
-    height: 200px;
+    height: calc(35vh);
     object-fit: cover;
 }
 
+.ActivityCarousel .text {
+    overflow: scroll;
+    max-height: calc(40vh);
+}
 
 .ActivityCarousel h1 {
     font-size: 22px;
@@ -21,7 +23,12 @@
 
 @media screen and (max-height: 568px) {
     .ActivityCarousel img {
-        height: 150px;
+        height: calc(35vh);
+    }
+
+    .ActivityCarousel .text {
+        overflow: scroll;
+        max-height: calc(40vh);
     }
 
     .ActivityCarousel h1 {

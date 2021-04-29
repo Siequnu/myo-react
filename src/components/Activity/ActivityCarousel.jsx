@@ -32,22 +32,22 @@ export default function ActivityIntroduction(props) {
                     return (
                         <SwiperSlide key={i}>
                             <img src={encodeURI('/activities/' + (props.activityId) + '/' + page.thumbnail)} alt="Header decoration" />
-                            <h1>{page.title}</h1>
-                            <p dangerouslySetInnerHTML={{ __html: page.description }}></p>
+                            <div class="text">
+                                <h1>{page.title}</h1>
+                                <p dangerouslySetInnerHTML={{ __html: page.description }}></p>
+                            </div>
                         </SwiperSlide>
                     )
                 })}
 
             </Swiper>
-            {activityCompleted ?
-                (
-                    <Link component={RouterLink}
-                        to={{ pathname: "/", }}
-                        style={{ textDecoration: 'none' }}>
-                        <Button variant="contained" color="primary">Done</Button>
-                    </Link>
-                )
-                : null
+            {activityCompleted ? (
+                <Link component={RouterLink}
+                    to={{ pathname: "/", }}
+                    style={{ textDecoration: 'none' }}>
+                    <Button variant="contained" color="primary">Done</Button>
+                </Link>
+            ) : null
             }
         </div >
     )
