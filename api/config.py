@@ -5,8 +5,6 @@ class myo(object):
 	APP_NAME = 'myo'
 	APP_URL = 'https://myo-app.com'
 
-	CUSTOM_SERVICES = []
-
 	WTF_CSRF_ENABLED = False
 	# Generate with python3 -c "import uuid; print(uuid.uuid4().hex)"
 	SECRET_KEY = 'e6c53089d6e5411eb6ff46f8bf83c5d4'
@@ -33,6 +31,4 @@ class myo(object):
 	TS_MAX_AGE = 86400
 
 	SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://myo:myo@localhost:3306/myo'
-	SQLALCHEMY_ENGINE_OPTIONS = {'pool_pre_ping': True, 'pool_size' : 20, 'pool_recycle' : 15}
 	SQLALCHEMY_TRACK_MODIFICATIONS = True
-	SQLALCHEMY_POOL_PRE_PING = True

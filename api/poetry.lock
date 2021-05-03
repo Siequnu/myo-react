@@ -350,17 +350,6 @@ python-versions = "*"
 Flask = "*"
 
 [[package]]
-name = "flask-login"
-version = "0.5.0"
-description = "User session management for Flask"
-category = "main"
-optional = false
-python-versions = "*"
-
-[package.dependencies]
-Flask = "*"
-
-[[package]]
 name = "flask-mail"
 version = "0.9.1"
 description = "Flask extension for sending email"
@@ -436,19 +425,6 @@ Flask = "*"
 itsdangerous = "*"
 oauth2client = "*"
 six = "*"
-
-[[package]]
-name = "flask-qrcode"
-version = "3.0.0"
-description = "A concise Flask extension to render QR codes on Jinja2 templates using python-qrcode"
-category = "main"
-optional = false
-python-versions = "*"
-
-[package.dependencies]
-Flask = "*"
-pillow = "*"
-qrcode = "*"
 
 [[package]]
 name = "flask-restful"
@@ -1520,7 +1496,7 @@ testing = ["jaraco.itertools", "func-timeout"]
 [metadata]
 lock-version = "1.1"
 python-versions = "3.7.3"
-content-hash = "17292ccf5b1f2b48977f5f3e36cde3141c617ba69b8673a9d93bc38ce654d9c7"
+content-hash = "138a965423fd027fe7799cda05a2a40096d5214eb4d23ec550b7634f1d1b508d"
 
 [metadata.files]
 alembic = [
@@ -1720,10 +1696,6 @@ flask-httpauth = [
     {file = "Flask-HTTPAuth-3.2.4.tar.gz", hash = "sha256:f71b7611f385fbdf350e8c430eed17b41c3b2200dc35eae19c1734264b68e31d"},
     {file = "Flask_HTTPAuth-3.2.4-py2.py3-none-any.whl", hash = "sha256:c08b69b302f1aa7ecd0db327809132ef6ca9486a36a9174776da146d1a4adc18"},
 ]
-flask-login = [
-    {file = "Flask-Login-0.5.0.tar.gz", hash = "sha256:6d33aef15b5bcead780acc339464aae8a6e28f13c90d8b1cf9de8b549d1c0b4b"},
-    {file = "Flask_Login-0.5.0-py2.py3-none-any.whl", hash = "sha256:7451b5001e17837ba58945aead261ba425fdf7b4f0448777e597ddab39f4fba0"},
-]
 flask-mail = [
     {file = "Flask-Mail-0.9.1.tar.gz", hash = "sha256:22e5eb9a940bf407bcf30410ecc3708f3c56cc44b29c34e1726fe85006935f41"},
 ]
@@ -1741,9 +1713,6 @@ flask-migrate = [
 ]
 flask-oidc = [
     {file = "flask-oidc-1.4.0.tar.gz", hash = "sha256:0c12151139d47a562e1c5ae203fb9dbc759fe7474cc01e0238bef828ece58f4e"},
-]
-flask-qrcode = [
-    {file = "Flask-QRcode-3.0.0.tar.gz", hash = "sha256:96a49da1396a600e79cc4b119610a2e61cb1433f9449994eabf36bbe1478b96b"},
 ]
 flask-restful = [
     {file = "Flask-RESTful-0.3.8.tar.gz", hash = "sha256:5ea9a5991abf2cb69b4aac19793faac6c032300505b325687d7c305ffaa76915"},

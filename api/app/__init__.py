@@ -6,10 +6,8 @@ from logging.handlers import RotatingFileHandler
 
 from flask_sqlalchemy import SQLAlchemy as _BaseSQLAlchemy
 from flask_migrate import Migrate
-from flask_login import LoginManager
 from flask_mail import Mail
 from flask_executor import Executor
-from flask_qrcode import QRcode
 from flask_marshmallow import Marshmallow
 from flask_seasurf import SeaSurf
 
@@ -20,8 +18,6 @@ class SQLAlchemy(_BaseSQLAlchemy):
 db = SQLAlchemy()
 
 migrate = Migrate()
-login = LoginManager()
-login.login_view = 'user.login'
 mail = Mail()
 executor = Executor()
 ma = Marshmallow()
@@ -37,25 +33,21 @@ def create_app(config_class):
     migrate.init_app(myo_app, db)
     myo_app.app_context().push()
 
-    login.init_app(myo_app)
     mail.init_app(myo_app)
     executor.init_app(myo_app)
-    qrcode = QRcode(myo_app)
     ma.init_app(myo_app)
     csrf.init_app(myo_app)
 
     # Compile registry of blueprints
-    basic_services = [
+    services = [
         {'path': 'app.main'},
         {'path': 'app.errors'},
-        {'path': 'app.api'},
         {'path': 'app.user', 'url_prefix': '/user'},
         {'path': 'app.activities', 'url_prefix': '/activities'},
     ]
-    all_services = basic_services + myo_app.config['CUSTOM_SERVICES']
     
     # Enable each service
-    for service in all_services:
+    for service in services:
         module = importlib.import_module(service['path'], package='app')
         if 'url_prefix' in service:
             myo_app.register_blueprint(getattr(module, 'bp'), url_prefix=service['url_prefix'])
