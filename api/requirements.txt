@@ -26,15 +26,13 @@ filelock==3.0.12
 flask-breadcrumbs==0.5.1
 flask-executor==0.9.4
 flask-httpauth==3.2.4
-flask-login==0.5.0
+flask-jwt-extended==4.2.0; python_version >= "3.6" and python_version < "4"
 flask-mail==0.9.1
 flask-marshmallow==0.13.0
 flask-menu==0.7.2
 flask-migrate==2.4.0
 flask-oidc==1.4.0
-flask-qrcode==3.0.0
 flask-restful==0.3.8
-flask-seasurf==0.3.0
 flask-sqlalchemy==2.4.4; (python_version >= "2.7" and python_full_version < "3.0.0") or (python_full_version >= "3.4.0")
 flask-weasyprint==0.6
 flask-wtf==0.14.2
@@ -77,6 +75,7 @@ pyexcel-io==0.5.20
 pyexcel-webio==0.1.4
 pyexcel-xlsx==0.5.8
 pyexcel==0.6.2; python_version >= "3.6"
+pyjwt==2.1.0; python_version >= "3.6" and python_version < "4"
 pylint-flask-sqlalchemy==0.2.0; python_version >= "3.5"
 pylint-flask==0.6
 pylint-plugin-utils==0.6

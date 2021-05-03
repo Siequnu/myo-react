@@ -109,10 +109,10 @@ WTForms-Alchemy = "==0.16.9"
 WTForms-Components = "==0.10.4"
 WTForms = "==2.2.1"
 pylint-flask = "*"
-flask-seasurf = "*"
 flask-breadcrumbs = "*"
 pylint-flask-sqlalchemy = "*"
 colorthief = "^0.2.1"
+Flask-JWT-Extended = "^4.2.0"
 
 [tool.poetry.dev-dependencies]
 autopep8 = "*"

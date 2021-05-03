@@ -1,10 +1,7 @@
 from flask import abort, current_app, request, jsonify
 from . import bp
-from app import db
-
 import json
 from datetime import datetime
-
 from colorthief import ColorThief
 
 

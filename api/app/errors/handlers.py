@@ -1,6 +1,5 @@
-from flask import render_template
 from app import db
-from app.errors import bp
+from . import bp
 
 @bp.app_errorhandler(403)
 def access_denied(error):
@@ -8,6 +7,7 @@ def access_denied(error):
 
 @bp.app_errorhandler(404)
 def not_found_error(error):
+    print (error)
     return {'error': '404'}, 404
 
 @bp.app_errorhandler(500)

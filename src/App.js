@@ -12,6 +12,8 @@ import ViewActivitiesComponent from './components/ViewActivities/ViewActivitiesC
 import Activity from './components/Activity/Activity';
 import Spark from './components/Spark/Spark';
 
+import Login from './components/Login/Login';
+
 class App extends React.Component {
   constructor() {
     super();
@@ -57,6 +59,11 @@ class App extends React.Component {
                   <Route exact path="/user">
                     <UserMenu />
                   </Route>
+
+                  <Route exact path="/login">
+                    <Login />
+                  </Route>
+
 
                 </Switch>
               </div>

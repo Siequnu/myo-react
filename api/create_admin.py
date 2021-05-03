@@ -4,7 +4,7 @@ from config import myo
 app = create_app(myo)
 
 from app import db
-from app.models import User
+from app.user.models import User
 
 username = input('Enter an administrator username: ')
 email = input('Enter an administrator email address: ')

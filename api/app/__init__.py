@@ -9,7 +9,8 @@ from flask_migrate import Migrate
 from flask_mail import Mail
 from flask_executor import Executor
 from flask_marshmallow import Marshmallow
-from flask_seasurf import SeaSurf
+
+from flask_jwt_extended import JWTManager
 
 class SQLAlchemy(_BaseSQLAlchemy):
     def apply_pool_defaults(self, app, options):
@@ -21,13 +22,11 @@ migrate = Migrate()
 mail = Mail()
 executor = Executor()
 ma = Marshmallow()
-csrf = SeaSurf()
+jwt = JWTManager()
 
 def create_app(config_class):
     myo_app = Flask(__name__, static_folder='../build', static_url_path='/')
     myo_app.config.from_object(config_class)
-
-    myo_app.jinja_env.cache = {}
 
     db.init_app(myo_app)
     migrate.init_app(myo_app, db)
@@ -36,7 +35,8 @@ def create_app(config_class):
     mail.init_app(myo_app)
     executor.init_app(myo_app)
     ma.init_app(myo_app)
-    csrf.init_app(myo_app)
+
+    jwt.init_app(myo_app)
 
     # Compile registry of blueprints
     services = [

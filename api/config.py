@@ -5,9 +5,9 @@ class myo(object):
 	APP_NAME = 'myo'
 	APP_URL = 'https://myo-app.com'
 
-	WTF_CSRF_ENABLED = False
 	# Generate with python3 -c "import uuid; print(uuid.uuid4().hex)"
 	SECRET_KEY = 'e6c53089d6e5411eb6ff46f8bf83c5d4'
+	JWT_SECRET_KEY = '39a84ef123514d1c966127ae89514343'
 	MAX_CONTENT_LENGTH = 16 * 1024 * 1024  # Max content (default: 16MB)
 	APP_ROOT = basedir
 

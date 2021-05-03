@@ -4,8 +4,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 class myo(object):
 	APP_NAME = 'myo'
 	APP_URL = 'https://myo-app.com'
-
-	WTF_CSRF_ENABLED = False
+	
 	# Generate with python3 -c "import uuid; print(uuid.uuid4().hex)"
 	SECRET_KEY = ''
 	MAX_CONTENT_LENGTH = 16 * 1024 * 1024  # Max content (default: 16MB)
