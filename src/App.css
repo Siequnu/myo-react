@@ -16,4 +16,4 @@
   margin: 60px 0;
 }
 
-.uf-branding {display: none;}
+.uf-branding.uf-muted {display: none !important;}
