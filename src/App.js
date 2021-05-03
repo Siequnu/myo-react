@@ -12,7 +12,9 @@ import ViewActivitiesComponent from './components/ViewActivities/ViewActivitiesC
 import Activity from './components/Activity/Activity';
 import Spark from './components/Spark/Spark';
 
-import Login from './components/Login/Login';
+import Login from './components/Auth/Login';
+import SignUp from './components/Auth/SignUp';
+import Reset from './components/Auth/Reset';
 
 class App extends React.Component {
   constructor() {
@@ -62,6 +64,14 @@ class App extends React.Component {
 
                   <Route exact path="/login">
                     <Login />
+                  </Route>
+
+                  <Route exact path="/signup">
+                    <SignUp />
+                  </Route>
+
+                  <Route exact path="/reset">
+                    <Reset />
                   </Route>
 
 
