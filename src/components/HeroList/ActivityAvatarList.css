@@ -1,0 +1,9 @@
+.ListItem {
+    border-radius: .5em;
+    margin: 5px 0 5px 0;
+}
+
+.ListItem:hover {
+    background: #F19820;
+    color: white;
+}

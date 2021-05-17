@@ -11,6 +11,10 @@ class myo(object):
 	MAX_CONTENT_LENGTH = 16 * 1024 * 1024  # Max content (default: 16MB)
 	APP_ROOT = basedir
 
+	# Auth0
+	CLIENT_ID = 'iBtRx9Hw4263FF4ZXs6MED5Ljb1OlvRx'
+	CLIENT_SECRET = '8hyZMXHnJQ9HMZZol4TLUEDWrjUard5zWaw75-_VSxgzPFDwl3dIeZSIiTaROH9y'
+
 	SIGNUP_CODES = {'croissant'}
 	REGISTRATION_IS_OPEN = True
 

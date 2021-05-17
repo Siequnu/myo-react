@@ -1,9 +1,10 @@
-from flask import current_app, request, redirect, url_for, send_from_directory
+from flask import current_app, request, redirect, url_for, send_from_directory, jsonify, session
 
 import datetime
 
+from app import auth0
 from app import db
-from app.main import bp
+from . import bp
 import os
 
 

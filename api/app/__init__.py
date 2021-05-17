@@ -12,6 +12,9 @@ from flask_marshmallow import Marshmallow
 
 from flask_jwt_extended import JWTManager
 
+from authlib.integrations.flask_client import OAuth
+from six.moves.urllib.parse import urlencode
+
 class SQLAlchemy(_BaseSQLAlchemy):
     def apply_pool_defaults(self, app, options):
         super(SQLAlchemy, self).apply_pool_defaults(app, options)
@@ -23,6 +26,19 @@ mail = Mail()
 executor = Executor()
 ma = Marshmallow()
 jwt = JWTManager()
+oauth = OAuth()
+
+auth0 = oauth.register(
+    'auth0',
+    client_id='iBtRx9Hw4263FF4ZXs6MED5Ljb1OlvRx',
+    client_secret='8hyZMXHnJQ9HMZZol4TLUEDWrjUard5zWaw75-_VSxgzPFDwl3dIeZSIiTaROH9y',
+    api_base_url='https://dev-z4eaow9y.eu.auth0.com',
+    access_token_url='https://dev-z4eaow9y.eu.auth0.com/oauth/token',
+    authorize_url='https://dev-z4eaow9y.eu.auth0.com/authorize',
+    client_kwargs={
+        'scope': 'openid profile email',
+    },
+)
 
 def create_app(config_class):
     myo_app = Flask(__name__, static_folder='../build', static_url_path='/')
@@ -37,6 +53,8 @@ def create_app(config_class):
     ma.init_app(myo_app)
 
     jwt.init_app(myo_app)
+
+    oauth.init_app(myo_app)
 
     # Compile registry of blueprints
     services = [

@@ -1,0 +1,48 @@
+
+.HeroList {
+  margin: 50px 10px 10px 10px;
+  
+  
+  flex-direction: column;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  justify-content: center;
+  border-radius: .5em;
+  transition: .25s;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+
+.HeroListContent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  padding: 10px;
+}
+
+.ActivityAvatarList {
+  display: block;
+  width: 100%;
+
+}
+.HeroList h1 {
+  padding: 15px 25px 0;
+  margin-bottom: 0;
+  color: #333;
+  font-size: 30px;
+  text-align: left;
+}
+
+@media screen and (max-width: 414px) {
+  .HeroList {
+    height: 400px;
+  }
+
+  .HeroList h1 {
+    font-size: 22px;
+    font-weight: 700;
+    text-align: center;
+  }
+}

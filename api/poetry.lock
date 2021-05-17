@@ -74,6 +74,20 @@ docs = ["sphinx", "zope.interface"]
 tests = ["coverage", "hypothesis", "pympler", "pytest", "six", "zope.interface"]
 
 [[package]]
+name = "authlib"
+version = "0.15.3"
+description = "The ultimate Python library in building OAuth and OpenID Connect servers."
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+cryptography = "*"
+
+[package.extras]
+client = ["requests"]
+
+[[package]]
 name = "autopep8"
 version = "1.5.6"
 description = "A tool that automatically formats Python code to conform to the PEP 8 style guide"
@@ -1515,7 +1529,7 @@ testing = ["jaraco.itertools", "func-timeout"]
 [metadata]
 lock-version = "1.1"
 python-versions = "3.7.3"
-content-hash = "f5109113c459412b489675353518c7ca5f0f2123447510144762bd34abb8a0d3"
+content-hash = "7186faaea6e5d6e1898384c90100d25c40e46a144a4f18e41727eb3d3ac6de59"
 
 [metadata.files]
 alembic = [
@@ -1544,6 +1558,10 @@ atomicwrites = [
 attrs = [
     {file = "attrs-19.1.0-py2.py3-none-any.whl", hash = "sha256:69c0dbf2ed392de1cb5ec704444b08a5ef81680a61cb899dc08127123af36a79"},
     {file = "attrs-19.1.0.tar.gz", hash = "sha256:f0b870f674851ecbfbbbd364d6b5cbdff9dcedbc7f3f5e18a6891057f21fe399"},
+]
+authlib = [
+    {file = "Authlib-0.15.3-py2.py3-none-any.whl", hash = "sha256:0f6af3a38d37dd77361808dd3f2e258b647668dac6d2cefcefc4c4ebc3c7d2b2"},
+    {file = "Authlib-0.15.3.tar.gz", hash = "sha256:7dde11ba45db51e97169c261362fab3193073100b7387e60c159db1eec470bbc"},
 ]
 autopep8 = [
     {file = "autopep8-1.5.6-py2.py3-none-any.whl", hash = "sha256:f01b06a6808bc31698db907761e5890eb2295e287af53f6693b39ce55454034a"},
