@@ -63,9 +63,9 @@
 .Hero .HeroLink {
   position: relative;
   display: block;
-  display: block;
+  bottom: 60px;
   margin: 0;
-  float: unset;
+  float: right;
 }
 
 @media screen and (max-width: 414px) {
@@ -91,9 +91,9 @@
     text-overflow: ellipsis;
   }
 
-  .Hero button {
-    display: block;
-    margin: 0 auto;
+  .Hero .HeroLink {
+    display: flex;
+    margin: 0;
     float: unset;
   }
 }

@@ -37,12 +37,19 @@
 
 @media screen and (max-width: 414px) {
   .HeroList {
-    height: 400px;
+    min-height: 400px;
   }
 
   .HeroList h1 {
     font-size: 22px;
     font-weight: 700;
     text-align: center;
+  }
+}
+
+
+@media screen and (max-width: 920px) {
+  .HeroListContent {
+    flex-wrap: wrap;
   }
 }
