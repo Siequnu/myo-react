@@ -10,7 +10,7 @@ export default function ActivityIntroduction(props) {
             <h1>{props.activity.title}</h1>
             <p dangerouslySetInnerHTML={{ __html: props.activity.description }}></p>
             <Button variant="contained" color="primary" onClick={props.handleStartActivity}>
-                Start now
+                I'm ready
                 </Button>
         </div>
     )
