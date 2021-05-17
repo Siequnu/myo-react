@@ -12,10 +12,10 @@ code {
     monospace;
 }
 
-span, button {
+span, button, .MuiTypography-root.MuiListItemText-primary.MuiTypography-body2, .MuiTypography-root.MuiListItemText-secondary.MuiTypography-body2 {
   font-family: 'F37 Ginger', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+    sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

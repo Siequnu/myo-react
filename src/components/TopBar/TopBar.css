@@ -11,7 +11,7 @@
 .TopBar img.MyoLogo {
     height: 30px;
     align-self: center;
-    padding: 0 20px;
+    padding: 0;
 }
 
 .TopBar img.MyoText {

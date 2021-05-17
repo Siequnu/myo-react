@@ -10,7 +10,9 @@ class TopBar extends React.Component {
   render() {
       return (
           <div className="TopBar">
-            <img className="MyoLogo" src="/assets/logo.png" alt="Myo app logo" />
+            <Link component={RouterLink} to="/" className="AccountLink">
+              <img className="MyoLogo" src="/assets/logo.png" alt="Myo app logo" />
+            </Link>
             <img className="MyoText" src="/assets/myo-text.png" alt="Myo app logo" />
             <Link component={RouterLink} to="/user" className="AccountLink">
               <AccountCircleIcon fontSize="large" className="AccountCircle" />

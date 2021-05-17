@@ -27,13 +27,13 @@ export default function ActivityAvatarList(props) {
                     <Link 
                         key={i} 
                         component={RouterLink}
-                        to={{ pathname: `/activity/${activity.id}` }}
+                        to={{ pathname: `/activity/${activity.activityId}` }}
                         style={{ textDecoration: 'none', color: '#333' }}
                     >
                         <ListItem className="ListItem" >
                             <ListItemAvatar>
                                 <Avatar>
-                                    <img className="ShoppingListImage" src={getThumbnail(activity.thumbnail, activity.activityId)} alt="Activity illustration" />
+                                    <img src={getThumbnail(activity.thumbnail, activity.activityId)} alt="Activity illustration" />
                                 </Avatar>
                             </ListItemAvatar>
                             <ListItemText
