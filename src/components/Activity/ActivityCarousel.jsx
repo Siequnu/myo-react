@@ -32,7 +32,9 @@ export default function ActivityIntroduction(props) {
                     return (
                         <SwiperSlide key={i}>
                             {(page.thumbnail.split('.').pop() === 'mp4') ? (
-                                <video src={encodeURI('/activities/' + (props.activityId) + '/' + page.thumbnail)} alt="Header decoration" />
+                                <video className="ActivityVideo" autoPlay muted loop playsInline controls >
+                                    <source src={`/activities/${props.activityId}/${page.thumbnail}`} type="video/mp4" />
+                                </video>
                             ) : (
                                 <img src={encodeURI('/activities/' + (props.activityId) + '/' + page.thumbnail)} alt="Header decoration" />
                             )}

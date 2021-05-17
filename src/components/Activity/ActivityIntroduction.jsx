@@ -7,7 +7,9 @@ export default function ActivityIntroduction(props) {
     return (
         <div className="ActivityIntroduction">
             {(props.activity.thumbnail.split('.').pop() === 'mp4') ? (
-                <video src={'/activities/' + (props.activityId) + '/' + props.activity.thumbnail} alt="Header decoration" />
+                <video className="ActivityVideo" autoPlay muted loop playsInline controls >
+                    <source src={`/activities/${props.activityId}/${props.activity.thumbnail}`} type="video/mp4" />
+                </video>
             ) : (
                 <img src={'/activities/' + (props.activityId) + '/' + props.activity.thumbnail} alt="Header decoration" />
             )}

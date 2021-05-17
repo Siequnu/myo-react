@@ -21,6 +21,10 @@
     text-align: justify;
 }
 
+.ActivityVideo {
+    width: 100%;
+}
+
 @media screen and (max-height: 568px) {
     .ActivityCarousel img {
         height: calc(35vh);
