@@ -8,18 +8,14 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
 function CardComponent(props) {
     
-    const getActivityId = (iteration) => {
-        return iteration + 1;
-    }
-    
     return (
         <div className="cardComponent">
-            {props.cards.map((card, i) => (
+            {props.activities.map((card, i) => (
                 
                 <div className="card" key={i}>
                     
                     <div className="card-image">
-                        <img src={'/activities/' + getActivityId(i) + '/' + card.thumbnail} alt="Header decoration" />
+                        <img src={`/activities/${card.activityId}/${card.thumbnail}`} alt="Header decoration" />
                     </div>
                     
                     <div className="content">
@@ -28,10 +24,7 @@ function CardComponent(props) {
                     </div>
                     
                     <Link component={RouterLink}
-                        to={{
-                            pathname: "/activity/" + getActivityId(i),
-                            state: { activityId: props.activityId }
-                        }}
+                        to={{pathname: `/activity/${card.activityId}`}}
                         className="read-more"
                         style={{ textDecoration: 'none' }}>
                        <span>Start activity <ChevronRightIcon className="chevron-right" /></span>

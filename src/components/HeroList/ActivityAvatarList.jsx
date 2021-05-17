@@ -18,53 +18,39 @@ import './ActivityAvatarList.css';
 
 export default function ActivityAvatarList(props) {
 
-    if (!props.activities) return null
-
-    props.activities.map((activity, i) => props.activities[i].id = i + 1)
-
-    const pickRandom = (count = 3) => {
-        let _arr = [...props.activities];
-        return [...Array(count)].map(() => _arr.splice(Math.floor(Math.random() * _arr.length), 1)[0]);
-    }
-
-    const getThumbnail = (thumbnail, itemId) => {
-        return `/activities/${itemId}/${thumbnail}`
-    }
+    const getThumbnail = (thumbnail, itemId) => `/activities/${itemId}/${thumbnail}`
 
     return (
         <Grid item>
-            <div>
-                <List dense={false}>
-                    {pickRandom().map((item, i) => (
-                        <div key={i}>
-                            <Link component={RouterLink}
-                                to={{ pathname: `/activity/${item.id}` }}
-                                style={{ textDecoration: 'none', color: '#333' }}>
-
-                                <ListItem className="ListItem" >
-                                    <ListItemAvatar>
-                                        <Avatar>
-                                            <img className="ShoppingListImage" src={getThumbnail(item.thumbnail, item.id)} alt="Activity illustration" />
-                                        </Avatar>
-                                    </ListItemAvatar>
-                                    <ListItemText
-                                        primary={item.title}
-                                        secondary={item.description}
-                                    />
-                                    <ListItemSecondaryAction>
-                                        <IconButton edge="end">
-                                            <NavigateNextIcon />
-                                        </IconButton>
-                                    </ListItemSecondaryAction>
-                                </ListItem>
-                            </Link>
-                            <Divider variant="inset" component="li" />
-                        </div>
-                    ))}
-                </List>
-            </div>
+            <List dense={false}>
+                {props.activities.map((activity, i) => (
+                    <Link 
+                        key={i} 
+                        component={RouterLink}
+                        to={{ pathname: `/activity/${activity.id}` }}
+                        style={{ textDecoration: 'none', color: '#333' }}
+                    >
+                        <ListItem className="ListItem" >
+                            <ListItemAvatar>
+                                <Avatar>
+                                    <img className="ShoppingListImage" src={getThumbnail(activity.thumbnail, activity.activityId)} alt="Activity illustration" />
+                                </Avatar>
+                            </ListItemAvatar>
+                            <ListItemText
+                                primary={activity.title}
+                                secondary={activity.description}
+                            />
+                            <ListItemSecondaryAction>
+                                <IconButton edge="end">
+                                    <NavigateNextIcon />
+                                </IconButton>
+                            </ListItemSecondaryAction>
+                        </ListItem>
+                        
+                        <Divider variant="inset" component="li" />
+                    </Link>
+                ))}
+            </List>
         </Grid>
-
-
     );
 }

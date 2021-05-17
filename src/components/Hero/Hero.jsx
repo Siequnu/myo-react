@@ -5,12 +5,11 @@ import { Link as RouterLink } from 'react-router-dom';
 import { Link } from '@material-ui/core';
 
 export default function Hero(props) {
-    const cards = props.cards
 
-    const randIndex = Math.floor(Math.random() * cards.length)
-    const activity = cards[randIndex]
-    const thumbnail = `/activities/${randIndex + 1}/${cards[randIndex].thumbnail}`
-    const pathname = `/activity/${randIndex + 1}`
+    const activity = props.activities.pop()
+
+    const thumbnail = `/activities/${activity.activityId}/${activity.thumbnail}`
+    const pathname = `/activity/${activity.activityId}`
 
     return (
         <div className="Hero" style={{ backgroundImage: `url("${thumbnail}"`}}>
@@ -21,7 +20,7 @@ export default function Hero(props) {
                 <Link component={RouterLink}
                     to={{
                         pathname: pathname,
-                        state: { activityId: props.activityId }
+                        state: { activityId: activity.activityId }
                     }}
                     className="HeroLink"
                     style={{ textDecoration: 'none' }}>
@@ -31,5 +30,4 @@ export default function Hero(props) {
             </div>
         </div>
     )
-
 }
