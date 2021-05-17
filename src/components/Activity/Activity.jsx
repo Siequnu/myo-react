@@ -25,7 +25,7 @@ export default function Activity() {
     if (!data) return <BounceLoader color={"#F19820"} loading={true} css={override} size={100} />
 
     return (
-        <div class="Activity">
+        <div className="Activity">
             { showActivityIntroduction ?
                 (
                     <ActivityIntroduction activityId={activityId} activity={data.activity} handleStartActivity={startActivity}/>

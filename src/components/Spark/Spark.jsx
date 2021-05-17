@@ -35,7 +35,7 @@ function Spark() {
     if (!data) return <BounceLoader color={"#F19820"} loading={true} css={override} size={100} />
 
     return (
-        <div class="Spark">
+        <div className="Spark">
             <BubbleUI options={options} className="sparkBubbleUi">
                 { data.activities.map((activity, i) => {
                     return (

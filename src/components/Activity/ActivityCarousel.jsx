@@ -31,8 +31,13 @@ export default function ActivityIntroduction(props) {
                 {props.activity.pages.map((page, i) => {
                     return (
                         <SwiperSlide key={i}>
-                            <img src={encodeURI('/activities/' + (props.activityId) + '/' + page.thumbnail)} alt="Header decoration" />
-                            <div class="text">
+                            {(page.thumbnail.split('.').pop() === 'mp4') ? (
+                                <video src={encodeURI('/activities/' + (props.activityId) + '/' + page.thumbnail)} alt="Header decoration" />
+                            ) : (
+                                <img src={encodeURI('/activities/' + (props.activityId) + '/' + page.thumbnail)} alt="Header decoration" />
+                            )}
+                            
+                            <div className="text">
                                 <h1>{page.title}</h1>
                                 <p dangerouslySetInnerHTML={{ __html: page.description }}></p>
                             </div>
