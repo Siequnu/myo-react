@@ -92,8 +92,8 @@
   }
 
   .Hero .HeroLink {
-    display: flex;
-    margin: 0;
+    display: block;
+    margin: 0 auto;
     float: unset;
   }
 }
