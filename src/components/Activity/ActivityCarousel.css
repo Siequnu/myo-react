@@ -1,3 +1,4 @@
+
 .ActivityCarousel img {
     width: 100%;
     height: calc(35vh);
@@ -16,7 +17,7 @@
 
 .ActivityCarousel p {
     font-size: 14px;
-    margin: 10px 50px;
+    margin: 10px 50px 0;
     font-weight: 200;
     text-align: justify;
 }
@@ -43,7 +44,13 @@
 
     .ActivityCarousel p {
         font-size: 13px;
-        margin: 10px 40px;
+        margin: 10px 40px 0;
+    }
+
+    .ActivityCarousel .MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary {
+        position: relative;
+        z-index: 9999;
+        bottom: 50px;
     }
 }
 
