@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@auth0/auth0-react": "^1.4.0",
     "@material-ui/core": "^4.11.3",
     "@material-ui/data-grid": "^4.0.0-alpha.26",
     "@material-ui/icons": "^4.11.2",
@@ -12,6 +11,7 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "axios": "^0.21.1",
     "color.js": "^1.2.0",
     "formik": "^2.2.6",
     "node-sass": "^5.0.0",
@@ -23,6 +23,7 @@
     "react-scripts": "4.0.3",
     "react-spinners": "^0.10.6",
     "react-user-onboarding": "git+https://github.com/Siequnu/react-user-onboarding.git",
+    "rxjs": "^7.0.1",
     "styled-components": "^5.2.3",
     "swiper": "^6.5.8",
     "swr": "^0.5.5",

@@ -20,4 +20,4 @@ span, button, .MuiTypography-root.MuiListItemText-primary.MuiTypography-body2, .
   -moz-osx-font-smoothing: grayscale;
 }
 
-.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary {background-color: #F19820;}
+.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary {color: white;}

@@ -44,7 +44,7 @@ export default function ViewActivitiesComponent() {
             <HeroList activities={getRandomActivities(4)} title="Trending this week"/>
             <CardComponent activities={getRandomActivities(6)} />
             <Hero activities={getRandomActivities(1)}/>
-            <CardComponent activities={getRandomActivities()} />
+            <CardComponent activities={getRandomActivities(3)} />
         </div>
     )
 }

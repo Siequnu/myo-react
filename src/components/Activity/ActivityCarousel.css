@@ -23,6 +23,8 @@
 
 .ActivityVideo {
     width: 100%;
+    height: calc(35vh);
+    object-fit: cover;
 }
 
 @media screen and (max-height: 568px) {

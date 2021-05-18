@@ -1,25 +1,33 @@
-from flask import current_app, request, redirect, url_for, send_from_directory, jsonify, session
+"""
+Main routes for myo
+"""
+from flask import current_app
 
-import datetime
-
-from app import auth0
 from app import db
-from . import bp
-import os
 
-
-@current_app.before_request
-def before_request():
-	return
-	'''
-	if current_user.is_authenticated:
-		current_user.last_seen = datetime.datetime.now()
-		db.session.commit()
-	'''
-	
 
 @current_app.after_request
 def close_request_session(response):
-	# Fix for Mysql server gone away
-	db.session.remove()
-	return response
+    """
+    Fix for Mysql server gone away
+    """
+    db.session.remove()
+    return response
+
+
+@current_app.errorhandler(404)
+def not_found():
+    """
+    On 404 error, return the main React file
+    """
+    return current_app.send_static_file('index.html')
+
+
+@current_app.route('/')
+def index():
+    """
+    Index route, return HTML
+    N.B. this should not ever actually be accessed, \
+        as Flask is running in API mode
+    """
+    return current_app.send_static_file('index.html')

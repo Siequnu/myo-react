@@ -1,22 +1,33 @@
 import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter, useParams } from 'react-router-dom';
 
 import { useFormik } from 'formik';
 
 import { Button, TextField } from '@material-ui/core';
 
+import './Auth.css';
+
 import { SnackbarContext } from '../../App';
 
-function Reset(props) {
+import config from '../../config';
+
+function ResetWithToken(props) {
 
     const { setSnackbar } = React.useContext(SnackbarContext);
 
+    const { token } = useParams();
+
     const formik = useFormik({
         initialValues: {
-            email: '',
+            password: '',
         },
+        //validationSchema: validationSchema,
         onSubmit: (values) => {
-            fetch('/auth/reset', {
+            // Add in the token
+            values.token = token;
+
+            // Fetch the data
+            fetch(config.resetWithToken, {
                 method: 'POST',
                 body: JSON.stringify(values),
                 headers: {
@@ -28,54 +39,46 @@ function Reset(props) {
                     if (data.hasOwnProperty('error')) {
                         throw data.error;
                     }
-                    
                     setSnackbar({
                         text: data.success,
                         open: true,
                         severity: 'success'
                     })
-
-                    props.history.push('login');
                     
+                    // Show the login screen
+                    props.history.push('/login');
                 })
                 .catch(function (error) {
-                    
                     setSnackbar({
                         text: error,
                         open: true,
                         severity: 'error'
                     })
-
                 })
         },
     });
 
-    // Display an email form, to which reset email can be sent
+    // Display a password reset form
     return (
         <div className="AuthForm">
             <form onSubmit={formik.handleSubmit}>
                 <TextField
                     fullWidth
-                    id="email"
-                    name="email"
-                    label="Email"
-                    type="email"
-                    value={formik.values.email}
+                    id="password"
+                    name="password"
+                    label="New password"
+                    type="password"
+                    value={formik.values.password}
                     onChange={formik.handleChange}
-                    error={formik.touched.email && Boolean(formik.errors.email)}
-                    helperText={formik.touched.email && formik.errors.email}
+                    error={formik.touched.password && Boolean(formik.errors.password)}
+                    helperText={formik.touched.password && formik.errors.password}
                 />
-
-                <Button color="primary" variant="contained" fullWidth type="submit">
-                    Send password reset email
-                </Button>
-
-                <Button component={Link} to="/login">
-                    Back to Login
+                <Button variant="contained" fullWidth type="submit">
+                    Set new password
                 </Button>
             </form>
         </div>
     )
 }
 
-export default withRouter(Reset)
+export default withRouter(ResetWithToken)

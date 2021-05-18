@@ -14,7 +14,7 @@ import 'swiper/components/pagination/pagination.scss';
 
 SwiperCore.use([Navigation, Pagination, A11y]);
 
-export default function ActivityIntroduction(props) {
+export default function ActivityCarousel(props) {
 
     const [activityCompleted, setActivityCompleted] = useState(false)
     const finishedActivity = () => setActivityCompleted(true)
@@ -49,9 +49,7 @@ export default function ActivityIntroduction(props) {
 
             </Swiper>
             {activityCompleted ? (
-                <Link component={RouterLink}
-                    to={{ pathname: "/", }}
-                    style={{ textDecoration: 'none' }}>
+                <Link component={RouterLink} to={{ pathname: "/" }} style={{ textDecoration: 'none' }}>
                     <Button variant="contained" color="primary">Done</Button>
                 </Link>
             ) : null

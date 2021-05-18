@@ -23,6 +23,8 @@
 .TopBar .AccountLink {
     width: 50px;
     align-self: center;
+    margin-right: 30px;
+    margin-top: 5px;
     padding: 0 20px;
     transition: .3s;
     color: #333;
