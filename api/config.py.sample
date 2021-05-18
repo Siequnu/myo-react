@@ -1,33 +1,40 @@
+from datetime import timedelta
 import os
 basedir = os.path.abspath(os.path.dirname(__file__))
 
+
 class myo(object):
-	APP_NAME = 'myo'
-	APP_URL = 'https://myo-app.com'
-	
-	# Generate with python3 -c "import uuid; print(uuid.uuid4().hex)"
-	SECRET_KEY = ''
-	MAX_CONTENT_LENGTH = 16 * 1024 * 1024  # Max content (default: 16MB)
-	APP_ROOT = basedir
+    APP_NAME = 'myo'
+    APP_URL = 'https://myo-app.com'
+    RECOVER_EXTERNAL_URL = '/reset/'
 
-	SIGNUP_CODES = {'croissant'}
-	REGISTRATION_IS_OPEN = True
+    # Generate with python3 -c "import uuid; print(uuid.uuid4().hex)"
+    JWT_SECRET_KEY = ''
+    JWT_ACCESS_TOKEN_EXPIRES = timedelta(hours=6)
+    JWT_REFRESH_TOKEN_EXPIRES = timedelta(days=30)
 
-	MAIL_SERVER = 'mail.hover.com'
-	MAIL_PORT = 587
-	MAIL_USE_TLS = True
-	MAIL_USE_SSL = False
-	MAIL_DEBUG = False
-	MAIL_USERNAME = 'noreply@.'
-	MAIL_PASSWORD = '--'
-	MAIL_DEFAULT_SENDER = 'noreply@'
+    SECRET_KEY = ''
+    MAX_CONTENT_LENGTH = 16 * 1024 * 1024  # Max content (default: 16MB)
+    APP_ROOT = basedir
 
-	EXECUTOR_PROPAGATE_EXCEPTIONS = True
-	EXECUTOR_TYPE = 'process'
+    SIGNUP_CODES = {''}
+    REGISTRATION_IS_OPEN = True
 
-	TS_SALT = ''
-	TS_RECOVER_SALT = ''
-	TS_MAX_AGE = 86400
+    MAIL_SERVER = 'mail.hover.com'
+    MAIL_PORT = 587
+    MAIL_USE_TLS = True
+    MAIL_USE_SSL = False
+    MAIL_DEBUG = False
+    MAIL_USERNAME = ''
+    MAIL_PASSWORD = ''
+    MAIL_DEFAULT_SENDER = ''
 
-	SQLALCHEMY_DATABASE_URI = ''
-	SQLALCHEMY_TRACK_MODIFICATIONS = True
+    EXECUTOR_PROPAGATE_EXCEPTIONS = True
+    EXECUTOR_TYPE = 'process'
+
+    TS_SALT = ''
+    TS_RECOVER_SALT = ''
+    TS_MAX_AGE = 86400
+
+    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://USERNAME:PASSWORD@localhost:3306/myo'
+    SQLALCHEMY_TRACK_MODIFICATIONS = True
