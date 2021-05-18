@@ -36,9 +36,9 @@
 }
 
 
-@media screen and (max-height: 568px) {
+@media screen and (max-width: 414px) {
     .TopBar {
-        height: 50px;
+        height: 60px;
     }
 
     .TopBar img.MyoLogo {

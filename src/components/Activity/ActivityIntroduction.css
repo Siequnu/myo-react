@@ -1,4 +1,5 @@
 .ActivityIntroduction {
+    margin-top: 10px;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -10,7 +11,7 @@
     display: block;
     border-radius: 15px;
     width: 95%;
-    height: calc(35vh);
+    height: calc(25vh);
     object-fit: cover;
 }
 
@@ -22,7 +23,7 @@
 
 .ActivityIntroduction h1 {
     font-weight: 700;
-    font-size: 35px;
+    font-size: 30px;
     font-style: normal;
 }
 
@@ -34,7 +35,7 @@
 
 @media screen and (max-height: 568px) {
     .ActivityIntroduction h1 {
-        font-size: 25px;
+        font-size: 22px;
     }
 
     .ActivityIntroduction p {
