@@ -11,7 +11,7 @@ Class helpers for the Activities module
 
 def write_activities_json(activities_object):
     try:
-        activities_file = open('../src/activities/activities.json', 'w')
+        activities_file = open('../public/activities/activities.json', 'w')
         json.dump(activities_object, activities_file)
         activities_file.close()
     except Exception as e:
@@ -21,7 +21,7 @@ def write_activities_json(activities_object):
 
 def get_activities_json():
     try:
-        activities_file = open('../src/activities/activities.json')
+        activities_file = open('../public/activities/activities.json')
         activities = json.load(activities_file)
         return activities
 
@@ -65,7 +65,7 @@ def calculate_and_write_background_colours():
     try:
         activities = get_activities_json()
 
-        path_prefix = '../src/activities/'
+        path_prefix = '../public/activities/'
         activity_id = 1
         for activity in activities:
             print(f"Generating for {activity_id}")
@@ -101,7 +101,7 @@ def get_all_activities():
     """
     Get all the activities
     """
-    activities_file = open('../src/activities/activities.json')
+    activities_file = open('../public/activities/activities.json')
     activities = json.load(activities_file)
     return jsonify({'activities': activities})
 
@@ -111,7 +111,7 @@ def get_single_activity(activity_id):
     """
     Get single activity
     """
-    activities_file = open('../src/activities/activities.json')
+    activities_file = open('../public/activities/activities.json')
     activities = json.load(activities_file)
     try:
         activity = activities[activity_id]
