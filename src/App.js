@@ -16,7 +16,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 // Navigation components
-import Navbar from './Navbar/Navbar';
+import Navbar from './components/Navbar/Navbar';
 import TopBar from './components/TopBar/TopBar';
 
 // Page components
