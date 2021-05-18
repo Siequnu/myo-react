@@ -112,7 +112,7 @@ def reset():
 
     if user is None:
         return jsonify({'error': 'Could not find an account \
-            registered with this email.'}), 401
+            registered with this email.'}), 404
 
     send_password_reset_email(user.username, user.email)
     return {
@@ -129,16 +129,17 @@ def view_user_profile(user_id):
     user = User.query.get(user_id)
 
     if user is None:
-        return jsonify({'error': 'Could not find the user'}), 401
+        return jsonify({'error': 'Could not find the user'}), 404
 
-    return jsonify({
-        'username': user.username,
-        'last_seen': user.last_seen,
-        'is_admin': user.is_admin
-    })
+    return jsonify(
+        username=user.username,
+        last_seen=user.last_seen,
+        registered=user.registered,
+        is_admin=user.is_admin
+        )
 
 
-@bp.route('/profile/')
+@bp.route('/profile')
 @jwt_required()
 def get_current_user():
     """
@@ -147,6 +148,7 @@ def get_current_user():
     return jsonify(
         id=current_user.id,
         username=current_user.username,
+        registered=current_user.registered,
         last_seen=current_user.last_seen,
         is_admin=current_user.is_admin
     )
