@@ -1,6 +1,7 @@
 """
 Provides routes for authentication module
 """
+from datetime import datetime
 from flask import current_app, request, jsonify, render_template
 
 from flask_jwt_extended import (
@@ -27,7 +28,7 @@ def user_identity_lookup(user):
     identity when creating JWTs and converts it to a JSON serializable format.
 
     This sometimes receives an int (user_id), and sometimes the user object.
-    # !TODO figure out why
+    !TODO figure out why
     """
     if isinstance(user, int):
         return user
@@ -86,6 +87,107 @@ def login():
     )
 
 
+@bp.route('/validate', methods=['POST'])
+def validate():
+    """
+    Api route to validate registration details
+    """
+
+    # Get the username and password from request details
+    username = request.json.get('username', None)
+    email = request.json.get('email', None)
+
+    username_exists = User.query.filter_by(
+        username=username).first() is not None
+    email_exists = User.query.filter_by(
+        email=email).first() is not None
+
+    return {
+        'username_exists': username_exists,
+        'email_exists': email_exists
+    }
+
+
+@bp.route('/register', methods=['POST'])
+def register():
+    """
+    Api route to register a user
+    """
+
+    # Get the username and password from request details
+    username = request.json.get('username', None)
+    email = request.json.get('email', None)
+    password = request.json.get('password', None)
+
+    user_check = User.query.filter_by(username=username).first()
+    if user_check is not None:
+        return jsonify({'error': 'This username is already taken'}), 401
+
+    email_check = User.query.filter_by(email=email).first()
+    if email_check is not None:
+        return jsonify({'error': 'This email is already in use'}), 401
+
+    # Create a new user
+    new_user = User(
+        username=username,
+        email=email,
+        registered=datetime.now()
+    )
+    new_user.set_password(password)
+
+    db.session.add(new_user)
+    db.session.flush()
+
+    # Build an email with a sign-up completion link
+    subject = current_app.config['APP_NAME'] + \
+        " - your account is almost ready"
+    token = app.email_model.ts.dumps(
+        str(email), salt=current_app.config["TS_SALT"])
+
+    # Send the email confirmation link
+    confirm_url = current_app.config['APP_URL'] + \
+        current_app.config['CONFIRM_URL'] + token
+
+    html = render_template(
+        'email/activate.html',
+        confirm_url=confirm_url,
+        username=username,
+        app_name=current_app.config['APP_NAME'])
+
+    db.session.commit()
+
+    # Send email in background
+    executor.submit(app.email_model.send_email, new_user.email, subject, html)
+
+    return {'success': 'An email has been sent with further instructions'}
+
+
+@bp.route('/confirm', methods=['POST'])
+def confirm_email():
+    """
+    API route to confirm an email
+    """
+    token = request.json.get('token', None)
+
+    try:
+        email = app.email_model.ts.loads(
+            token,
+            salt=current_app.config["TS_SALT"],
+            max_age=current_app.config['TS_MAX_AGE'])
+    except Exception as error:
+        print(error)
+        return {'error': 'An error occured while confirming your email.'}
+
+    user = User.query.filter_by(email=email).first()
+
+    if user is None:
+        return {'error': 'Could not locate your account.'}
+
+    user.email_confirmed = True
+    db.session.commit()
+    return {'success': 'Your email has been confirmed. Please log-in now.'}
+
+
 @bp.route('/refresh', methods=['POST'])
 @jwt_required(refresh=True)
 def refresh():
@@ -136,7 +238,7 @@ def view_user_profile(user_id):
         last_seen=user.last_seen,
         registered=user.registered,
         is_admin=user.is_admin
-        )
+    )
 
 
 @bp.route('/profile')
@@ -163,7 +265,6 @@ def send_password_reset_email(username, email):
     token = app.email_model.ts.dumps(
         email, salt=current_app.config["TS_RECOVER_SALT"])
 
-    # !TODO as Flask is running as API, the port will be wrong
     recover_url = current_app.config['APP_URL'] + \
         current_app.config['RECOVER_EXTERNAL_URL'] + token
 

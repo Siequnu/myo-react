@@ -12,10 +12,11 @@ import { SnackbarContext } from '../../App';
 function Login(props) {
 
     const { setSnackbar } = React.useContext(SnackbarContext);
-    
+
     if (authenticationService.currentUserValue) {
         props.history.push('/');
     }
+
 
     const formik = useFormik({
         initialValues: {
@@ -36,8 +37,9 @@ function Login(props) {
                         })
                     }
                 );
-        },
+        }
     });
+
 
     return (
         <div className="AuthForm">
@@ -67,6 +69,9 @@ function Login(props) {
                 </Button>
                 <Button component={Link} to="/reset" className="ResetPasswordButton">
                     Forgot password
+                </Button>
+                <Button component={Link} to="/register">
+                    New account
                 </Button>
             </form>
         </div>

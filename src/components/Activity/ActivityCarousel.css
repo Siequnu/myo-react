@@ -49,7 +49,7 @@
 
     .ActivityCarousel .MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary {
         position: relative;
-        z-index: 9999;
+        z-index: 9;
         bottom: 50px;
     }
 }

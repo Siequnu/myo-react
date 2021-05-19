@@ -9,6 +9,7 @@
   background-size: cover;
   justify-content: center;
   border-radius: .5em;
+  color: white;
   transition: .25s;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }
@@ -26,7 +27,6 @@
 
 .Hero h1 {
   padding: 0 25px;
-  color: rgb(255, 255, 255);
   font-size: 50px;
   text-align: left;
 }
@@ -34,7 +34,6 @@
 .Hero p {
   padding: 0 25px;
   max-width: 500px;  
-  color: rgb(255, 255, 255);  
   font-size: 20px;
   overflow: hidden;
   text-align: left;

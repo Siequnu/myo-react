@@ -27,7 +27,6 @@
     margin-top: 5px;
     padding: 0 20px;
     transition: .3s;
-    color: #333;
 }
 
 .TopBar .AccountLink:hover {
@@ -52,5 +51,15 @@
     .TopBar .AccountLink {
         width: 20px;
         padding: 0 30px;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    .TopBar {
+        background-color: #424242d2
+    }
+
+    .TopBar img.MyoText {
+        filter: invert(1);
     }
 }

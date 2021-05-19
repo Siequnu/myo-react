@@ -7,6 +7,7 @@ class myo(object):
     APP_NAME = 'myo'
     APP_URL = 'https://myo-app.com'
     RECOVER_EXTERNAL_URL = '/reset/'
+    CONFIRM_URL = '/confirm/'
 
     # Generate with python3 -c "import uuid; print(uuid.uuid4().hex)"
     JWT_SECRET_KEY = ''

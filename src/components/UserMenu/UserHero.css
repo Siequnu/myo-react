@@ -31,7 +31,6 @@
 
 .UserHero h1 {
   padding: 0 25px;
-  color: rgb(255, 255, 255);
   font-size: 50px;
   text-align: left;
 }
@@ -39,8 +38,7 @@
 .UserHero p {
   padding: 0 25px;
   max-width: 500px;  
-  margin-bottom: 5px;
-  color: rgb(255, 255, 255);  
+  margin-bottom: 5px;  
   font-size: 20px;
   overflow: hidden;
   text-align: left;
@@ -130,4 +128,15 @@
   transform: rotate(3deg);
 	-webkit-mask-position: 2rem 3rem;
   font-size: 2rem;  
+}
+
+@media (prefers-color-scheme: dark) {
+  .stamp {
+    mix-blend-mode:lighten;
+  }
+  
+  .is-nope {
+    color : rgb(243, 243, 243);
+    border: 0.5rem double rgb(233, 233, 233);
+  }
 }

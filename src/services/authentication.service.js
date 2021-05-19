@@ -7,7 +7,10 @@ const currentUserSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('
 export const authenticationService = {
     login,
     logout,
+    signUp,
     updateUser,
+    validateRegistration,
+    confirmEmail,
     currentUser: currentUserSubject.asObservable(),
     get currentUserValue() { return currentUserSubject.value }
 };
@@ -27,6 +30,51 @@ async function login(username, password) {
     currentUserSubject.next(user);
     return user;
 }
+
+
+async function signUp(username, email, password) {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password, email })
+    };
+
+    const response = await fetch(config.authSignUp, requestOptions);
+    const user = await handleResponse(response);
+
+    return user;
+}
+
+async function validateRegistration(username, email) {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, email })
+    };
+
+    const response = await fetch(config.authValidate, requestOptions);
+    const validation = await handleResponse(response);
+    
+    return validation;
+}
+
+async function confirmEmail(token) {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token })
+    };
+
+    const response = await fetch(config.confirmEmail, requestOptions);
+    const validation = await handleResponse(response);
+
+    if (validation.hasOwnProperty('success')) {
+        return true;
+    } else {
+        return false
+    }
+}
+
 
 function updateUser(userObject) {
     localStorage.setItem('currentUser', JSON.stringify(userObject));

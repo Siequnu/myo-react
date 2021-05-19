@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { Link as RouterLink } from 'react-router-dom';
-import { Link, Button } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 
 import './ActivityCarousel.css';
 
@@ -12,12 +11,25 @@ import 'swiper/components/navigation/navigation.scss';
 import 'swiper/components/scrollbar/scrollbar.scss';
 import 'swiper/components/pagination/pagination.scss';
 
+import ReviewDialog from './ReviewDialog';
+
+import { postApiData } from '../../services/api.service';
+
 SwiperCore.use([Navigation, Pagination, A11y]);
 
 export default function ActivityCarousel(props) {
 
+    const [reviewDialogOpen, setReviewDialogOpen] = React.useState(false)
+    const handleClose = () => setReviewDialogOpen (false)
+
     const [activityCompleted, setActivityCompleted] = useState(false)
     const finishedActivity = () => setActivityCompleted(true)
+
+    // API handlers for order deletion
+    const handleSubmitFeedback = (feedback) => {
+        setReviewDialogOpen(false)
+        postApiData('/api/orders/delete', { feedback: feedback })
+    }
 
     return (
         <div className="ActivityCarousel">
@@ -49,11 +61,13 @@ export default function ActivityCarousel(props) {
 
             </Swiper>
             {activityCompleted ? (
-                <Link component={RouterLink} to={{ pathname: "/" }} style={{ textDecoration: 'none' }}>
-                    <Button variant="contained" color="primary">Done</Button>
-                </Link>
+                    <Button variant="contained" onClick={() => setReviewDialogOpen(true)} color="primary">Finish</Button>
             ) : null
             }
+
+            { reviewDialogOpen ? 
+                <ReviewDialog open={reviewDialogOpen} onSubmit={handleSubmitFeedback} onClose={handleClose} />
+            : null }
         </div >
     )
 }

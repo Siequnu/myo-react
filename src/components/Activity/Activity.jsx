@@ -10,21 +10,13 @@ import BounceLoader from "react-spinners/BounceLoader";
 
 import ActivityIntroduction from './ActivityIntroduction';
 import ActivityCarousel from './ActivityCarousel';
-import ReviewDialog from './ReviewDialog';
 
-import { postApiData } from '../../services/api.service';
 
 export default function Activity() {
 
     let { activityId } = useParams();
 
     const [showActivityIntroduction, setShowActivityIntroduction] = useState(true)
-
-    const [reviewDialogOpen, setReviewDialogOpen] = React.useState(true)
-    const handleClose = () => setReviewDialogOpen (false)
-
-    // API handlers for order deletion
-    const handleSubmitFeedback = (feedback) => postApiData('/api/orders/delete', { feedback: feedback })
     
     const startActivity = () => setShowActivityIntroduction(false)
     
@@ -43,11 +35,7 @@ export default function Activity() {
                 (
                     <ActivityCarousel activityId={activityId} activity={data.activity}/>
                 )
-            }
-
-            { reviewDialogOpen ? 
-                <ReviewDialog open={reviewDialogOpen} onSubmit={handleSubmitFeedback} onClose={handleClose} />
-            : null }
+            }  
         </div>
     )
 }

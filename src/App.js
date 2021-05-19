@@ -7,6 +7,8 @@ import { PrivateRoute } from './components/Auth/PrivateRoute';
 import Login from './components/Auth/Login';
 import ResetWithToken from './components/Auth/ResetWithToken';
 import Reset from './components/Auth/Reset';
+import SignUp from './components/Auth/SignUp';
+import ConfirmEmail from './components/Auth/ConfirmEmail';
 
 // App styling
 import './App.css';
@@ -118,6 +120,10 @@ export default function App() {
                     <Route exact path="/login" component={Login} />
 
                     <Route exact path="/reset" component={Reset} />
+
+                    <Route exact path="/register" component={SignUp} />
+                    
+                    <Route exact path="/confirm/:token" component={ConfirmEmail} />
 
                     <Route exact path="/reset/:token" component={ResetWithToken} />
                   </Switch>
