@@ -50,7 +50,7 @@ def save_onboarding():
         db.session.add(onboarding)
         db.session.commit()
 
-        return {'success': 'The new product was added successfully'}
+        return {'success': 'We saved your onboarding!'}
     except Exception as error:
         print(error)
         return {'error': 'An error occured saving your onboarding. \

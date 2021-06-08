@@ -79,7 +79,7 @@ function UserOnboarding(props) {
         postApiData('/onboarding/save', {onboarding_json: json}).then(
           response => setSnackbar({
             text: response.success || response.error,
-            open: true,
+            open: (response.error),
             severity: (response.success ? 'success' : 'error')
           })
         )
