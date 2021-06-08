@@ -21,15 +21,26 @@ function Spark(props) {
     const bounceLoaderCss = css`display: block; margin: 0 auto;`;
     
     // Check if user has completed onboarding
-    var { data: onboarding } = useSWR(config.onboardingStatusUrl)
-    var { data: activities } = useSWR(config.activitiesListUrl)
+    var { data: onboarding } = useSWR(config.onboardingStatusUrl);
+    var { data: activities } = useSWR(config.activitiesListUrl);
+
+    const { onboardingComplete, setOnboardingComplete } = React.useState(true);
+   
+    if (onboarding.hasOwnProperty('error')) {
+        setOnboardingComplete(false)
+    }
+
+    const handleSetOnboardingComplete = () => {
+        setOnboardingComplete(true)
+    }
     
     if (!onboarding) return <BounceLoader color={'#F19820'} loading={true} css={bounceLoaderCss} size={100} />
     if (!activities) return <BounceLoader color={"#F19820"} loading={true} css={bounceLoaderCss} size={100} />
 
-    if (!onboarding.hasOwnProperty('success')) {
+
+    if (!onboardingComplete) {
         return (
-            <UserOnboarding onComplete="/spark" />
+            <UserOnboarding onComplete={handleSetOnboardingComplete} />
         )
     }
 

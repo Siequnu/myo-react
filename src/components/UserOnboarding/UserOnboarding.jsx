@@ -114,7 +114,7 @@ function UserOnboarding(props) {
     const bounceLoaderCss = css`display: block; margin: 0 auto;`;
     const { data } = useSWR(config.onboardingStatusUrl)
     if (!data) return <BounceLoader color='#F19820' loading={true} css={bounceLoaderCss} size={100} />
-    if (data.hasOwnProperty('success')) props.history.push(props.onComplete);
+    if (data.hasOwnProperty('success')) props.onComplete();
     
     // At the start, show the onboarding intro
     if (showIntroHero) return <OnboardingHero onClick={() => setShowIntroHero(false)} />
