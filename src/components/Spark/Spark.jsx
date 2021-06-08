@@ -27,7 +27,7 @@ function Spark(props) {
     if (!onboarding) return <BounceLoader color={'#F19820'} loading={true} css={bounceLoaderCss} size={100} />
     if (!activities) return <BounceLoader color={"#F19820"} loading={true} css={bounceLoaderCss} size={100} />
 
-    if (onboarding.hasOwnProperty('error')) {
+    if (!onboarding.hasOwnProperty('success')) {
         return (
             <UserOnboarding onComplete="/spark" />
         )
@@ -50,7 +50,6 @@ function Spark(props) {
 
     return (
         <div className="Spark">
-            <h1>Spark</h1>
             <BubbleUI options={options} className="sparkBubbleUi">
                 { activities.activities.map((activity, i) => {
                     return (
