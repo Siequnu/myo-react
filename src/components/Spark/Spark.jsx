@@ -24,7 +24,7 @@ function Spark(props) {
     var { data: onboarding } = useSWR(config.onboardingStatusUrl)
     var { data: activities } = useSWR(config.activitiesListUrl)
     
-    if (!onboarding) return <BounceLoader color='#F19820' loading={true} css={bounceLoaderCss} size={100} />
+    if (!onboarding) return <BounceLoader color={'#F19820'} loading={true} css={bounceLoaderCss} size={100} />
     if (!activities) return <BounceLoader color={"#F19820"} loading={true} css={bounceLoaderCss} size={100} />
 
     if (onboarding.hasOwnProperty('error')) {
@@ -47,12 +47,10 @@ function Spark(props) {
         compact: true,
         gravitation: 5
     }
-    
-    
-    
 
     return (
         <div className="Spark">
+            <h1>Spark</h1>
             <BubbleUI options={options} className="sparkBubbleUi">
                 { activities.activities.map((activity, i) => {
                     return (

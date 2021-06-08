@@ -70,7 +70,7 @@ def login():
     # If the user somehow has no password, send a link
     if user.password_hash is None or user.password_hash == '':
         send_password_reset_email(user.username, user.email)
-        return jsonify({'error': 'You must set a password before you \
+        return jsonify({'error': 'You must reset your password before you \
             continue. An email has been sent to your inbox with a link \
                 to recover your password.'}), 401
 
