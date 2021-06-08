@@ -8,196 +8,119 @@ import useSWR from 'swr'
 import { css } from "@emotion/core";
 import BounceLoader from "react-spinners/BounceLoader";
 
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-
-import Stepper from '@material-ui/core/Stepper';
-import Step from '@material-ui/core/Step';
-import StepLabel from '@material-ui/core/StepLabel';
+import { List, ListItem, ListItemText, Stepper, Step, StepLabel, Button } from '@material-ui/core';
 
 import OnboardingLoading from './OnboardingLoading';
 import OnboardingHero from './OnboardingHero';
 
+import config from '../../config';
+
+import { postApiData } from '../../services/api.service';
+import { SnackbarContext } from '../../App';
 
 function UserOnboarding(props) {
 
+    const { setSnackbar } = React.useContext(SnackbarContext);
+
+    // Visual state of onboarding
     const [showIntroHero, setShowIntroHero] = React.useState(true)
     const [questionsDone, setQuestionsDone] = React.useState(false)
-    
-    function getSteps() {
-        return ['About yourself', 'You and art', 'Final details'];
-    }
 
+    // Store the steps in state
     const [activeStep, setActiveStep] = React.useState(0);
-    const steps = getSteps();
+    const steps = config.onboardingSteps;
 
-    const questions = [
-        {
-            question: "What kind of creative activity are you most interested in?",
-            answers:[
-                "Drawing",
-                "Writing",
-                "Painting",
-                "Crafts",
-                "Photography"
-            ]
-        },
-        {
-            question: "What would you like to use Myo for?",
-            answers :[
-                "To relax",
-                "To learn new skills",
-                "To use my imagination",
-                "To better express myself",
-                "To discover new arts"
-            ]
-        },
-        {
-            question: "What would you like Myo to offer?",
-            answers: [
-                "Breadth of activities",
-                "In depth skill building",
-                "Global perspectives",
-                "Interaction with artists & users"
-            ]
-        },
-        {
-            question: "What skills are you most interested in developing?",
-            answers: [
-                "Imagination",
-                "Persistence",
-                "Discipline",
-                "Inquisitiveness",
-                "Collaboration"
-            ]
-        },
-        {
-            question: "Generally, how often do you engage in creative activities?",
-            answers: [
-                "Everyday",
-                "Two or three times a week",
-                "Once every now and again",
-                "Never!"
-            ]
-        },
-        {
-            question: "How often would you like to engage in creative activities?",
-            answers: [
-                "Everyday",
-                "Two or three times a week",
-                "Once every now and again",
-                "Never!"
-            ]
-        },
-        {
-            question: "For how long?",
-            answers: [
-                "No more than 5mins at a time",
-                "5mins to 10mins",
-                "10mins to 20mins",
-                "20mins to 40mins",
-                "Sky’s the limit!"
-            ]
-        },
-        {
-            question: "How ‘experienced’ do you think you are?",
-            answers: [
-                "Complete beginner",
-                "Want to take it easy",
-                "I like a challenge!",
-                "Experience grrrr!!"
-            ]
-        },
-        {
-            question:"What materials do you have access to?",
-            answers: [
-                "Pens and paper only",
-                "Own some pencils",
-                "Watercolour paints",
-                "Acrylic paints",
-                "General arts & crafts stuff",
-                "Camera (phone will do)"
-            ],
-            type: 'multiple'
-        }
-    ]
-
+    // Store questions in state
+    const questions = config.onboardingQuestions;
     const [currentQuestionIndex, setCurrentQuestionIndex] = React.useState(0);
     const [selectedAnswerIndices, setSelectedAnswerIndices] = React.useState([]);
     const [questionAnswerObject, setQuestionAnswerObject] = React.useState([]);
 
+    // If the current question index changes, save the answer
     React.useEffect(() => {
+        if (!selectedAnswerIndices.length) return
+
+        console.log('indice changed');
+        console.log(selectedAnswerIndices);
+
         const newQuestionAnswerObject = {
             questionIndex: currentQuestionIndex,
             question: questions[currentQuestionIndex].question,
             answer: selectedAnswerIndices
         }
+
         setQuestionAnswerObject ([...questionAnswerObject, newQuestionAnswerObject])
         setSelectedAnswerIndices([]);
+
+        if (questions[currentQuestionIndex].type !== 'multiple') goToNextQuestion();
+    
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [currentQuestionIndex]);
+    }, [selectedAnswerIndices]);
 
-    const bounceLoaderCss = css`display: block; margin: 0 auto;`;
-    const { data } = useSWR('/auth/onboarding')
-    if (!data) return <BounceLoader color='#F19820' loading={true} css={bounceLoaderCss} size={100} />
-
-    // Redirect if we have already done onboarding
-    if (data.hasOwnProperty('success')) props.history.push('/');
-
-    const handleQuestionClick = (event, index) => {
-        setSelectedAnswerIndices([...selectedAnswerIndices], index);
-        nextQuestion();
-    };
-
-    const nextQuestion = () => {
-        setTimeout(() => {
-            if (currentQuestionIndex < (questions.length - 1)) {
-                const nextQuestion = currentQuestionIndex + 1;
-
-                const nextPercentage = nextQuestion * 100 / questions.length;
-                const nextStep = Math.ceil(nextPercentage * getSteps().length / 100);
-
-                setCurrentQuestionIndex(nextQuestion);
-                setSelectedAnswerIndices([]);
-                setActiveStep (nextStep);
-            } else {
-                console.log(questionAnswerObject)
-                setQuestionsDone(true)
-            }
-        }, 500);
-    }
-
-    const renderQuestion = (question) => {
-        if (question.hasOwnProperty('answers')) {
-            return (
-                <List component="nav" aria-label="Onboarding answers">
-                {questions[currentQuestionIndex].answers.map((answer, i) =>
-                    <ListItem
-                        selected={selectedAnswerIndices.includes(i)}
-                        onClick={(event) => handleQuestionClick(event, i)}
-                        button
-                        key={i}
-                    >
-                        <ListItemText align="center" primary={answer} />
-                    </ListItem>
-                )}
-                </List>
-            )
+    const goToNextQuestion = () => {
+        const nextQuestion = currentQuestionIndex + 1;
+        const nextPercentage = nextQuestion * 100 / questions.length;
+        const nextStep = Math.ceil(nextPercentage * steps.length / 100);
+        if (currentQuestionIndex < (questions.length - 1)) {
+            setCurrentQuestionIndex(nextQuestion);
+            setSelectedAnswerIndices([]);
+            setActiveStep (nextStep);
+        } else {
+            handleSaveOnboarding(JSON.stringify(questionAnswerObject))
+            setQuestionsDone(true)
         }
     }
 
-    if (showIntroHero) {
+    const handleQuestionClick = (index) => {
+        setSelectedAnswerIndices([...selectedAnswerIndices, index]);
+    };
+
+    const handleSaveOnboarding = (json) => {
+        postApiData('/onboarding/save', {onboarding_json: json}).then(
+          response => setSnackbar({
+            text: response.success || response.error,
+            open: true,
+            severity: (response.success ? 'success' : 'error')
+          })
+        )
+      };
+
+    // Checks the current question index and returns a list item
+    const renderQuestion = () => {
         return (
-            <OnboardingHero onClick={() => setShowIntroHero(false)} />
+            <List component="nav" aria-label="Onboarding answers">
+            {questions[currentQuestionIndex].answers.map((answer, i) =>
+                <ListItem
+                    selected={selectedAnswerIndices.includes(i)}
+                    onClick={() => handleQuestionClick(i)}
+                    button key={i}
+                >
+                    <ListItemText align="center" primary={answer} />
+                </ListItem>
+            )}
+            {questions[currentQuestionIndex].type === 'multiple' ? 
+                <Button 
+                    variant="contained" 
+                    color="primary" 
+                    onClick={goToNextQuestion}
+                    disabled={!selectedAnswerIndices.length}>Next</Button>
+                : null
+            }
+            </List>
         )
     }
+
+    // ☑️ Check and redirect if user has already done onboarding
+    const bounceLoaderCss = css`display: block; margin: 0 auto;`;
+    const { data } = useSWR(config.onboardingStatusUrl)
+    if (!data) return <BounceLoader color='#F19820' loading={true} css={bounceLoaderCss} size={100} />
+    if (data.hasOwnProperty('success')) props.history.push(props.onComplete);
     
-    if (questionsDone) {
-        return (
-            <OnboardingLoading />
-        )
-    }
+    // At the start, show the onboarding intro
+    if (showIntroHero) return <OnboardingHero onClick={() => setShowIntroHero(false)} />
+    
+    // If the questions are done, show the post-loading screen
+    if (questionsDone) return <OnboardingLoading onComplete={props.onComplete}/>
 
     return (
         <div className="UserOnboarding">

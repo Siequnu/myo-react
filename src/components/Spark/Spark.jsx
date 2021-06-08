@@ -10,17 +10,28 @@ import ActivityBubble from "./ActivityBubble";
 import { css } from "@emotion/core";
 import BounceLoader from "react-spinners/BounceLoader";
 
+import UserOnboarding from '../UserOnboarding/UserOnboarding'
+
 import "./Spark.css";
+
+import config from '../../config';
 
 function Spark(props) {
 
     const bounceLoaderCss = css`display: block; margin: 0 auto;`;
     
     // Check if user has completed onboarding
-    var { data } = useSWR('/auth/onboarding')
-    if (!data) return <BounceLoader color='#F19820' loading={true} css={bounceLoaderCss} size={100} />
+    var { data: onboarding } = useSWR(config.onboardingStatusUrl)
+    var { data: activities } = useSWR(config.activitiesListUrl)
+    
+    if (!onboarding) return <BounceLoader color='#F19820' loading={true} css={bounceLoaderCss} size={100} />
+    if (!activities) return <BounceLoader color={"#F19820"} loading={true} css={bounceLoaderCss} size={100} />
 
-    if (data.hasOwnProperty('error')) props.history.push('/onboarding')
+    if (onboarding.hasOwnProperty('error')) {
+        return (
+            <UserOnboarding onComplete="/spark" />
+        )
+    }
 
     const options = {
         size: 165,
@@ -37,14 +48,13 @@ function Spark(props) {
         gravitation: 5
     }
     
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    var { data } = useSWR('/activities/api/list')
-    if (!data) return <BounceLoader color={"#F19820"} loading={true} css={bounceLoaderCss} size={100} />
+    
+    
 
     return (
         <div className="Spark">
             <BubbleUI options={options} className="sparkBubbleUi">
-                { data.activities.map((activity, i) => {
+                { activities.activities.map((activity, i) => {
                     return (
                         <ActivityBubble key={i} activityId={i} title={activity.title} thumbnail={activity.thumbnail} backgroundColour={activity.background_colour} />
                     )

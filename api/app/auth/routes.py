@@ -18,7 +18,7 @@ from app import db
 import app.email_model
 
 from . import bp
-from .models import User, UserOnboarding
+from .models import User
 
 
 @jwt.user_identity_loader
@@ -254,23 +254,6 @@ def get_current_user():
         last_seen=current_user.last_seen,
         is_admin=current_user.is_admin
     )
-
-
-@bp.route("/onboarding")
-@jwt_required()
-def get_user_onboarding_status():
-    """
-    Return onboarding status for a user
-    """
-
-    # Check if current user has completed onboarding
-    onboarding_status = UserOnboarding.query.filter_by(
-        user_id=current_user.id).first()
-
-    if onboarding_status is None:
-        return {'error': 'User has not completed onboarding'}
-
-    return {'success': 'User has completed onboarding'}
 
 
 def send_password_reset_email(username, email):

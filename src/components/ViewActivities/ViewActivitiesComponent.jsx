@@ -10,11 +10,13 @@ import Onboarding from '../Onboarding/Onboarding';
 import Hero from '../Hero/Hero';
 import HeroList from '../HeroList/HeroList';
 
+import config from '../../config';
+
 export default function ViewActivitiesComponent() {
 
     const bounceLoaderCss = css`display: block; margin: 0 auto;`;
 
-    const { data } = useSWR('/activities/api/list')
+    const { data } = useSWR(config.activitiesListUrl)
 
     if (!data) return <BounceLoader color='#F19820' loading={true} css={bounceLoaderCss} size={100} />
     

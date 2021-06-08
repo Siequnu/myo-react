@@ -65,16 +65,3 @@ class User(db.Model):
             return True
         else:
             return False
-
-
-class UserOnboarding(db.Model):
-    """
-    Store user onboarding answers
-    """
-    id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    onboarding_completed = db.Column(db.DateTime, default=datetime.now())
-    onboarding_json = db.Column(db.String(2000))
-
-    def __repr__(self):
-        return '<UserOnboarding {}>'.format(self.username)

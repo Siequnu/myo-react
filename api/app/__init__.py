@@ -37,6 +37,7 @@ def create_app(config_class):
         {'path': 'app.main'},
         {'path': 'app.auth', 'url_prefix': '/auth'},
         {'path': 'app.activities', 'url_prefix': '/activities'},
+        {'path': 'app.onboarding', 'url_prefix': '/onboarding'},
     ]
 
     # Enable each service

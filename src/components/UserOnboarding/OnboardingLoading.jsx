@@ -57,10 +57,10 @@ function OnboardingLoading(props) {
             <div>
                 <h2 className="animate__animated animate__backInDown">Your custom training plan is ready</h2>
                 <Button 
-                    style={{ animation: 'pulse 3s ease infinite' }} 
+                    style={{ animation: 'pulse 3s ease infinite', 'margin': '20px 0' }} 
                     className="StartButton animate__animated animate__fadeIn animate__delay-1s"
                     variant="contained" size="large" color="primary" 
-                    onClick={()=> props.history.push('/spark')}
+                    onClick={()=> props.history.push(props.onComplete)}
                 >
                 Let's go
                 </Button>
@@ -69,8 +69,7 @@ function OnboardingLoading(props) {
     }
 
     return (
-        <div>
-
+        <div style={{'margin': '0 20px'}}>
             <h3 className="animate__animated animate__backInDown animate__delay-1s" >{text}</h3>
             <LinearProgress className="animate__animated animate__fadeIn" variant="determinate" value={progress} />
             
