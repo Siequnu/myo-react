@@ -1,7 +1,7 @@
 
-.UserHero {
+.OnboardingHero {
   margin: 50px 10px 10px 10px;
-  height: 300px;
+  height: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,28 +15,28 @@
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }
 
-.UserHero .Icon {
+.OnboardingHero .Icon {
   vertical-align: top;
 }
 
-.UserHeroContent {
+.OnboardingHeroContent {
   width: 100%;
   height: 100%;
   justify-content: left;
   border-radius: .5em;
 }
 
-.UserHero:hover {
+.OnboardingHero:hover {
   box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.UserHero h1 {
+.OnboardingHero h2 {
   padding: 0 25px;
   font-size: 50px;
   text-align: left;
 }
 
-.UserHero p {
+.OnboardingHero p {
   padding: 0 25px;
   max-width: 500px;  
   margin-bottom: 5px;  
@@ -46,13 +46,13 @@
   text-overflow: ellipsis;
 }
 
-.UserHero p.caption {
+.OnboardingHero p.caption {
   margin: 0; 
   font-size: 15px;
   margin-left: 32.5px;
 }
 
-.UserHero .UserHeroButton {
+.OnboardingHero .OnboardingHeroButton {
   border-radius: .5em;
   color: orange;
   background-color: white;
@@ -66,78 +66,44 @@
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }
 
-.UserHero .UserHeroButton:hover {
+.OnboardingHero .OnboardingHeroButton:hover {
   box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-color: white;
   transform: scale(1.1);
 }
 
 
-.UserHero .MuiButtonBase-root.MuiButton-root.MuiButton-contained {
+.OnboardingHero .MuiButtonBase-root.MuiButton-root.MuiButton-contained {
   float: right;
   margin: 15px;
 }
 
-.UserHero .UserHeroLink {
+.OnboardingHero .OnboardingHeroButton {
   display: inline-block;
 }
 
 @media screen and (max-width: 414px) {
-  .UserHero {
+  .OnboardingHero {
     height: 400px;
   }
   
-  .UserHeroContent {
+  .OnboardingHeroContent {
     background: linear-gradient(180deg, rgba(241,152,32,1) 34%, rgba(255,255,255,0) 64%) !important;
   }
   
-  .UserHero h1 {
+  .OnboardingHero h2 {
     font-size: 22px;
     font-weight: 700;
     text-align: center;
   }
 
-  .UserHero p {
+  .OnboardingHero p {
     font-size: 16px;
   }
 
-  .UserHero .UserHeroLink {
+  .OnboardingHero .OnboardingHeroButton {
     display: block;
-    margin: 0 auto;
+    margin: 20px auto;
     float: unset;
-  }
-}
-
-.stamp {
-  transform: rotate(12deg);
-	color: #555;
-	font-size: 3rem;
-	font-weight: 700;
-	border: 0.25rem solid #555;
-	display: inline-block;
-	padding: 0.25rem 1rem;
-	text-transform: uppercase;
-	border-radius: 1rem;
-	font-family: 'Courier';
-	-webkit-mask-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/8399/grunge.png');
-  -webkit-mask-size: 944px 604px;
-  mix-blend-mode: multiply;
-}
-
-.is-nope {
-  color: rgb(20, 20, 20);
-  border: 0.5rem double rgb(41, 38, 38);
-  transform: rotate(3deg);
-	-webkit-mask-position: 2rem 3rem;
-  font-size: 2rem;  
-}
-
-@media (prefers-color-scheme: dark) {
-  .stamp {
-    mix-blend-mode:lighten;
-  }
-  
-  .is-nope {
-    color : rgb(243, 243, 243);
-    border: 0.5rem double rgb(233, 233, 233);
   }
 }

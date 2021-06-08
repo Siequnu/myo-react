@@ -75,7 +75,6 @@ async function confirmEmail(token) {
     }
 }
 
-
 function updateUser(userObject) {
     localStorage.setItem('currentUser', JSON.stringify(userObject));
     currentUserSubject.next(userObject);

@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import useSWR from 'swr'
 
 import BubbleUI from "react-bubble-ui";
@@ -11,10 +12,16 @@ import BounceLoader from "react-spinners/BounceLoader";
 
 import "./Spark.css";
 
-function Spark() {
+function Spark(props) {
 
-    const override = css`display: block; margin: 0 auto;`;
+    const bounceLoaderCss = css`display: block; margin: 0 auto;`;
     
+    // Check if user has completed onboarding
+    var { data } = useSWR('/auth/onboarding')
+    if (!data) return <BounceLoader color='#F19820' loading={true} css={bounceLoaderCss} size={100} />
+
+    if (data.hasOwnProperty('error')) props.history.push('/onboarding')
+
     const options = {
         size: 165,
         minSize: 20,
@@ -29,10 +36,10 @@ function Spark() {
         compact: true,
         gravitation: 5
     }
-
-    const { data } = useSWR('/activities/api/list')
-
-    if (!data) return <BounceLoader color={"#F19820"} loading={true} css={override} size={100} />
+    
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    var { data } = useSWR('/activities/api/list')
+    if (!data) return <BounceLoader color={"#F19820"} loading={true} css={bounceLoaderCss} size={100} />
 
     return (
         <div className="Spark">
@@ -48,4 +55,4 @@ function Spark() {
 
 }
 
-export default Spark;
+export default withRouter(Spark);

@@ -1,0 +1,19 @@
+.UserOnboarding {padding: 0 20px; min-height: 65vh;}
+
+.Goo {border: 1px solid grey;}
+
+svg * { transform-origin: 50% }
+
+@keyframes left {
+  100% { transform: rotate(-360deg) }
+}
+
+@keyframes right {
+  100% { transform: rotate(360deg) } 
+}
+
+@media screen and (max-width: 414px) {
+  .MuiPaper-root.MuiStepper-root.MuiStepper-horizontal.MuiStepper-alternativeLabel.MuiPaper-elevation0 {padding: 5px 5px 10px 5px;}
+  h2 {margin: 10px 0 0 0; font-size: 5px + 1vmin}
+  .MuiTypography-root.MuiListItemText-primary.MuiTypography-body1.MuiTypography-displayBlock {margin: 0px; padding: 0;}
+}

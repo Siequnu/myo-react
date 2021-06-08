@@ -9,6 +9,7 @@ import ResetWithToken from './components/Auth/ResetWithToken';
 import Reset from './components/Auth/Reset';
 import SignUp from './components/Auth/SignUp';
 import ConfirmEmail from './components/Auth/ConfirmEmail';
+import UserOnboarding from './components/UserOnboarding/UserOnboarding'
 
 // App styling
 import './App.css';
@@ -69,6 +70,13 @@ export default function App() {
         '"Segoe UI Emoji"',
         '"Segoe UI Symbol"',
       ].join(',')
+    },
+    overrides: {
+      MuiTouchRipple: {
+        child: {
+          backgroundColor: '#F19820'
+        }
+      }
     }
   });
 
@@ -81,7 +89,6 @@ export default function App() {
   const handleClose = () => {
     setSnackbar({ open: false });
   }
-
 
   return (
     <ThemeProvider theme={theme}>
@@ -113,16 +120,18 @@ export default function App() {
 
                     <Route exact path="/activity/:activityId"> <Activity /> </Route>
 
-                    <Route exact path="/spark"> <Spark /> </Route>
+                    <PrivateRoute exact path="/spark" component={Spark} />
 
                     <PrivateRoute exact path="/user" component={UserMenu} />
+
+                    <PrivateRoute exact path="/onboarding" component={UserOnboarding} />
 
                     <Route exact path="/login" component={Login} />
 
                     <Route exact path="/reset" component={Reset} />
 
                     <Route exact path="/register" component={SignUp} />
-                    
+
                     <Route exact path="/confirm/:token" component={ConfirmEmail} />
 
                     <Route exact path="/reset/:token" component={ResetWithToken} />
