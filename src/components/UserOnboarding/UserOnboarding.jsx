@@ -40,9 +40,6 @@ function UserOnboarding(props) {
     React.useEffect(() => {
         if (!selectedAnswerIndices.length) return
 
-        console.log('indice changed');
-        console.log(selectedAnswerIndices);
-
         const newQuestionAnswerObject = {
             questionIndex: currentQuestionIndex,
             question: questions[currentQuestionIndex].question,

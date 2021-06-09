@@ -60,7 +60,7 @@ function OnboardingLoading(props) {
                     style={{ animation: 'pulse 3s ease infinite', 'margin': '20px 0' }} 
                     className="StartButton animate__animated animate__fadeIn animate__delay-1s"
                     variant="contained" size="large" color="primary" 
-                    onClick={()=> props.history.push(props.onComplete)}
+                    onClick={()=> props.onComplete()}
                 >
                 Let's go
                 </Button>
