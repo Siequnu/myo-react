@@ -75,9 +75,9 @@ function OnboardingLoading(props) {
             
             <Goo className="animate__animated animate__fadeIn goo" intensity="strong"> 
                 <svg width="500" height="500">
-                    <circle cx="29%" cy="50%" fill="sandybrown" r="49" style={{ animation: 'right 3s ease infinite' }} />
-                    <circle cx="44%" cy="34%" fill="palevioletred" r="23" style={{ animation: 'left 7s linear infinite' }} />
-                    <circle cx="34%" cy="74%" fill="orchid" r="59" style={{ animation: 'left 4s linear infinite' }} />
+                    <circle cx="29%" cy="50%" fill="#FFB339" r="49" style={{ animation: 'right 3s ease infinite' }} />
+                    <circle cx="44%" cy="34%" fill="#C6302C" r="23" style={{ animation: 'left 7s linear infinite' }} />
+                    <circle cx="34%" cy="74%" fill="#F19821" r="59" style={{ animation: 'left 4s linear infinite' }} />
                     <circle cx="56%" cy="59%" fill="mediumorchid" r="46" style={{ animation: 'right 5s ease infinite' }} />
                 </svg>
             </Goo>
