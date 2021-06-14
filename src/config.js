@@ -2,7 +2,7 @@ const config =
 {
     authLogin: 'https://myo-app.com/auth/login',
     authRefresh: 'https://myo-app.com/auth/refresh',
-    afterLogout: 'https://myo-app.com/',
+    afterLogout: '/',
     resetWithToken: 'https://myo-app.com/auth/reset/token',
     authSignUp: 'https://myo-app.com/auth/register',
     authValidate: 'https://myo-app.com/auth/validate',
