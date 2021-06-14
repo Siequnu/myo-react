@@ -1,16 +1,17 @@
 const config = 
 {
-    authLogin: '/auth/login',
-    authRefresh: '/auth/refresh',
-    afterLogout: '/',
-    resetWithToken: '/auth/reset/token',
-    authSignUp: '/auth/register',
-    authValidate: '/auth/validate',
-    confirmEmail: '/auth/confirm',
+    authLogin: 'https://myo-app.com/auth/login',
+    authRefresh: 'https://myo-app.com/auth/refresh',
+    afterLogout: 'https://myo-app.com/',
+    resetWithToken: 'https://myo-app.com/auth/reset/token',
+    authSignUp: 'https://myo-app.com/auth/register',
+    authValidate: 'https://myo-app.com/auth/validate',
+    confirmEmail: 'https://myo-app.com/auth/confirm',
 
-    activitiesListUrl: '/activities/api/list',
+    activitiesListUrl: 'https://myo-app.com/activities/api/list',
+    activityGetUrl: 'https://myo-app.com/activities/api/get/',// /${activityId}
 
-    onboardingStatusUrl: '/onboarding/status',
+    onboardingStatusUrl: 'https://myo-app.com/onboarding/status',
     onboardingSteps: ['About yourself', 'You and art', 'Final details'],
     onboardingQuestions: [
         {
