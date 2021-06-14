@@ -7,11 +7,12 @@ import { css } from "@emotion/core";
 import BounceLoader from "react-spinners/BounceLoader";
 
 import UserOnboarding from '../UserOnboarding/UserOnboarding'
-import Deck from './Deck';
 
-import "./Spark.css";
+import './Spark.css';
+import Parallax from './Parallax.jsx';
 
 import config from '../../config';
+
 
 function Spark() {
 
@@ -33,7 +34,7 @@ function Spark() {
 
     return (
         <div className="Spark">
-            <Deck activities={activities.activities} />
+            <Parallax activities={activities.activities}/>
         </div>
     )
 

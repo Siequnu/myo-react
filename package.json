@@ -7,6 +7,8 @@
     "@material-ui/data-grid": "^4.0.0-alpha.26",
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.57",
+    "@react-spring/parallax": "^9.2.3",
+    "@react-spring/web": "^9.2.3",
     "@testing-library/dom": ">=7.21.4",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",

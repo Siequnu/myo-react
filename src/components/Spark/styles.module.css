@@ -1,0 +1,98 @@
+.container>div>div {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.text {
+	pointer-events: none;
+	justify-content: start !important;
+	padding-left: 20px;
+}
+
+.number {
+	font-size: 4rem;
+	color: #545864;
+}
+
+.number span {
+	display: block;
+	position: relative;
+}
+
+.description {
+	margin-top: 70px;
+}
+
+.description p {
+	font-size: 2rem;
+}
+
+.activityIcon {
+	cursor: pointer;
+	background-color: rgba(255, 233, 204, 0.753);
+	border-radius: 100px;
+	display: block;
+	width: 12vw !important;
+	height: 12vw !important;
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+	z-index: 999;
+}
+
+.activityIcon:hover {
+	background-color: rgba(255, 255, 255, 0.856);;
+}
+
+.activityIcon span {
+	font-size: 1rem;
+	padding: 10px;
+}
+
+.slopeBegin {
+	background-color: #e3e5ec;
+	clip-path: polygon(20% 0, 70% 0, 50% 100%, 0% 100%);
+}
+
+.slopeEnd {
+	clip-path: polygon(70% 0, 100% 0, 80% 100%, 50% 100%);
+}
+
+.slopeBegin,
+.slopeEnd {
+	position: absolute;
+	width: 170%;
+	height: 150%;
+	cursor: pointer;
+}
+
+.pink {
+	background: linear-gradient(to right, #FFB33A 0%, #F19821 100%);
+}
+
+.teal {
+	background: linear-gradient(to right, SlateBlue 0%, DeepSkyBlue 100%);
+}
+
+.tomato {
+	background: linear-gradient(to right, tomato 0%, gold 100%);
+}
+
+@media screen and (max-width: 650px) {
+    .description p {
+		font-size: 1rem;
+	}
+
+	.number {
+		font-size: 2rem;
+	}
+
+	.activityIcon {
+		width: 80px !important;
+		height: 80px !important;
+	}
+
+	.activityIcon span {
+		font-size: 10px;
+		padding: 5px;
+	}
+}
