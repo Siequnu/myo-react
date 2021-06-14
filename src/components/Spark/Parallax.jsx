@@ -3,13 +3,16 @@ import React, { useRef } from 'react'
 import { Parallax, ParallaxLayer } from '@react-spring/parallax'
 import styles from './styles.module.css'
 
+import { Link as RouterLink } from 'react-router-dom';
+import { Link } from '@material-ui/core';
+
 const url = (name, wrap) =>
   `${wrap ? 'url(' : ''}https://awv3node-homepage.surge.sh/build/assets/${name}.svg${wrap ? ')' : ''}`
 
-var leftMargin = (window.innerWidth > 600 ? 150 : window.innerWidth/6);
+var leftMargin = (window.innerWidth > 600 ? 150 : window.innerWidth / 6);
 const progressiveLeftMargin = () => {
-    leftMargin += (window.innerWidth > 600 ? 250 : window.innerWidth/4);
-    return leftMargin
+  leftMargin += (window.innerWidth > 600 ? 250 : window.innerWidth / 4);
+  return leftMargin
 }
 
 const topMargins = ['30vh', '40vh', '50vh', '60vh', '65vh', '60vh', '50vh', '45vh', '40vh', '35vh', '40vh', '50vh', '60vh', '65vh', '60vh', '50vh', '40vh', '35vh', '40vh', '45vh']
@@ -30,7 +33,7 @@ const Page = ({ activities, offset, gradient, onClick }) => (
     <ParallaxLayer offset={offset} speed={0.6} onClick={onClick}>
       <div className={`${styles.slopeEnd} ${styles[gradient]}`} />
     </ParallaxLayer>
-    
+
 
     <ParallaxLayer className={`${styles.text} ${styles.number}`} offset={0} speed={0.3}>
       <span>Spark</span>
@@ -72,20 +75,29 @@ const Page = ({ activities, offset, gradient, onClick }) => (
 
     {activities.map((activity, i) => (
       (offset === 0 ?
-      <ParallaxLayer key={i} className={`${styles.activityIcon}`} style={{marginTop: topMargins[i], marginLeft: progressiveLeftMargin()}} offset={0} speed={1}>
-        <span>{activity.title}</span>
-      </ParallaxLayer>
-      : null
+
+        <ParallaxLayer key={i} className={`${styles.activityIcon}`} style={{ marginTop: topMargins[i], marginLeft: progressiveLeftMargin() }} offset={0} speed={1}>
+          <Link 
+            component={RouterLink}
+            to={{ pathname: `/activity/${i + 1}` }}
+            style={{ textDecoration: 'none' }}
+          >
+            <span>{activity.title}</span>
+          </Link>
+        </ParallaxLayer>
+
+
+        : null
       )
     ))}
-    
+
   </>
 )
 
 export default function ParallaxView(props) {
   // Reset left margin if we are not refreshing the page
-  leftMargin = (window.innerWidth > 600 ? 150 : window.innerWidth/6);
-  
+  leftMargin = (window.innerWidth > 600 ? 150 : window.innerWidth / 6);
+
   const activities = props.activities
 
   const parallax = useRef(null)
