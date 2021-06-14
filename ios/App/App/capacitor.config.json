@@ -1,0 +1,6 @@
+{
+	"appId": "com.myo.app",
+	"appName": "Myo",
+	"webDir": "build",
+	"bundledWebRuntime": false
+}
