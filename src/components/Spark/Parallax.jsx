@@ -35,7 +35,6 @@ const Page = ({ activities, offset, gradient, handleClick }) => (
       <div className={`${styles.slopeEnd} ${styles[gradient]}`} />
     </ParallaxLayer>
 
-
     <ParallaxLayer className={`${styles.text} ${styles.number}`} offset={0} speed={0.3}>
       <span>Spark</span>
     </ParallaxLayer>
@@ -44,35 +43,23 @@ const Page = ({ activities, offset, gradient, handleClick }) => (
       <p>Your personalised creative journey</p>
     </ParallaxLayer>
 
-
-
-    <ParallaxLayer offset={0.1} speed={0.8} style={{ opacity: 0.1 }}>
-      <img src={url('cloud')} style={{ display: 'block', width: '20%', marginBottom: '30%' }} />
-    </ParallaxLayer>
-
     <ParallaxLayer offset={0.5} speed={0.2} style={{ opacity: 0.2 }}>
       <img src={url('cloud')} style={{ display: 'block', width: '10%', marginBottom: '34%' }} />
       <img src={url('cloud')} style={{ display: 'block', width: '20%', marginBottom: '50%' }} />
     </ParallaxLayer>
 
     <ParallaxLayer offset={0.7} speed={-0.1} style={{ opacity: 0.4 }}>
-      <img src={url('cloud')} style={{ display: 'block', width: '20%', marginBottom: '26%' }} />
-      <img src={url('cloud')} style={{ display: 'block', width: '10%', marginBottom: '16%' }} />
-    </ParallaxLayer>
-
-    <ParallaxLayer offset={1.2} speed={0.5} style={{ opacity: 0.1 }}>
-      <img src={url('cloud')} style={{ display: 'block', width: '20%', marginBottom: '26%' }} />
-      <img src={url('cloud')} style={{ display: 'block', width: '20%', marginBottom: '40%' }} />
+      <img src={url('cloud')} style={{ display: 'block', width: '20%', marginBottom: '26%' }} /> 
     </ParallaxLayer>
 
     <ParallaxLayer offset={1.5} speed={0.4} style={{ opacity: 0.6 }}>
       <img src={url('cloud')} style={{ display: 'block', width: '20%', marginBottom: '30%' }} />
-      <img src={url('cloud')} style={{ display: 'block', width: '15%', marginBottom: '35%' }} />
     </ParallaxLayer>
 
     <ParallaxLayer offset={2.0} speed={0.4} style={{ opacity: 1}}>
       <h1>“Every child is an artist. The problem is how to remain an artist once he grows up.” </h1>
     </ParallaxLayer>
+    
     <ParallaxLayer offset={2.0} speed={0.4} style={{ opacity: 0.6 }}>
       <p>- Pablo Picasso</p>
     </ParallaxLayer>
@@ -107,8 +94,6 @@ function ParallaxView(props) {
     activity.activityId = i+1
     setSelectedActivity (activity)
     setDialogOpen(true)
-    //props.history.push(`/activity/${i + 1}`)
-
   }
 
   // Reset left margin if we are not refreshing the page
