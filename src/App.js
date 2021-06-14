@@ -29,6 +29,7 @@ import UserMenu from './components/UserMenu/UserMenu.jsx';
 import ViewActivitiesComponent from './components/ViewActivities/ViewActivitiesComponent';
 import Activity from './components/Activity/Activity';
 import Spark from './components/Spark/Spark';
+import Create from './components/Create/Create';
 
 // Notifications
 import Snackbar from '@material-ui/core/Snackbar';
@@ -124,6 +125,8 @@ export default function App() {
                     <Route exact path="/activity/:activityId/go"> <Activity skipIntro={true}/> </Route>
 
                     <PrivateRoute exact path="/spark" component={Spark} />
+
+                    <PrivateRoute exact path="/create" component={Create} />
 
                     <PrivateRoute exact path="/user" component={UserMenu} />
 

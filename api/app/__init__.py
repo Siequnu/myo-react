@@ -10,6 +10,7 @@ from flask_migrate import Migrate
 from flask_mail import Mail
 from flask_executor import Executor
 from flask_jwt_extended import JWTManager
+from flask_cors import CORS
 
 db = SQLAlchemy()
 
@@ -17,6 +18,7 @@ migrate = Migrate()
 mail = Mail()
 executor = Executor()
 jwt = JWTManager()
+cors = CORS()
 
 
 def create_app(config_class):
@@ -31,6 +33,8 @@ def create_app(config_class):
     executor.init_app(myo_app)
 
     jwt.init_app(myo_app)
+
+    cors.init_app(myo_app)
 
     # Compile registry of blueprints
     services = [

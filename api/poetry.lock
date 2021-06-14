@@ -342,6 +342,18 @@ docs = ["Sphinx (>=1.5.1)"]
 tests = ["check-manifest (>=0.25)", "coverage (>=4.0)", "isort (>=4.3.11)", "mock (>=1.0.0)", "pydocstyle (>=1.0.0)", "pytest-cache (>=1.0)", "pytest-cov (>=1.8.0)", "pytest-pep8 (>=1.0.6)", "pytest (>=3.8.0)"]
 
 [[package]]
+name = "flask-cors"
+version = "3.0.10"
+description = "A Flask extension adding a decorator for CORS support"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+Flask = ">=0.9"
+Six = "*"
+
+[[package]]
 name = "flask-executor"
 version = "0.9.4"
 description = "An easy to use Flask wrapper for concurrent.futures"
@@ -1308,7 +1320,7 @@ testing = ["jaraco.itertools", "func-timeout"]
 [metadata]
 lock-version = "1.1"
 python-versions = "3.7.3"
-content-hash = "dd4be12d5023d3a1712740b43c97c4952004a41e9268bc4634e6e321a57a62cc"
+content-hash = "0780794ad1357a2d18a914811ad45c2024a0479eb1f004decd3528170ca09d17"
 
 [metadata.files]
 alembic = [
@@ -1503,6 +1515,10 @@ flask = [
 flask-breadcrumbs = [
     {file = "Flask-Breadcrumbs-0.5.1.tar.gz", hash = "sha256:f95872a3baf46473febd0f5c0adea192e7c2576af60a84a2144068eca1559b45"},
     {file = "Flask_Breadcrumbs-0.5.1-py2.py3-none-any.whl", hash = "sha256:cb6fc89d7f76ff429fa4bb1fbc0bfe186f3f7ff8b4f5325c0a7b75946e2de98f"},
+]
+flask-cors = [
+    {file = "Flask-Cors-3.0.10.tar.gz", hash = "sha256:b60839393f3b84a0f3746f6cdca56c1ad7426aa738b70d6c61375857823181de"},
+    {file = "Flask_Cors-3.0.10-py2.py3-none-any.whl", hash = "sha256:74efc975af1194fc7891ff5cd85b0f7478be4f7f59fe158102e91abb72bb4438"},
 ]
 flask-executor = [
     {file = "Flask-Executor-0.9.4.tar.gz", hash = "sha256:31b4a1141515214abc67b5f35507e5625ca33894f897afd422d5bfe223804242"},

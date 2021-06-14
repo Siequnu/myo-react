@@ -12,6 +12,7 @@ axios.interceptors.response.use(
       return new Promise((resolve) => {
         const originalRequest = error.config
         const refreshTokenString = refreshToken()
+        
         if (error.response && error.response.status === 401 && error.config && !error.config.__isRetryRequest && refreshTokenString) {
           originalRequest._retry = true
   
