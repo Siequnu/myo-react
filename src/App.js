@@ -5,6 +5,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 // Authentication imports
 import { PrivateRoute } from './components/Auth/PrivateRoute';
 import Login from './components/Auth/Login';
+import Logout from './components/Auth/Logout';
 import ResetWithToken from './components/Auth/ResetWithToken';
 import Reset from './components/Auth/Reset';
 import SignUp from './components/Auth/SignUp';
@@ -127,6 +128,8 @@ export default function App() {
                     <PrivateRoute exact path="/onboarding" component={UserOnboarding} />
 
                     <Route exact path="/login" component={Login} />
+
+                    <Route exact path="/logout" component={Logout} />
 
                     <Route exact path="/reset" component={Reset} />
 
