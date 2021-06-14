@@ -12,7 +12,7 @@ import ActivityIntroduction from './ActivityIntroduction';
 import ActivityCarousel from './ActivityCarousel';
 
 
-export default function Activity() {
+export default function Activity(props) {
 
     let { activityId } = useParams();
 
@@ -27,7 +27,7 @@ export default function Activity() {
 
     return (
         <div className="Activity">
-            { showActivityIntroduction ?
+            { showActivityIntroduction && !props.skipIntro ?
                 (
                     <ActivityIntroduction activityId={activityId} activity={data.activity} handleStartActivity={startActivity}/>
                 )

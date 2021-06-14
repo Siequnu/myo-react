@@ -8,6 +8,8 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
 function CardComponent(props) {
     
+    const to = (activityId) => props.skipIntro ? `/activity/${activityId}/go` : `/activity/${activityId}`
+    
     return (
         <div className="cardComponent">
             {props.activities.map((card, i) => (
@@ -24,7 +26,7 @@ function CardComponent(props) {
                     </div>
                     
                     <Link component={RouterLink}
-                        to={{pathname: `/activity/${card.activityId}`}}
+                        to={{pathname: to(card.activityId)}}
                         className="read-more"
                         style={{ textDecoration: 'none' }}>
                        <span>Start activity <ChevronRightIcon className="chevron-right" /></span>

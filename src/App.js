@@ -120,6 +120,8 @@ export default function App() {
                     <Route exact path="/"> <ViewActivitiesComponent /> </Route>
 
                     <Route exact path="/activity/:activityId"> <Activity /> </Route>
+                    
+                    <Route exact path="/activity/:activityId/go"> <Activity skipIntro={true}/> </Route>
 
                     <PrivateRoute exact path="/spark" component={Spark} />
 

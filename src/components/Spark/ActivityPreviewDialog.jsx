@@ -13,7 +13,7 @@ export default function ActivityPreviewDialog(props) {
 
   return (
     <Dialog onClose={onClose} open={open} TransitionComponent={Transition}>
-        <CardComponent activities={[activity]} margin={0}/>
+        <CardComponent activities={[activity]} skipIntro={true} margin={0}/>
     </Dialog>
   );
 }
