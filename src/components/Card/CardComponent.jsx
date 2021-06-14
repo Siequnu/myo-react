@@ -12,7 +12,7 @@ function CardComponent(props) {
         <div className="cardComponent">
             {props.activities.map((card, i) => (
                 
-                <div className="card" key={i}>
+                <div className="card" key={i} style={{margin: props.margin}}>
                     
                     <div className="card-image">
                         <img src={`/activities/${card.activityId}/${card.thumbnail}`} alt="Header decoration" />

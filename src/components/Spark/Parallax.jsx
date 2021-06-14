@@ -5,6 +5,8 @@ import styles from './styles.module.css'
 
 import { withRouter } from 'react-router-dom';
 
+import ActivityPreviewDialog from './ActivityPreviewDialog';
+
 const url = (name, wrap) =>
   `${wrap ? 'url(' : ''}https://awv3node-homepage.surge.sh/build/assets/${name}.svg${wrap ? ')' : ''}`
 
@@ -95,19 +97,29 @@ const Page = ({ activities, offset, gradient, handleClick }) => (
 
 function ParallaxView(props) {
 
+  const activities = props.activities
+  
+  const [dialogOpen, setDialogOpen] = React.useState(false);
+  const [selectedActivity, setSelectedActivity] = React.useState([])
+  
   const handleClick = (i) => {
-    props.history.push(`/activity/${i + 1}`)
+    const activity = activities[i]
+    activity.activityId = i+1
+    setSelectedActivity (activity)
+    setDialogOpen(true)
+    //props.history.push(`/activity/${i + 1}`)
+
   }
 
   // Reset left margin if we are not refreshing the page
   leftMargin = (window.innerWidth > 600 ? 150 : window.innerWidth / 6);
 
-  const activities = props.activities
-
   const parallax = useRef(null)
 
   return (
     <div style={{ background: '#dfdfdf' }}>
+      <ActivityPreviewDialog activity={selectedActivity} open={dialogOpen} onClose={() => setDialogOpen(false)}/>
+
       <Parallax className={styles.container} ref={parallax} pages={3} horizontal>
         <Page handleClick={handleClick} activities={activities} offset={0} gradient="pink" />
         <Page handleClick={handleClick} activities={activities} offset={1} gradient="teal" />
