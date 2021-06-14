@@ -3,8 +3,7 @@ import React, { useRef } from 'react'
 import { Parallax, ParallaxLayer } from '@react-spring/parallax'
 import styles from './styles.module.css'
 
-import { Link as RouterLink } from 'react-router-dom';
-import { Link } from '@material-ui/core';
+import { withRouter } from 'react-router-dom';
 
 const url = (name, wrap) =>
   `${wrap ? 'url(' : ''}https://awv3node-homepage.surge.sh/build/assets/${name}.svg${wrap ? ')' : ''}`
@@ -17,7 +16,7 @@ const progressiveLeftMargin = () => {
 
 const topMargins = ['30vh', '40vh', '50vh', '60vh', '65vh', '60vh', '50vh', '45vh', '40vh', '35vh', '40vh', '50vh', '60vh', '65vh', '60vh', '50vh', '40vh', '35vh', '40vh', '45vh']
 
-const Page = ({ activities, offset, gradient, onClick }) => (
+const Page = ({ activities, offset, gradient, handleClick }) => (
   <>
     <ParallaxLayer offset={offset} speed={0.2}>
       <div className={styles.slopeBegin} />
@@ -30,7 +29,7 @@ const Page = ({ activities, offset, gradient, onClick }) => (
       }}
     />
 
-    <ParallaxLayer offset={offset} speed={0.6} onClick={onClick}>
+    <ParallaxLayer offset={offset} speed={0.6}>
       <div className={`${styles.slopeEnd} ${styles[gradient]}`} />
     </ParallaxLayer>
 
@@ -40,7 +39,7 @@ const Page = ({ activities, offset, gradient, onClick }) => (
     </ParallaxLayer>
 
     <ParallaxLayer className={`${styles.text} ${styles.description}`} offset={0} speed={0.3}>
-      <p>AI creativity in your pocket</p>
+      <p>Your personalised creative journey</p>
     </ParallaxLayer>
 
 
@@ -69,24 +68,24 @@ const Page = ({ activities, offset, gradient, onClick }) => (
       <img src={url('cloud')} style={{ display: 'block', width: '15%', marginBottom: '35%' }} />
     </ParallaxLayer>
 
+    <ParallaxLayer offset={2.0} speed={0.4} style={{ opacity: 1}}>
+      <h1>“Every child is an artist. The problem is how to remain an artist once he grows up.” </h1>
+    </ParallaxLayer>
     <ParallaxLayer offset={2.0} speed={0.4} style={{ opacity: 0.6 }}>
-      <h1>You're finished!</h1>
+      <p>- Pablo Picasso</p>
     </ParallaxLayer>
 
     {activities.map((activity, i) => (
       (offset === 0 ?
 
-        <ParallaxLayer key={i} className={`${styles.activityIcon}`} style={{ marginTop: topMargins[i], marginLeft: progressiveLeftMargin() }} offset={0} speed={1}>
-          <Link 
-            component={RouterLink}
-            to={{ pathname: `/activity/${i + 1}` }}
-            style={{ textDecoration: 'none' }}
-          >
-            <span>{activity.title}</span>
-          </Link>
+        <ParallaxLayer 
+          key={i} 
+          className={`${styles.activityIcon}`} 
+          style={{ marginTop: topMargins[i], marginLeft: progressiveLeftMargin() , backgroundImage: `url("/activities/${i+1}/${activity.thumbnail}"` }} 
+          offset={0} speed={1} 
+          onClick={() => handleClick(i)}>
+            <span></span>
         </ParallaxLayer>
-
-
         : null
       )
     ))}
@@ -94,7 +93,12 @@ const Page = ({ activities, offset, gradient, onClick }) => (
   </>
 )
 
-export default function ParallaxView(props) {
+function ParallaxView(props) {
+
+  const handleClick = (i) => {
+    props.history.push(`/activity/${i + 1}`)
+  }
+
   // Reset left margin if we are not refreshing the page
   leftMargin = (window.innerWidth > 600 ? 150 : window.innerWidth / 6);
 
@@ -105,10 +109,12 @@ export default function ParallaxView(props) {
   return (
     <div style={{ background: '#dfdfdf' }}>
       <Parallax className={styles.container} ref={parallax} pages={3} horizontal>
-        <Page activities={activities} offset={0} gradient="pink" />
-        <Page activities={activities} offset={1} gradient="teal" />
-        <Page activities={activities} offset={2} gradient="tomato" />
+        <Page handleClick={handleClick} activities={activities} offset={0} gradient="pink" />
+        <Page handleClick={handleClick} activities={activities} offset={1} gradient="teal" />
+        <Page handleClick={handleClick} activities={activities} offset={2} gradient="tomato" />
       </Parallax>
     </div>
   )
 }
+
+export default withRouter(ParallaxView)
