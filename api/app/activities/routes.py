@@ -134,13 +134,13 @@ def get_spark_plan():
         spark_plan_list = json.loads(spark_plan.activity_set_json)
 
         # Get the list of activities
-        activities = get_activities_json()
+        activities = get_activities_json(current_user.id)
 
         # Populate the exercises, in order
         populated_activities = []
         for activity_id in spark_plan_list:
             populated_activities.append(activities[activity_id-1])
-        print(populated_activities)
+
         return jsonify({'activities': populated_activities})
 
     except Exception as error:

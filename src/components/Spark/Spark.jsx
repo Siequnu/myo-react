@@ -25,7 +25,6 @@ function Spark() {
     if (!onboarding) return <BounceLoader color="#F19820" loading={true} css={bounceLoaderCss} size={100} />
     if (!activities) return <BounceLoader color="#F19820" loading={true} css={bounceLoaderCss} size={100} />
 
-    console.log(activities)
     if (onboarding.hasOwnProperty('error')) {
         return (
             <UserOnboarding onComplete={mutate} />
@@ -34,10 +33,9 @@ function Spark() {
 
     return (
         <div className="Spark">
-            <Parallax activities={activities.activities}/>
+            <Parallax activities={activities.activities} />
         </div>
     )
-
 }
 
 export default withRouter(Spark);

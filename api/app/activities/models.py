@@ -53,23 +53,38 @@ def write_activities_json(activities_object):
         print(e)
 
 
-def get_activities_json():
+def get_activities_json(user_id=False):
     """
     Open, parse and return the activities JSON file
     """
     try:
+        # Open and parse the JSON file
         activities_file = open('../public/activities/activities.json')
-        activities = json.load(activities_file)
+        raw_activities = json.load(activities_file)
 
         # Add an ID for each activity
-        activities_with_id = []
+        activities = []
         id = 1
-        for activity in activities:
+        for activity in raw_activities:
             activity['activityId'] = id
-            activities_with_id.append(activity)
+            activities.append(activity)
             id += 1
 
-        return activities_with_id
+        # If a user_id was received, add in activity completion status
+        if user_id:
+            activities_with_status = []
+            for activity in activities:
+                completion_status = ActivityCompletion.query.filter_by(
+                    user_id=user_id).filter_by(
+                    activity_id=activity['activityId']).first() is not None
+
+                activity['completed'] = completion_status
+
+                activities_with_status.append(activity)
+
+            activities = activities_with_status
+
+        return activities
 
     except Exception as e:
         print('An error occured while trying to load the activities.json file')
