@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom';
 import './Activity.css'
 
 import useSWR from 'swr'
-
 import { css } from "@emotion/core";
 import BounceLoader from "react-spinners/BounceLoader";
 

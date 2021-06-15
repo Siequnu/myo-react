@@ -18,24 +18,40 @@ import './ReviewDialog.css';
 
 export default function ReviewDialog(props) {
 
+    const [feelingSliderValue, setFeelingSliderValue] = React.useState(70);
+    const [sliderValue, setSliderValue] = React.useState(0);
+    const [userFeedback, setUserFeedback] = React.useState('');
+
+    const handleSliderChange = (event, value) => setFeelingSliderValue(value)
+
     const gatherData = () => {
-        props.onSubmit()
+        const feedback = 
+            {
+                feeling: feelingSliderValue,
+                slider: sliderValue,
+                userFeedback: userFeedback
+            }
+
+        props.onSubmit(feedback)
     }
 
-    const [feedback, setFeedback] = React.useState('');
+    const submitWithoutData = () => {
+        const feedback = {}
+        props.onSubmit(feedback)
+    }
 
     return (
-        <Dialog  onClose={props.onClose} open={props.open} disableEnforceFocus>
+        <Dialog  onClose={submitWithoutData} open={props.open} disableEnforceFocus>
             <DialogTitle align="center" id="dialog-title">Congratulations! 🎉</DialogTitle>
             <DialogContent align="center"  className="ReviewDialogContent">
                 <DialogContentText>
                     How did you feel?
-                        <FeedbackSlider />
+                        <FeedbackSlider value={feelingSliderValue} onChange={handleSliderChange}/>
                 </DialogContentText>
                 <DialogContentText>
                     How would you rate this activity?
                         <br />
-                    <Rate />
+                    <Rate value={sliderValue} onChange={setSliderValue}/>
                 </DialogContentText>
                 <DialogContentText>
 
@@ -46,15 +62,15 @@ export default function ReviewDialog(props) {
                         multiline
                         name="feedbackText"
                         label="Any notes to yourself?"
-                        value={feedback}
-                        onChange={event => setFeedback(event.target.value)}
+                        value={userFeedback}
+                        onChange={event => setUserFeedback(event.target.value)}
                     />
                 </DialogContentText>
 
             </DialogContent>
             <DialogActions>
                 <Link component={RouterLink} to={{ pathname: "/" }} style={{ textDecoration: 'none' }}>
-                    <Button onClick={props.onClose}>
+                    <Button onClick={submitWithoutData}>
                         Skip
                     </Button>
                 </Link>

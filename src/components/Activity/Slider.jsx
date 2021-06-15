@@ -80,12 +80,20 @@ const IOSSlider = withStyles({
     },
 })(Slider);
  
-export default function FeedbackSlider() {
+export default function FeedbackSlider(props) {
+    const { value, onChange} = props;
+    
     const classes = useStyles();
 
     return (
         <div className={classes.root}>
-            <IOSSlider aria-label="ios slider" defaultValue={75} marks={marks} valueLabelDisplay="off" />
+            <IOSSlider 
+                aria-label="How did you feel slider" 
+                defaultValue={75} 
+                marks={marks} 
+                value={value}
+                onChange={onChange}
+                valueLabelDisplay="off" />
         </div>
     );
 }

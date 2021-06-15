@@ -7,11 +7,14 @@ const config =
     authSignUp: 'https://myo-app.com/auth/register',
     authValidate: 'https://myo-app.com/auth/validate',
     confirmEmail: 'https://myo-app.com/auth/confirm',
+    userProfileUrl: 'https://myo-app.com/auth/profile',
 
-    activitiesListUrl: 'https://myo-app.com/activities/api/list',
-    activityGetUrl: 'https://myo-app.com/activities/api/get/',// /${activityId}
+    activitiesListUrl: '/activities/api/list',
+    activityGetUrl: '/activities/api/get/',// +/${activityId}
+    activityCompleteUrl: '/activities/api/complete',
 
-    onboardingStatusUrl: 'https://myo-app.com/onboarding/status',
+    onboardingStatusUrl: '/onboarding/status',
+
     onboardingSteps: ['About yourself', 'You and art', 'Final details'],
     onboardingQuestions: [
         {

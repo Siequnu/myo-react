@@ -9,9 +9,12 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import LocalActivityIcon from '@material-ui/icons/LocalActivity';
 
 import Logout from '../Auth/Logout';
+
+import config from '../../config';
+
 export default function UserHero(props) {
 
-    const { data } = useSWR('/auth/profile')
+    const { data } = useSWR(config.userProfileUrl)
     const bounceLoaderCss = css`display: block; margin: 0 auto;`;
 
     if (!props.activities) return null;

@@ -14,22 +14,23 @@ import 'swiper/components/pagination/pagination.scss';
 import ReviewDialog from './ReviewDialog';
 
 import { postApiData } from '../../services/api.service';
+import config from '../../config';
 
 SwiperCore.use([Navigation, Pagination, A11y]);
 
 export default function ActivityCarousel(props) {
 
     const [reviewDialogOpen, setReviewDialogOpen] = React.useState(false)
-    const handleClose = () => setReviewDialogOpen (false)
 
     const [activityCompleted, setActivityCompleted] = useState(false)
     const finishedActivity = () => setActivityCompleted(true)
 
-    // API handlers for order deletion
+    // API handler for submitting feedback
     const handleSubmitFeedback = (feedback) => {
         setReviewDialogOpen(false)
-        postApiData('/api/orders/delete', { feedback: feedback })
+        postApiData(config.activityCompleteUrl, { activity_id: props.activityId, activity_feedback: JSON.stringify(feedback) })
     }
+
 
     return (
         <div className="ActivityCarousel">
@@ -66,7 +67,7 @@ export default function ActivityCarousel(props) {
             }
 
             { reviewDialogOpen ? 
-                <ReviewDialog open={reviewDialogOpen} onSubmit={handleSubmitFeedback} onClose={handleClose} />
+                <ReviewDialog open={reviewDialogOpen} onSubmit={handleSubmitFeedback} />
             : null }
         </div >
     )
