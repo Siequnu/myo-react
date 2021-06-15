@@ -85,11 +85,8 @@ def generate_spark_plan():
                 occured while loading the activities file'}
 
         # Get the plan length from the request, or default to 20
-        try:
-            spark_plan_length = request.json.get('plan_length', 20)
-        except Exception as error:
-            print(error)
-            spark_plan_length = 20
+
+        spark_plan_length = 20
 
         # Randomly pop elements from this array and take note of the IDs
         activity_plan_ids = []
