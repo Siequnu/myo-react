@@ -20,9 +20,9 @@ export default function ViewActivitiesComponent() {
 
     if (!data) return <BounceLoader color='#F19820' loading={true} css={bounceLoaderCss} size={100} />
     
-    var activities
+    var activities;
     const setActivities = () => {
-        activities=[...data.activities]
+        activities=[...data.activities];
     }
     setActivities();
 
@@ -30,6 +30,7 @@ export default function ViewActivitiesComponent() {
     // Function to remove from the main array ${count} amount of items
     const getRandomActivities = (count=false) => {
         if (activities.length < 1) {setActivities()}
+        if (activities.length < count) {setActivities()}
 
         if (!count) {count = activities.length}
         return [...Array(count)].map(() => activities.splice(Math.floor(Math.random() * activities.length), 1)[0]);
