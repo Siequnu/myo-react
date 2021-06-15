@@ -107,6 +107,7 @@ def generate_spark_plan():
             activity_set_json=activities_string
         )
         db.session.add(spark_plan)
+        db.session.flush()
         db.session.commit()
 
         return {'success': 'Your Spark plan was created successfully'}
