@@ -1,13 +1,13 @@
 const config = 
 {
-    authLogin: 'https://myo-app.com/auth/login',
-    authRefresh: 'https://myo-app.com/auth/refresh',
-    afterLogout: '/',
-    resetWithToken: 'https://myo-app.com/auth/reset/token',
-    authSignUp: 'https://myo-app.com/auth/register',
-    authValidate: 'https://myo-app.com/auth/validate',
-    confirmEmail: 'https://myo-app.com/auth/confirm',
-    userProfileUrl: 'https://myo-app.com/auth/profile',
+    authLogin: '/auth/login',
+    authRefresh: '/auth/refresh',
+    afterLogout: '/login',
+    resetWithToken: '/auth/reset/token',
+    authSignUp: '/auth/register',
+    authValidate: '/auth/validate',
+    confirmEmail: '/auth/confirm',
+    userProfileUrl: '/auth/profile',
 
     activitiesListUrl: '/activities/api/list',
     activityGetUrl: '/activities/api/get/',// +/${activityId}
