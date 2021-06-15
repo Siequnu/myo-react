@@ -70,7 +70,7 @@ const Page = ({ activities, offset, gradient, handleClick }) => (
         <ParallaxLayer 
           key={i} 
           className={`${styles.activityIcon}`} 
-          style={{ marginTop: topMargins[i], marginLeft: progressiveLeftMargin() , backgroundImage: `url("/activities/${i+1}/${activity.thumbnail}"` }} 
+          style={{ marginTop: topMargins[i], marginLeft: progressiveLeftMargin() , backgroundImage: `url("/activities/${activity.activityId}/${activity.thumbnail}"` }} 
           offset={0} speed={1} 
           onClick={() => handleClick(i)}>
             <span></span>
@@ -90,9 +90,7 @@ function ParallaxView(props) {
   const [selectedActivity, setSelectedActivity] = React.useState([])
   
   const handleClick = (i) => {
-    const activity = activities[i]
-    activity.activityId = i+1
-    setSelectedActivity (activity)
+    setSelectedActivity (activities[i])
     setDialogOpen(true)
   }
 

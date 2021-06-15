@@ -13,6 +13,8 @@ const config =
     activityGetUrl: '/activities/api/get/',// +/${activityId}
     activityCompleteUrl: '/activities/api/complete',
 
+    getSparkPlan: '/activities/api/spark/get',
+
     onboardingStatusUrl: '/onboarding/status',
 
     onboardingSteps: ['About yourself', 'You and art', 'Final details'],

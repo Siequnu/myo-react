@@ -18,10 +18,9 @@ export default function Create() {
 
     if (!data) return <BounceLoader color='#F19820' loading={true} css={bounceLoaderCss} size={100} />
 
-    var activities
+    var activities;
     const setActivities = () => {
         activities = [...data.activities]
-        activities.map((activity, i) => activities[i].activityId = i + 1)
     }
     setActivities();
 

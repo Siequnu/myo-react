@@ -18,7 +18,20 @@ class ActivityCompletion(db.Model):
     activity_feedback_json = db.Column(db.String(5000))
 
     def __repr__(self):
-        return '<ActivityCompletion {}>'.format(self.username)
+        return '<ActivityCompletion {}>'.format(self.id)
+
+
+class SparkPlan(db.Model):
+    """
+    Stores a custom Spark activity sequence for each user
+    """
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    activity_set_json = db.Column(db.String(5000))
+    completed = db.Column(db.Boolean, default=False)
+
+    def __repr__(self):
+        return '<SparkPlan {}>'.format(self.id)
 
 
 """
@@ -47,7 +60,16 @@ def get_activities_json():
     try:
         activities_file = open('../public/activities/activities.json')
         activities = json.load(activities_file)
-        return activities
+
+        # Add an ID for each activity
+        activities_with_id = []
+        id = 1
+        for activity in activities:
+            activity['activityId'] = id
+            activities_with_id.append(activity)
+            id += 1
+
+        return activities_with_id
 
     except Exception as e:
         print('An error occured while trying to load the activities.json file')

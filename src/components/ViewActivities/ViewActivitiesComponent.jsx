@@ -23,7 +23,6 @@ export default function ViewActivitiesComponent() {
     var activities
     const setActivities = () => {
         activities=[...data.activities]
-        activities.map((activity, i) => activities[i].activityId = i+1)
     }
     setActivities();
 

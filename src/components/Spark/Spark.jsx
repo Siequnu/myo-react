@@ -20,12 +20,12 @@ function Spark() {
 
     // Check if user has completed onboarding
     var { data: onboarding, mutate } = useSWR(config.onboardingStatusUrl);
-    var { data: activities } = useSWR(config.activitiesListUrl);
+    var { data: activities } = useSWR(config.getSparkPlan);
 
     if (!onboarding) return <BounceLoader color="#F19820" loading={true} css={bounceLoaderCss} size={100} />
     if (!activities) return <BounceLoader color="#F19820" loading={true} css={bounceLoaderCss} size={100} />
 
-
+    console.log(activities)
     if (onboarding.hasOwnProperty('error')) {
         return (
             <UserOnboarding onComplete={mutate} />

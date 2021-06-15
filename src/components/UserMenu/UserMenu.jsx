@@ -15,12 +15,9 @@ export default function UserMenu() {
     const { data } = useSWR(config.activitiesListUrl)
     if (!data) return <BounceLoader color='#F19820' loading={true} css={bounceLoaderCss} size={100} />
 
-    var activities=[...data.activities]
-    activities.map((activity, i) => activities[i].activityId = i+1)
-
     return (
         <div className="UserMenu">
-            <UserHero activities={activities}/>              
+            <UserHero activities={data.activities}/>              
         </div>
     )
 }
