@@ -131,6 +131,11 @@ def get_spark_plan():
         if spark_plan is None:
             # Generate a spark plan
             generate_spark_plan()
+
+            # Try to query again
+            spark_plan = SparkPlan.query.filter_by(
+                user_id=current_user.id).first()
+
         spark_plan_list = json.loads(spark_plan.activity_set_json)
 
         # Get the list of activities
