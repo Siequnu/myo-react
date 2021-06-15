@@ -68,6 +68,7 @@
     "@capacitor/android": "^3.0.1",
     "@capacitor/cli": "^3.0.1",
     "@capacitor/core": "^3.0.1",
+    "@capacitor/device": "^1.0.1",
     "@capacitor/ios": "^3.0.1"
   }
 }
