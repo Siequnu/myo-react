@@ -14,19 +14,37 @@ import "./BubbleUI.css";
 
 function CreateBubbleUI(props) {
 
-    const options = {
-        size: 165,
-        minSize: 20,
-        gutter: 10,
-        provideProps: true,
-        numCols: 5,
-        fringeWidth: 120,
-        yRadius: 200,
-        xRadius: 100,
-        cornerRadius: 20,
-        showGuides: false,
-        compact: true,
-        gravitation: 5
+    var options;
+    if (window.innerWidth <415) {
+        options = {
+            size: 165,
+            minSize: 20,
+            gutter: 10,
+            provideProps: true,
+            numCols: 5,
+            fringeWidth: 120,
+            yRadius: 200,
+            xRadius: 100,
+            cornerRadius: 20,
+            showGuides: false,
+            compact: true,
+            gravitation: 5
+        }
+    } else {
+        options = {
+            size: 200,
+            minSize: 100,
+            gutter: 40,
+            provideProps: true,
+            numCols: 5,
+            fringeWidth: 150,
+            yRadius: 300,
+            xRadius: 100,
+            cornerRadius: 0,
+            showGuides: false,
+            compact: false,
+            gravitation: 2
+        }
     }
 
     const [dialogOpen, setDialogOpen] = React.useState(false);

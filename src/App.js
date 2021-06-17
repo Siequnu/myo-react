@@ -126,7 +126,7 @@ export default function App() {
 
                     <PrivateRoute exact path="/spark" component={Spark} />
 
-                    <PrivateRoute exact path="/create" component={Create} />
+                    <Route exact path="/create" component={Create} />
 
                     <PrivateRoute exact path="/user" component={UserMenu} />
 
