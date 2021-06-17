@@ -20,7 +20,7 @@ export default function UserHero(props) {
     if (!props.activities) return null;
     if (!data) return <BounceLoader color={"#F19820"} loading={true} css={bounceLoaderCss} size={100} />
 
-    const activity = props.activities.pop()
+    const activity = props.activities[Math.floor(Math.random()*props.activities.length)];
     const thumbnail = `/activities/${activity.activityId}/${activity.thumbnail}`
 
     return (

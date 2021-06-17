@@ -5,7 +5,7 @@ import styles from './styles.module.css'
 
 import { withRouter } from 'react-router-dom';
 
-import ActivityPreviewDialog from './ActivityPreviewDialog';
+import ActivityPreviewDialog from '../ActivityPreviewDialog/ActivityPreviewDialog';
 
 const url = (name, wrap) =>
   `${wrap ? 'url(' : ''}https://awv3node-homepage.surge.sh/build/assets/${name}.svg${wrap ? ')' : ''}`
@@ -61,7 +61,7 @@ const Page = ({ activities, offset, gradient, handleClick }) => (
     </ParallaxLayer>
     
     <ParallaxLayer offset={2.0} speed={0.4} style={{ opacity: 0.6 }}>
-      <p>- Pablo Picasso</p>
+      <p className={`${styles.quoteAuthor}`}>- Pablo Picasso</p>
     </ParallaxLayer>
 
     {activities.map((activity, i) => (

@@ -52,6 +52,10 @@
 	vertical-align: middle;
 }
 
+.quoteAuthor {
+	margin-top: 300px;
+}
+
 .slopeBegin {
 	background-color: #e3e5ec;
 	clip-path: polygon(20% 0, 70% 0, 50% 100%, 0% 100%);
@@ -98,5 +102,9 @@
 	.activityIcon span {
 		font-size: 10px;
 		padding: 5px;
+	}
+
+	h1 {
+		font-size: 25px;
 	}
 }

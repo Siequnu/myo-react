@@ -6,7 +6,7 @@ import { Link } from '@material-ui/core';
 
 export default function Hero(props) {
 
-    const activity = props.activities.pop()
+    const activity = props.activities[Math.floor(Math.random()*props.activities.length)];
 
     const thumbnail = `/activities/${activity.activityId}/${activity.thumbnail}`
     const pathname = `/activity/${activity.activityId}`
