@@ -37,7 +37,7 @@ export default function SimpleBottomNavigation() {
       >
         <BottomNavigationAction component={Link} to="/" id="HomeNavbarIcon" label="Home" icon={<HomeIcon />} />
         <BottomNavigationAction component={Link} to="/spark" id="SparkNavbarIcon" label="Spark" icon={<EmojiObjectsIcon />} />
-        <BottomNavigationAction component={Link} to="/create" id="SparkNavbarIcon" label="Create" icon={<BrushIcon />} />
+        <BottomNavigationAction component={Link} to="/create" id="CreateNavbarIcon" label="Create" icon={<BrushIcon />} />
         
       </BottomNavigation>
     );

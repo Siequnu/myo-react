@@ -24,14 +24,18 @@ class Onboarding extends React.Component {
                 component: 'speech-bubble',
                 attachToId: 'HomeNavbarIcon',
                 children: (
-                    <p>This is the Home tab, where you can view all our activities, or you can click Spark, to start your custom creative journey.</p>
+                    <>
+                        <p>This is the <strong>Home</strong> tab, where you can view all our activities.</p> 
+                        <p><strong>Spark</strong> is our custom AI creative journey.</p>
+                        <p>In the <strong>Create</strong> section, you'll find our exercises, organised by theme.</p>
+                    </>
                 )
             },
             {
                 component: 'modal',
                 intro: false,
                 children: (
-                    <p>The main feature of Myo is a custom curated journey of creativity exercises, that adapts and matches what you need.</p>
+                    <p>Spark is an AI powered creativity tutor. Once you've answered a few questions, we will design a <strong>custom</strong> creativity journey for you.</p>
                 )
             },
             {
@@ -51,7 +55,7 @@ class Onboarding extends React.Component {
 
     render() {
         return (
-            <UserOnboarding
+            <UserOnboarding style={{color: 'black'}}
                 story={this.story}
                 isVisible={this.state.isVisible}
                 onClose={this.handleClose}
