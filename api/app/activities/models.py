@@ -5,6 +5,24 @@ from datetime import datetime
 from app import db
 import json
 from colorthief import ColorThief
+from sqlalchemy_serializer import SerializerMixin
+
+
+class Activity(db.Model, SerializerMixin):
+    """
+    Store Myo activities
+    """
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(500))
+    description = db.Column(db.String(1000))
+    thumbnail = db.Column(db.String(200))
+    chips = db.Column(db.String(200))
+    pages = db.Column(db.String(5000))
+    background_colour = db.Column(db.String(50))
+    activityId = db.Column(db.Integer)
+
+    def __repr__(self):
+        return '<Activity {}>'.format(self.title)
 
 
 class ActivityCompletion(db.Model):
@@ -134,9 +152,9 @@ def calculate_and_write_background_colours():
         path_prefix = '../public/activities/'
         activity_id = 1
         for activity in activities:
-            print(f"Generating for {activity_id}")
             if 'background_colour' not in activity or \
                     OVERWRITE_BACKGROUND_COLOURS:
+                print(f"Generating for {activity_id}")
                 thumbnail_path = path_prefix + \
                     str(activity_id) + '/' + activity['thumbnail']
                 colour = get_dominant_colour(thumbnail_path)
@@ -154,5 +172,61 @@ def calculate_and_write_background_colours():
         print(e)
 
 
-print('Activities startup task: generating activity background colours.')
+print('Startup task: generating activity background colours.')
 calculate_and_write_background_colours()
+
+
+def load_activities_into_db():
+    """
+    On app startup, parse the JSON file, and add activities
+    into the database
+    """
+    activities = get_activities_json()
+    for activity in activities:
+
+        if Activity.query.filter_by(
+                activityId=int(activity['activityId'])).first() is None:
+
+            # Add the new activity
+            print(f"Adding new activity: {activity['title']}")
+            new_activity = Activity(
+                title=activity['title'],
+                description=activity['description'],
+                thumbnail=activity['thumbnail'],
+                chips=(json.dumps(activity['chips']) if
+                       ('chips' in activity) else json.dumps([])),
+                pages=json.dumps(activity['pages']),
+                background_colour=activity['background_colour'],
+                activityId=activity['activityId']
+            )
+            db.session.add(new_activity)
+    db.session.commit()
+    print('Finished adding new activities.')
+
+
+print('Startup task: adding new activities to DB.')
+load_activities_into_db()
+
+
+def get_activities_from_db(user_id=False):
+    """
+    Return all activities from the database
+    """
+    activities = []
+    for activity in Activity.query.all():
+        activities.append(activity.to_dict())
+
+    # If a user_id was received, add in activity completion status
+    if user_id:
+        activities_with_status = []
+        for activity in activities:
+            completion_status = ActivityCompletion.query.filter_by(
+                user_id=user_id).filter_by(
+                activity_id=activity['activityId']).first() is not None
+
+            activity['completed'] = completion_status
+
+            activities_with_status.append(activity)
+
+        activities = activities_with_status
+    return activities

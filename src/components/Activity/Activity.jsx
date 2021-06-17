@@ -17,25 +17,25 @@ export default function Activity(props) {
     let { activityId } = useParams();
 
     const [showActivityIntroduction, setShowActivityIntroduction] = useState(true)
-    
+
     const startActivity = () => setShowActivityIntroduction(false)
-    
-    const { data } = useSWR(`${config.activityGetUrl}${activityId-1}`)
+
+    const { data } = useSWR(`${config.activityGetUrl}${activityId - 1}`)
 
     const override = css`display: block; margin: 0 auto;`;
     if (!data) return <BounceLoader color={"#F19820"} loading={true} css={override} size={100} />
 
     return (
         <div className="Activity">
-            { showActivityIntroduction && !props.skipIntro ?
+            {showActivityIntroduction && !props.skipIntro ?
                 (
-                    <ActivityIntroduction activityId={activityId} activity={data.activity} handleStartActivity={startActivity}/>
+                    <ActivityIntroduction activityId={activityId} activity={data.activity} handleStartActivity={startActivity} />
                 )
                 :
                 (
-                    <ActivityCarousel activityId={activityId} activity={data.activity}/>
+                    <ActivityCarousel activityId={activityId} activity={data.activity} />
                 )
-            }  
+            }
         </div>
     )
 }

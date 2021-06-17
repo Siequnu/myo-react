@@ -4,4 +4,5 @@
     "python.autoComplete.extraPaths": [
         "./api"
     ],
+    "python.pythonPath": "/Users/patrick/Library/Caches/pypoetry/virtualenvs/myo-flask-api-QKLDR9E7-py3.7/bin/python",
 }

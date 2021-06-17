@@ -6,7 +6,7 @@ from flask import request
 
 from app import db
 from . import bp
-from .models import get_activities_json, ActivityCompletion, SparkPlan
+from .models import get_activities_from_db, ActivityCompletion, SparkPlan
 
 from datetime import datetime
 import random
@@ -21,11 +21,11 @@ def get_all_activities():
     """
     Get all the activities
     """
-    activities = get_activities_json()
+    activities = get_activities_from_db()
     if activities is False:
         return {'error': 'An error occured while loading the activities file'}
 
-    return jsonify({'activities': activities})
+    return {'activities': activities}
 
 
 @bp.route("/api/get/<int:activity_id>")
@@ -33,7 +33,7 @@ def get_single_activity(activity_id):
     """
     Get single activity
     """
-    activities = get_activities_json()
+    activities = get_activities_from_db()
     if activities is False:
         return {'error': 'An error occured while loading the activities file'}
 
@@ -42,7 +42,8 @@ def get_single_activity(activity_id):
     except Exception as error:
         print(error)
         return {'error', 'An error occured.'}
-    return jsonify({'activity': activity})
+
+    return {'activity': activity}
 
 
 @bp.route('/api/complete', methods=['POST'])
@@ -79,7 +80,7 @@ def generate_spark_plan():
     Generate a Spark plan for a single user
     """
     try:
-        activities = get_activities_json()
+        activities = get_activities_from_db()
         if activities is False:
             return {'error': 'An error \
                 occured while loading the activities file'}
@@ -137,7 +138,7 @@ def get_spark_plan():
         spark_plan_list = json.loads(spark_plan.activity_set_json)
 
         # Get the list of activities
-        activities = get_activities_json(current_user.id)
+        activities = get_activities_from_db(current_user.id)
 
         # Populate the exercises, in order
         populated_activities = []

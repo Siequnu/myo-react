@@ -41,7 +41,7 @@ export default function ActivityCarousel(props) {
                 pagination={{ clickable: true, type: 'progressbar', }}
                 onReachEnd={finishedActivity}
             >
-                {props.activity.pages.map((page, i) => {
+                {JSON.parse(props.activity.pages).map((page, i) => {
                     return (
                         <SwiperSlide key={i}>
                             {(page.thumbnail.split('.').pop() === 'mp4') ? (
@@ -51,7 +51,7 @@ export default function ActivityCarousel(props) {
                             ) : (
                                 <img src={encodeURI('/activities/' + (props.activityId) + '/' + page.thumbnail)} alt="Header decoration" />
                             )}
-                            
+
                             <div className="text">
                                 <h1>{page.title}</h1>
                                 <p dangerouslySetInnerHTML={{ __html: page.description }}></p>
@@ -62,13 +62,13 @@ export default function ActivityCarousel(props) {
 
             </Swiper>
             {activityCompleted ? (
-                    <Button variant="contained" onClick={() => setReviewDialogOpen(true)} color="primary">Finish</Button>
+                <Button variant="contained" onClick={() => setReviewDialogOpen(true)} color="primary">Finish</Button>
             ) : null
             }
 
-            { reviewDialogOpen ? 
+            {reviewDialogOpen ?
                 <ReviewDialog open={reviewDialogOpen} onSubmit={handleSubmitFeedback} />
-            : null }
+                : null}
         </div >
     )
 }
