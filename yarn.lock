@@ -10499,7 +10499,7 @@ react-use-gesture@5.0.0:
 
 "react-user-onboarding@git+https://github.com/Siequnu/react-user-onboarding.git":
   version "0.0.1"
-  resolved "git+https://github.com/Siequnu/react-user-onboarding.git#a418d114a48ba373d862b117942e5b7c6c1f4823"
+  resolved "git+https://github.com/Siequnu/react-user-onboarding.git#fb78bc5a408de6ab2909aece4c7447b64674f0d0"
 
 react@17.0.2:
   version "17.0.2"
