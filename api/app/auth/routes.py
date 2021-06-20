@@ -78,12 +78,14 @@ def login():
     if not user.check_password(password):
         return jsonify({'error': 'Invalid username or password'}), 401
 
-    # All checks passed, send back token
-    access_token = create_access_token(identity=user, fresh=True)
+    # All checks passed
+    access_token = create_access_token(
+        identity=user,
+        fresh=True)
     refresh_token = create_refresh_token(user)
     return jsonify(
         access_token=access_token,
-        refresh_token=refresh_token
+        refresh_token=refresh_token,
     )
 
 
@@ -254,6 +256,42 @@ def get_current_user():
         last_seen=current_user.last_seen,
         is_admin=current_user.is_admin
     )
+
+
+@bp.route('/roles')
+@jwt_required()
+def get_user_roles():
+    """
+    Api route to return user roles
+    """
+    roles = {
+        'admin': True if current_user.is_admin else False
+    }
+
+    return roles
+
+
+@bp.route('/users/get')
+@jwt_required()
+def get_user_list():
+    """
+    Api admin-only route to return a list of user info
+    """
+    # Only admins can see this
+    if current_user.is_admin is False:
+        return {'error': 'You can not access this data'}
+
+    # Strip out unecessary information
+    user_info = []
+    for user in User.query.all():
+        user_info.append({
+            'id': user.id,
+            'username': user.username,
+            'registered': user.registered,
+            'last_seen': user.last_seen,
+        })
+
+    return jsonify(user_info)
 
 
 def send_password_reset_email(username, email):

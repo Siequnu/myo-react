@@ -6,7 +6,8 @@ from flask import request
 
 from app import db
 from . import bp
-from .models import get_activities_from_db, ActivityCompletion, SparkPlan
+from .models import get_activities_from_db, \
+    ActivityCompletion, SparkPlan, Activity
 
 from datetime import datetime
 import random
@@ -150,3 +151,34 @@ def get_spark_plan():
     except Exception as error:
         print(error)
         return {'error', 'An error occured while generating the Spark plan.'}
+
+
+@bp.route('/stats/get')
+@jwt_required()
+def get_activity_stats():
+    """
+    Api admin-only route to return activity statistics
+    """
+    # Only admins can see this
+    if current_user.is_admin is False:
+        return {'error': 'You can not access this data'}
+
+    stats = [
+        {
+            'title': 'Activities',
+            'data': len(Activity.query.all()),
+            'description': 'Counts all activities in the database'
+        },
+        {
+            'title': 'Activities completed',
+            'data': len(ActivityCompletion.query.all()),
+            'description': 'The all time total of completed activities'
+        },
+        {
+            'title': 'Spark plans',
+            'data': len(SparkPlan.query.all()),
+            'description': 'Counts all Spark plans that have been created'
+        },
+    ]
+
+    return jsonify(stats)

@@ -8,10 +8,14 @@ const config =
     authValidate: '/auth/validate',
     confirmEmail: 'auth/confirm',
     userProfileUrl: '/auth/profile',
+    
+    getRoles: '/auth/roles',
+    getUsers: '/auth/users/get',
 
     activitiesListUrl: '/activities/api/list',
     activityGetUrl: '/activities/api/get/',// +/${activityId}
     activityCompleteUrl: '/activities/api/complete',
+    activityStats: '/activities/stats/get',
 
     getSparkPlan: '/activities/api/spark/get',
 

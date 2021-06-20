@@ -31,6 +31,9 @@ import Activity from './components/Activity/Activity';
 import Spark from './components/Spark/Spark';
 import Create from './components/Create/Create';
 
+// Admin components
+import Dashboard from './components/Dashboard/Dashboard';
+
 // Notifications
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
@@ -99,7 +102,7 @@ export default function App() {
         <link rel="shortcut icon" href="./favicon.ico" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 
-        
+
         <header className="App-header">
 
           <SnackbarContext.Provider value={{ snackbar, setSnackbar }}>
@@ -122,28 +125,22 @@ export default function App() {
                     <Route exact path="/"> <ViewActivitiesComponent /> </Route>
 
                     <Route exact path="/activity/:activityId"> <Activity /> </Route>
-                    
-                    <Route exact path="/activity/:activityId/go"> <Activity skipIntro={true}/> </Route>
+                    <Route exact path="/activity/:activityId/go"> <Activity skipIntro={true} /> </Route>
 
                     <PrivateRoute exact path="/spark" component={Spark} />
-
                     <Route exact path="/create" component={Create} />
+                    <PrivateRoute exact path="/onboarding" component={UserOnboarding} />
 
                     <PrivateRoute exact path="/user" component={UserMenu} />
 
-                    <PrivateRoute exact path="/onboarding" component={UserOnboarding} />
-
                     <Route exact path="/login" component={Login} />
-
                     <Route exact path="/logout" component={Logout} />
-
                     <Route exact path="/reset" component={Reset} />
-
                     <Route exact path="/register" component={SignUp} />
-
                     <Route exact path="/confirm/:token" component={ConfirmEmail} />
-
                     <Route exact path="/reset/:token" component={ResetWithToken} />
+
+                    <PrivateRoute exact path="/dashboard" component={Dashboard} />
                   </Switch>
 
                 </div>

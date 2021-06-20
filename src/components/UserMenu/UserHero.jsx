@@ -16,7 +16,6 @@ export default function UserHero(props) {
 
     const { data } = useSWR(config.userProfileUrl)
     const bounceLoaderCss = css`display: block; margin: 0 auto;`;
-
     if (!props.activities) return null;
     if (!data) return <BounceLoader color={"#F19820"} loading={true} css={bounceLoaderCss} size={100} />
 
