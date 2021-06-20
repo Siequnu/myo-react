@@ -3,7 +3,23 @@ Main routes for myo
 """
 from flask import current_app
 
+from flask_jwt_extended import get_current_user, verify_jwt_in_request
+
 from app import db
+from datetime import datetime
+from contextlib import suppress
+
+
+@current_app.before_request
+def before_request():
+    """
+    If user is logged in, register as seen
+    """
+    with suppress(Exception):
+        verify_jwt_in_request()
+        user = get_current_user()
+        user.last_seen = datetime.now()
+        db.session.commit()
 
 
 @current_app.after_request
