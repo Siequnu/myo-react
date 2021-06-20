@@ -11,23 +11,23 @@ export default function UserAwards(props) {
             awards: [
                 {
                     title: 'Completed your first activity',
-                    medal: 'medal.svg'
+                    medal: 'medal17.svg'
                 },
                 {
                     title: 'Completed 5 activities',
-                    medal: 'medal2.svg'
+                    medal: 'medal13.svg'
                 },
                 {
                     title: 'Completed 10 activities',
-                    medal: 'medal3.svg'
+                    medal: 'medal14.svg'
                 },
                 {
                     title: 'Completed your first Spark plan',
-                    medal: 'medal4.svg'
+                    medal: 'medal11.svg'
                 },
                 {
                     title: 'Completed all activities 🤩',
-                    medal: 'medal5.svg'
+                    medal: 'medal16.svg'
                 },
             ]
         },
@@ -36,40 +36,40 @@ export default function UserAwards(props) {
             awards: [
                 {
                     title: 'Completed one activity of each type',
-                    medal: 'medal10.svg'
+                    medal: 'medal25.svg'
                 },
                 {
-                    title: 'Completed a special activity',
-                    medal: 'medal11.svg'
+                    title: 'Completed an activity two times',
+                    medal: 'medal26.svg'
                 },
                 {
                     title: 'Completed 2 activities in a day',
-                    medal: 'medal12.svg'
+                    medal: 'medal27.svg'
                 },
                 {
                     title: 'Completed 5 activities in one day',
-                    medal: 'medal13.svg'
+                    medal: 'medal24.svg'
                 },
             ]
         },
         {
-            type: 'Myo membership',
+            type: 'Myo',
             awards: [
                 {
                     title: 'Member for a week',
-                    medal: 'medal6.svg'
+                    medal: 'medal.svg'
                 },
                 {
                     title: 'Member for a month',
-                    medal: 'medal7.svg'
+                    medal: 'medal2.svg'
                 },
                 {
                     title: 'Member for 3 months',
-                    medal: 'medal8.svg'
+                    medal: 'medal3.svg'
                 },
                 {
                     title: 'Member for a year!!',
-                    medal: 'medal9.svg'
+                    medal: 'medal4.svg'
                 },
             ]
         },
