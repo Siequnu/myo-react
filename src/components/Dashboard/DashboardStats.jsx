@@ -21,8 +21,8 @@ export default function DashboardStats() {
 
             <h1>Stats</h1>
 
-            {data.stats.map(statistic => (
-                <Card style={{margin: '20px', width: '400px', display: 'inline-block'}}>
+            {data.stats.map((statistic, i) => (
+                <Card key={i} style={{margin: '20px', width: '400px', display: 'inline-block'}}>
                 <CardContent>
                   <Typography color="textSecondary" gutterBottom>
                     {statistic.title}

@@ -79,9 +79,11 @@ def login():
         return jsonify({'error': 'Invalid username or password'}), 401
 
     # All checks passed
+    additional_claims = {'admin': True if user.is_admin else False}
     access_token = create_access_token(
         identity=user,
-        fresh=True)
+        fresh=True,
+        additional_claims=additional_claims)
     refresh_token = create_refresh_token(user)
     return jsonify(
         access_token=access_token,
