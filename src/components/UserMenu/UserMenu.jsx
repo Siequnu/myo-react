@@ -1,23 +1,33 @@
 import React from 'react';
 import './UserMenu.css';
 
-import useSWR from 'swr'
-import { css } from "@emotion/core";
-import BounceLoader from "react-spinners/BounceLoader";
-
 import UserHero from './UserHero';
-
-import config from '../../config';
+import UserTabs from './UserTabs';
+import UserAwards from './UserAwards';
 
 export default function UserMenu() {
 
-    const bounceLoaderCss = css`display: block; margin: 0 auto;`;
-    const { data } = useSWR(config.activitiesListUrl)
-    if (!data) return <BounceLoader color='#F19820' loading={true} css={bounceLoaderCss} size={100} />
+    const [currentTab, setCurrentTab] = React.useState(0)
+    const [currentTabContent, setCurrentTabContent] = React.useState(null)
+    
+    React.useEffect(() => {
+        const tabContent = () => {
+            switch (currentTab) {
+                case 0:
+                    return <UserHero maximised={true}/>
+                case 1: 
+                    return <UserAwards />
+                default:
+                    return <UserHero maximised={true} />
+            }
+        }
+        setCurrentTabContent (tabContent)
+    }, [currentTab])
 
     return (
         <div className="UserMenu">
-            <UserHero activities={data.activities}/>              
+            <UserTabs currentTab={currentTab} setCurrentTab={setCurrentTab}/>
+            {currentTabContent}
         </div>
     )
 }

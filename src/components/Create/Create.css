@@ -1,1 +1,7 @@
-.CreateContainer {max-width: 1000px; margin: 0 auto; padding-top: 30px;}
+.CreateContainer {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding-top: 30px;
+    min-height: stretch;
+    min-height: -webkit-fill-available;
+}

@@ -1,0 +1,6 @@
+.AwardDiv {display: inline-block; margin: 5px 20px; max-width: 120px;}
+.AwardDiv p {font-size: 15px; font-weight: bold;}
+
+.Award {width: 100px; margin: 20px; transition: .3s;}
+.Award:hover {transform: scale(1.2);}
+.Award.Disabled {opacity: .2; filter: grayscale(1);}
