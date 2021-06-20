@@ -181,4 +181,4 @@ def get_activity_stats():
         },
     ]
 
-    return jsonify(stats)
+    return jsonify({'stats': stats})

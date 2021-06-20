@@ -18,14 +18,12 @@ export default function DashboardStats() {
     const { data } = useSWR(config.activityStats, { refreshInterval: 2 })
     if (!data) return <BounceLoader color={"#10253E"} loading={true} css={bounceLoaderCss} size={100} />
 
-    console.log(data);
-
     return (
         <div className="DashboardStats">
 
             <h1>Stats</h1>
 
-            {data.map(statistic => (
+            {data.stats.map(statistic => (
                 <Card style={{margin: '20px', width: '400px', display: 'inline-block'}}>
                 <CardContent>
                   <Typography color="textSecondary" gutterBottom>
