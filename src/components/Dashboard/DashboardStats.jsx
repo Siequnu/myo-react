@@ -10,8 +10,6 @@ import Typography from '@material-ui/core/Typography';
 
 import config from '../../config';
 
-
-
 export default function DashboardStats() {
 
     const bounceLoaderCss = css`display: block; margin: 0 auto;`;

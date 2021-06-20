@@ -15,7 +15,7 @@ const config =
     activitiesListUrl: '/activities/api/list',
     activityGetUrl: '/activities/api/get/',// +/${activityId}
     activityCompleteUrl: '/activities/api/complete',
-    activityStats: '/activities/stats/get',
+    activityStats: '/activities/api/stats/get',
 
     getSparkPlan: '/activities/api/spark/get',
 

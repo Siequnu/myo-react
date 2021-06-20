@@ -153,7 +153,7 @@ def get_spark_plan():
         return {'error', 'An error occured while generating the Spark plan.'}
 
 
-@bp.route('/stats/get')
+@bp.route('/api/stats/get')
 @jwt_required()
 def get_activity_stats():
     """
