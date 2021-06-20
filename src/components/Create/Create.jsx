@@ -5,19 +5,15 @@ import './Create.css'
 import { css } from "@emotion/core";
 import BounceLoader from "react-spinners/BounceLoader";
 
-import ToggleButton from '@material-ui/lab/ToggleButton';
-import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
-
 import FastForwardIcon from '@material-ui/icons/FastForward';
-import BrushIcon from '@material-ui/icons/Brush';
 import CategoryIcon from '@material-ui/icons/Category';
-import EditIcon from '@material-ui/icons/Edit';
 import EmojiObjectsIcon from '@material-ui/icons/EmojiObjects';
 import EmojiNatureIcon from '@material-ui/icons/EmojiNature';
 import FingerprintIcon from '@material-ui/icons/Fingerprint';
 
 import BubbleUI from './BubbleUI';
 import CategoryButton from './CategoryButton';
+import CreateTabs from './CreateTabs';
 
 import config from '../../config';
 
@@ -57,10 +53,7 @@ export default function Create() {
         }
     ]
 
-    const [activityType, setActivityType] = React.useState('draw');
-    const handleActivityType = (event, newActivityType) => {
-        setActivityType(newActivityType);
-    };
+    const [currentTab, setCurrentTab] = React.useState(0);
 
     const [viewBubbles, setViewBubbles] = React.useState(false);
     const handleViewBubbles = (i) => {
@@ -78,19 +71,8 @@ export default function Create() {
                 <BubbleUI category={categories[currentCategory]} activities={data.activities} handleBack={() => setViewBubbles(false)}/> 
                 :
                 <>
-                    <ToggleButtonGroup
-                        value={activityType}
-                        exclusive
-                        onChange={handleActivityType}
-                        aria-label="text alignment"
-                    >
-                        <ToggleButton value="draw" aria-label="left aligned">
-                            <BrushIcon /> Draw
-                        </ToggleButton>
-                        <ToggleButton value="write" aria-label="centered">
-                            <EditIcon /> Write
-                        </ToggleButton>
-                    </ToggleButtonGroup>
+                    <CreateTabs currentTab={currentTab} setCurrentTab={setCurrentTab}/>
+                   
                     {categories.map((category, i) => 
                         <CategoryButton onClick={() => handleViewBubbles(i)} key={i} category={category} activities={data.activities}/>
                     )}
