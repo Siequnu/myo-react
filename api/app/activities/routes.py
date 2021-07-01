@@ -7,7 +7,7 @@ from flask import request
 from app import db
 from . import bp
 from .models import get_activities_from_db, \
-    ActivityCompletion, SparkPlan, Activity
+    ActivityCompletion, SparkPlan, Activity, get_creators_from_db
 
 from datetime import datetime
 import random
@@ -17,7 +17,7 @@ from flask_jwt_extended import jwt_required
 from flask_jwt_extended import current_user
 
 
-@bp.route("/api/list")
+@bp.route('/api/list')
 def get_all_activities():
     """
     Get all the activities
@@ -26,10 +26,15 @@ def get_all_activities():
     if activities is False:
         return {'error': 'An error occured while loading the activities file'}
 
-    return {'activities': activities}
+    creators = get_creators_from_db()
+
+    return {
+        'activities': activities,
+        'creators': creators
+    }
 
 
-@bp.route("/api/get/<int:activity_id>")
+@bp.route('/api/get/<int:activity_id>')
 def get_single_activity(activity_id):
     """
     Get single activity
@@ -74,7 +79,7 @@ def mark_activity_as_complete():
         return jsonify({'error': 'An error occured.'})
 
 
-@bp.route("/api/spark/plan")
+@bp.route('/api/spark/plan')
 @jwt_required()
 def generate_spark_plan():
     """
@@ -119,7 +124,7 @@ def generate_spark_plan():
         return {'error', 'An error occured while generating the Spark plan.'}
 
 
-@bp.route("/api/spark/get")
+@bp.route('/api/spark/get')
 @jwt_required()
 def get_spark_plan():
     """

@@ -8,7 +8,7 @@ export default function CategoryButton(props) {
 
     return (
         <div className="CategoryButton" style={{ backgroundImage: `url("${thumbnail}"` }} onClick={props.onClick}>
-            <div className="CategoryButtonContent" style={{ 'background': `linear-gradient(90deg,  rgba(241,152,32,1) 0%, rgba(255,255,255,0) 100%)` }}>
+            <div className="CategoryButtonContent" style={{ 'background': `linear-gradient(90deg,  rgba(241,152,32,0) 0%, rgba(0,0,0,1) 100%)` }}>
                 <h1 style={{'mix-blend-mode': 'color-dodge'}}>{props.category.icon} {props.category.title}</h1>
                 <p style={{'mix-blend-mode': 'color-dodge'}}>{props.category.description}</p>
             </div>

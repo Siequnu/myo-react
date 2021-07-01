@@ -230,3 +230,16 @@ def get_activities_from_db(user_id=False):
 
         activities = activities_with_status
     return activities
+
+
+def get_creators_from_db():
+    """
+    Return a list of creators from the database
+    """
+    return [
+        {
+            'title': 'Myo Team',
+            'description': 'Activities from our London and Hong \
+                Kong based team'
+        }
+    ]

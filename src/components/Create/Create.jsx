@@ -19,7 +19,9 @@ import config from '../../config';
 
 export default function Create() {
 
-    const [currentCategory, setCurrentCategory] = React.useState(0)
+    const [currentTab, setCurrentTab] = React.useState(0);
+
+    const [currentCategory, setCurrentCategory] = React.useState({})
     const categories = [
         {
             title: 'Quick',
@@ -52,12 +54,14 @@ export default function Create() {
             icon: <EmojiObjectsIcon className="Icon" />
         }
     ]
-
-    const [currentTab, setCurrentTab] = React.useState(0);
-
+    
     const [viewBubbles, setViewBubbles] = React.useState(false);
     const handleViewBubbles = (i) => {
-        setCurrentCategory(i);
+        if (currentTab === 2) {
+            setCurrentCategory(data?.creators[i]);
+        } else {
+            setCurrentCategory(categories[i]);
+        }
         setViewBubbles(!viewBubbles);
     };
 
@@ -68,14 +72,20 @@ export default function Create() {
     return (
         <div className="CreateContainer">
             {viewBubbles ?
-                <BubbleUI category={categories[currentCategory]} activities={data.activities} handleBack={() => setViewBubbles(false)}/> 
+                <BubbleUI category={currentCategory} activities={data.activities} handleBack={() => setViewBubbles(false)}/> 
                 :
                 <>
                     <CreateTabs currentTab={currentTab} setCurrentTab={setCurrentTab}/>
                    
-                    {categories.map((category, i) => 
+                    {currentTab === 2 ? 
+                    data?.creators.map((creator, i) =>
+                        <CategoryButton onClick={() => handleViewBubbles(i)} key={i} category={creator} activities={data.activities}/>
+                    )
+                    :
+                    categories.map((category, i) => 
                         <CategoryButton onClick={() => handleViewBubbles(i)} key={i} category={category} activities={data.activities}/>
-                    )}
+                    )
+                    }
                 </>
             }
         </div>

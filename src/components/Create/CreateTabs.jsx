@@ -28,6 +28,7 @@ export default function CenteredTabs(props) {
             >
                 <Tab label="Draw" />
                 <Tab label="Write" />
+                <Tab label="Creators" />
             </Tabs>
         </Paper>
     );
