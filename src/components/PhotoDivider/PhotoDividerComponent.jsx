@@ -1,12 +1,8 @@
 import React from 'react';
 import './PhotoDividerComponent.css';
 
-class PhotoDividerComponent extends React.Component {
-    render() {
-        return (
-            <div className="PhotoDividerComponent"></div>
-        )
-    }
+export default function PhotoDividerComponent(props) {
+    return (
+        <div className="PhotoDividerComponent" style={{backgroundImage: `url("${props.thumbnail}"`}}></div>
+    )
 }
-
-export default PhotoDividerComponent;

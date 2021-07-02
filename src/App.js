@@ -24,6 +24,7 @@ import Navbar from './components/Navbar/Navbar';
 import TopBar from './components/TopBar/TopBar';
 
 // Page components
+import Home from './components/Home/Home.jsx'
 import SplashScreen from './components/SplashScreen/SplashScreen';
 import UserMenu from './components/UserMenu/UserMenu.jsx';
 import ViewActivitiesComponent from './components/ViewActivities/ViewActivitiesComponent';
@@ -122,7 +123,9 @@ export default function App() {
                 <div className="AppWrapper">
 
                   <Switch>
-                    <Route exact path="/"> <ViewActivitiesComponent /> </Route>
+                  <Route exact path="/"> <Home /> </Route>
+                    
+                    <Route exact path="/app"> <ViewActivitiesComponent /> </Route>
 
                     <Route exact path="/activity/:activityId"> <Activity /> </Route>
                     <Route exact path="/activity/:activityId/go"> <Activity skipIntro={true} /> </Route>

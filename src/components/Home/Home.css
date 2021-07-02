@@ -1,0 +1,42 @@
+.icon-grid {
+    display: flex;
+    margin: 50px auto;
+    width: 100%;
+    justify-content: center
+}
+
+.icon-grid-item {
+    display: inline-block;
+    width: 120px;
+    margin: 0 30px;
+    text-align: center;
+    border: 1px solid transparent;
+    border-radius: 20px;
+    padding: 5px
+}
+
+.icon-grid-item .icon {
+    font-size: 70px;
+}
+
+.icon-grid-item p {
+    display: block;
+    margin-top: 20px;
+    line-height: 22px;
+    font-size: 15px;
+}
+
+@media screen and (max-width: 568px) {
+    .icon-grid {
+        flex-wrap: wrap;
+    }
+
+    .icon-grid-item {
+        width: 140px;
+        margin: 0 20px;
+    }
+
+    .icon-grid-item .icon {
+        font-size: 50px;
+    }
+}

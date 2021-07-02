@@ -35,7 +35,7 @@ export default function SimpleBottomNavigation() {
           height: devicePlatform === 'web' ? 'auto' : '80px'
           }}
       >
-        <BottomNavigationAction component={Link} to="/" id="HomeNavbarIcon" label="Home" icon={<HomeIcon />} />
+        <BottomNavigationAction component={Link} to="/app" id="HomeNavbarIcon" label="Home" icon={<HomeIcon />} />
         <BottomNavigationAction component={Link} to="/spark" id="SparkNavbarIcon" label="Spark" icon={<EmojiObjectsIcon />} />
         <BottomNavigationAction component={Link} to="/create" id="CreateNavbarIcon" label="Create" icon={<BrushIcon />} />
         
