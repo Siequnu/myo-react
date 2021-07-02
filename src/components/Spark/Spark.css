@@ -1,4 +1,11 @@
 .Spark {
-	margin: calc(-50vh) 0;
+	margin: calc(50vh) 0;
 	padding: 0;
+}
+
+/* Chrome 29+ */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    .Spark {
+		margin: unset;
+	}
 }
