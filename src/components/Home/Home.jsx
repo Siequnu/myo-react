@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React from 'react'
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link as RouterLink } from 'react-router-dom';
 
 import PhotoDividerComponent from '../PhotoDivider/PhotoDividerComponent';
 
@@ -19,11 +19,17 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import BrushIcon from '@material-ui/icons/Brush';
 import ColorLensIcon from '@material-ui/icons/ColorLens';
 import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+
+import { authenticationService } from '../../services';
 
 import './Home.css';
 
-function Home() {
+function Home(props) {
 
+  if (authenticationService.currentUserValue) {
+    props.history.push('/app');
+  }
 
   const bounceLoaderCss = css`display: block; margin: 0 auto;`;
   const { data } = useSWR(config.activitiesListUrl)
@@ -40,6 +46,10 @@ function Home() {
       <h1>Myo</h1>
       <p>AI-powered creativity tutor in your pocket</p>
       <img src="/assets/myo-mockup.png" alt="Mockup of Myo on Mac, iPad and iPhone" style={{width: '100%'}}/>
+      <Button className="GoToAppButton" size="large" variant="contained" color="primary" component={RouterLink} to="/app">
+        Go to App
+        <ChevronRightIcon />
+      </Button>
       <Link
         activeClass="active" to="about" spy={true} smooth={true} offset={-110} duration={500} style={{margin: '100px', display: 'block'}} >
         <Button size="Large" variant="contained" endIcon={<KeyboardArrowDownIcon />}> Learn more </Button>

@@ -14,7 +14,7 @@ function Login(props) {
     const { setSnackbar } = React.useContext(SnackbarContext);
 
     if (authenticationService.currentUserValue) {
-        props.history.push('/');
+        props.history.push('/app');
     }
 
 
@@ -27,7 +27,7 @@ function Login(props) {
             authenticationService.login(values.username, values.password)
                 .then(
                     (response) => {
-                        const { from } = props.location.state || { from: { pathname: "/" } };
+                        const { from } = props.location.state || { from: { pathname: "/app" } };
                         props.history.push(from);
 
                         setSnackbar({
