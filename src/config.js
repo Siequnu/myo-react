@@ -6,7 +6,7 @@ const config =
     resetWithToken: '/auth/reset/token',
     authSignUp: '/auth/register',
     authValidate: '/auth/validate',
-    confirmEmail: 'auth/confirm',
+    confirmEmail: '/auth/confirm',
     userProfileUrl: '/auth/profile',
     
     getRoles: '/auth/roles',
