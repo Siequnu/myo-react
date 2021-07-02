@@ -26,7 +26,7 @@ function Login(props) {
         onSubmit: (values) => {
             authenticationService.login(values.username, values.password)
                 .then(
-                    (user) => {
+                    (response) => {
                         const { from } = props.location.state || { from: { pathname: "/" } };
                         props.history.push(from);
 
@@ -36,7 +36,13 @@ function Login(props) {
                             severity: 'success'
                         })
                     }
-                );
+                ).catch((error) => {
+                    setSnackbar({
+                        text: error || `An error occured.`,
+                        open: true,
+                        severity: 'error'
+                    })
+                });
         }
     });
 

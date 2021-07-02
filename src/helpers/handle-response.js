@@ -10,8 +10,8 @@ export function handleResponse(response) {
                 authenticationService.logout();
                 //window.location.reload();
             }
-
-            const error = (data && data.message) || response.statusText;
+            
+            const error = (data && data.error) || response.statusText;
             return Promise.reject(error);
         }
 
