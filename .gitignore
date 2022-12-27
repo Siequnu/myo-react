@@ -3,7 +3,7 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=react,reactnative,flask,python,macos
 
 config.py
-
+settings.json
 ### Flask ###
 instance/*
 !instance/.gitignore
