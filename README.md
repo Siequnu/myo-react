@@ -2,7 +2,7 @@
 
 ## The big idea - Spark wonder
 
-Myo is a web-based creativity tutor.
+Myo is a web-based creativity tutor. This is currently hosted at https://get-myo.com.
 
 > Every child is an artist. The problem is how to remain one once we grow up - Picasso
 
